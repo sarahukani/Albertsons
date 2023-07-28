@@ -1,4 +1,4 @@
-export const States = [
+const states = [
     { label: 'Alabama', value: 'AL' },
     { label: 'Alaska', value: 'AK' },
     { label: 'Arizona', value: 'AZ' },
@@ -49,4 +49,16 @@ export const States = [
     { label: 'West Virginia', value: 'WV' },
     { label: 'Wisconsin', value: 'WI' },
     { label: 'Wyoming', value: 'WY' }
-  ]
+]
+
+ export function getStates(storeList){
+  const stateList = []
+  for(let i = 0; i < states.length; i++){
+    for (let j = 0; j < storeList.length; j++){
+      if(storeList[j].location.state === states[i].value && !stateList.includes(states[i])){
+        stateList.push(states[i])
+      }
+    }
+  }
+  return stateList
+}

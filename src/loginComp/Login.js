@@ -70,6 +70,7 @@ const Login = () => {
                 <h5>Incorrect username or password</h5>
               </div>}
             <button onClick={validateLogin} className='loginBtn'>Login</button> 
+            <p className="newUser">New user? Contact <b>IT Support</b> to create a new account.</p>
         </div>
       </div>
     )

@@ -1,174 +1,187 @@
 .header{
-    font-size: 3.5vw;
-    margin-top:10%;
-    /* position:absolute; */
-    margin-top: 0%;
-    margin-left: -50%;
+  font-size: 3.5vw;
+  margin-top:10%;
+  /* position:absolute; */
+  margin-top: 0%;
+  margin-left: -50%;
 }
 
 .welcome{
-  /* position: absolute;
-  top: 0%;
-  left: 34%; */
-  font-size: 4vw;
-  margin-top:7%;
-  margin-left:-43%;
-  color: #20509C;
+/* position: absolute;
+top: 0%;
+left: 34%; */
+font-size: 4vw;
+margin-top:7%;
+margin-left: -48%;
+color: #20509C;
 }
 
 .subHeader{
-  font-size: 1.8vw;
-  color: grey;
-  margin-top:-1%;
-  margin-left:-45%
-  /* position: absolute;
-  top: 25%;
-  left: 34%; */
+font-size: 1.8vw;
+color: grey;
+margin-top:-1%;
+margin-left:-45%
+/* position: absolute;
+top: 25%;
+left: 34%; */
 }
 
 .storeList{
-  /* position: absolute;
-  top: 35%;
-  left: 33%; */
-  margin-top: 1%;
-  margin-left: -60%;
-  list-style: none;
-  text-align: left;
+/* position: absolute;
+top: 35%;
+left: 33%; */
+margin-top: 1%;
+margin-left: -60%;
+list-style: none;
+text-align: left;
 }
 
 .storeNames{
-  font-size: 5vw;
+  font-size: 2vw;
 }
 
 .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
+  /* display: block; */
+  /* position: relative; */
+  /* padding-left: 35px;
   margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
+  cursor: pointer; */
+  font-size: 22px; 
+  color: #393939;
+  font-weight: normal;
+  /* -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; */
 }
 
 /* Hide the browser's default radio button */
 .container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+position: absolute;
+opacity: 0;
+cursor: pointer;
 }
 
 /* Create a custom radio button */
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  border: 2px solid #8A8A8A;
+position: absolute;
+top: 0.3vw;
+left: -2.5vw;
+height: 25px;
+width: 25px;
+/* background-color: #FFFFFF; */
+border-radius: 50%;
+border: 2px solid #464646;
 }
 
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-  background-color: #ccc;
-  border-color: black;
+/* background-color: #ccc; */
+border-color: black;
 }
 
 /* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #20509C;
-  border: 3px solid #20509C;
+background-color: #20509C;
+border: 3px solid #20509C;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-  
+content: "";
+position: absolute;
+display: none;
+
 }
 
 /* Show the indicator (dot/circle) when checked */
 .container input:checked ~ .checkmark:after {
-  display: block;
-  
+display: block;
+
 }
 
 /* Style the indicator (dot/circle) */
 .container .checkmark:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
-  
+ top: 9px;
+left: 9px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: white;
+
 }
 
 @media screen and (max-width: 768px) {
-  .split-container {
-    flex-direction: column;
-  }
+.split-container {
+  flex-direction: column;
+}
 
-  .left-side,
-    .right-side {
-      flex: 1;
-      width: 100%;
-  }
+.left-side,
+  .right-side {
+    flex: 1;
+    width: 100%;
+}
 
-  .header {
-    font-size: 4vw; /* Reduce font size for smaller screens */
-    margin-left: -55%; /* Adjust horizontal positioning for smaller screens */
-  }
+.header {
+  font-size: 4vw; /* Reduce font size for smaller screens */
+  margin-left: -55%; /* Adjust horizontal positioning for smaller screens */
+}
 
-  .welcome {
-    font-size: 5vw; /* Reduce font size for smaller screens */
-    margin-left: -45%; /* Adjust horizontal positioning for smaller screens */
-    margin-top: 1%;
-  }
+.welcome {
+  font-size: 5vw; /* Reduce font size for smaller screens */
+  margin-left: -45%; /* Adjust horizontal positioning for smaller screens */
+  margin-top: 1%;
+}
 
-  .subHeader {
-    font-size: 2.5vw; /* Reduce font size for smaller screens */
-    margin-left: -50%; /* Adjust horizontal positioning for smaller screens */
-  }
+.subHeader {
+  font-size: 2.5vw; /* Reduce font size for smaller screens */
+  margin-left: -43%; /* Adjust horizontal positioning for smaller screens */
+}
 
-  .storeList {
-    left: 5vw; /* Adjust horizontal positioning for smaller screens */
+.storeList {
+  margin-left: -55vw; /* Adjust horizontal positioning for smaller screens */
+}
+
+.checkmark {
+  position: absolute;
+  top: 0.3vw;
+  left: -4.5vw;
+  height: 25px;
+  width: 25px;
+  /* background-color: #FFFFFF; */
+  border-radius: 50%;
+  border: 2px solid #464646;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .split-container {
-    flex-direction: column;
-  }
+.split-container {
+  flex-direction: column;
+}
 
-  .left-side,
-    .right-side {
-      flex: 1;
-      width: 100%;
-  }
+.left-side,
+  .right-side {
+    flex: 1;
+    width: 100%;
+}
 
-  .header {
-    font-size: 4vw; /* Reduce font size for smaller screens */
-    margin-left: -45%; /* Adjust horizontal positioning for smaller screens */
-  }
+.header {
+  font-size: 4vw; /* Reduce font size for smaller screens */
+  margin-left: -53%; /* Adjust horizontal positioning for smaller screens */
+}
 
-  .welcome {
-    font-size: 5vw; /* Reduce font size for smaller screens */
-    margin-left: -40%; /* Adjust horizontal positioning for smaller screens */
-    margin-top: 1.5%;
-  }
+.welcome {
+  font-size: 5vw; /* Reduce font size for smaller screens */
+  margin-left: -43%; /* Adjust horizontal positioning for smaller screens */
+  margin-top: 1.5%;
+}
 
-  .subHeader {
-    font-size: 16px; /* Reduce font size for smaller screens */
-    margin-left: -30%; /* Adjust horizontal positioning for smaller screens */
-  }
+.subHeader {
+  font-size: 16px; /* Reduce font size for smaller screens */
+  margin-left: -30%; /* Adjust horizontal positioning for smaller screens */
+}
 
-  .storeList {
-    margin-left: -50%; /* Adjust horizontal positioning for smaller screens */
-  }
+.storeList {
+  margin-left: -50%; /* Adjust horizontal positioning for smaller screens */
+}
 }
