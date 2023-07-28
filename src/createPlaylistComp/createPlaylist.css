@@ -183,7 +183,7 @@
 
 }
 
-.popup {
+/*.popup {
   position: absolute;
   top: 400px;
   left: 50%;
@@ -197,4 +197,13 @@
   height: 50%;
 
 }
+*/
 
+
+.editimg {
+  background-color: red;
+  position: absolute;
+  right: 20px; 
+  width: 300px; 
+  height: 300px; 
+}
