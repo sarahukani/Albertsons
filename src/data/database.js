@@ -48,9 +48,20 @@ export default class Database {
         return storeList;
     }
 
-    static async getAllStores() {
-        const response = await fetch(`${backendOrigin}/stores`);
-        const storeData = await response.json();
-        return storeData;
+
+    static async uploadProductImages(file) {
+            var formdata = new FormData();
+            formdata.append("file", file);
+
+            var requestOptions = {
+                method: 'POST',
+                body: formdata,
+            };
+        
+        
+            fetch(`${backendOrigin}/gcp/upload`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
     }
 }
