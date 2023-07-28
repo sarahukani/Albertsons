@@ -9,82 +9,134 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  
 }
 
-.popup{
+.popup-view-sched{
     position: absolute;
-    /* top: 5%; */
+    /* top: 0; */
 }
 
 .scrollable {
-  /* position: absolute; */
-  top: 30%;
+  /* top: 40vw; */
   background-color: rgb(237, 237, 237);
-  padding: 10px;
+  padding: .8vw;
   border-radius: 6px;
-  width: 1200px;
-  height: 400px;
+  width: 93.8vw;
+  height: 33vw;
   overflow-y: auto; 
   overflow-x: hidden;
-  /* display:flex; */
 }
 
 .x-out {
     display:flex;
     position:absolute;
-    right: 1.1%;
-    width: 20px;
-    height: 20px;
+    top:.3vw;
+    right: 1.5vw;
+    width: 1.5vw;
+    height: 1.5vw;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    /* padding: 5px; */
     border:none;
-    padding-top: 7px;
+    /* padding-top: 7px; */
     z-index: 9999;
     color:black;
   }
   
 .sched-info-box {
-    width: 1190px;
-    height: 80px; 
+    width: 93vw;
+    height: 6vw; 
     background-color: rgb(215, 214, 214);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     display: flex;
     position:relative;
-    margin-top: 8px;
+    margin-top: .6vw;
 }
 
 .edit-icon {
   position:absolute;
-  width:15px;
-  height:15px;
-  right: 1.5%;
+  width:1.5vw;
+  height:1.5vw;
+  right: 1.4vw;
   cursor:pointer;
 }
 
-.title {
+.title-view-sched {
     position: absolute;
-    top: 5%;
-    left: 1%; 
-    font-size: 16px;
+    top: .4vw;
+    left: .9vw; 
+    font-size: 1.35vw;
     font-weight: bold;
     color: black;
 }
 
 .headers{
     position: absolute;
-    top: 35%; 
-    font-size: 16px;
+    top: 2.1vw; 
+    font-size: 1.25vw;
     font-weight: bold;
     color: blue;
 }
 
 .headers-info{
     position: absolute;
-    top: 67%;
-    font-size: 12px;
+    top: 3.9vw;
+    font-size: 1vw;
     color: black;
+}
+
+@media screen and (max-width: 748px){
+  .edit-icon {
+    position:absolute;
+    width:1.5vw;
+    height:1.5vw;
+    right: 2.25vw;
+    cursor:pointer;
+  }
+
+  .x-out {
+    display:flex;
+    position:absolute;
+    top:.3vw;
+    right: 2.5vw;
+    width: 1.5vw;
+    height: 1.5vw;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    /* padding: 5px; */
+    border:none;
+    /* padding-top: 7px; */
+    z-index: 9999;
+    color:black;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .edit-icon {
+    position:absolute;
+    width:2vw;
+    height:2vw;
+    right: 3vw;
+    cursor:pointer;
+  }
+
+  .x-out {
+    display:flex;
+    position:absolute;
+    top:.3vw;
+    right: 5vw;
+    width: 1.5vw;
+    height: 1.5vw;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    /* padding: 5px; */
+    border:none;
+    /* padding-top: 7px; */
+    z-index: 9999;
+    color:black;
+  }
 }
