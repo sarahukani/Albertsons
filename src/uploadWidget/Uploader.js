@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../uploadWidget/Uploader.css';
 import { MdCloudUpload } from 'react-icons/md';
 import { RiCheckLine } from 'react-icons/ri';
+import Database from '../data/database';
 
 export default function Uploader() {
   const [images, setImages] = useState([]);
@@ -13,6 +14,10 @@ export default function Uploader() {
 
   const handleImageUpload = async (event) => {
     const files = event.target.files;
+
+    const file = Array.from(files)[0];
+    await Database.uploadProductImages(file);
+
     setLoading(true);
     try {
       const newImages = await Promise.all(
