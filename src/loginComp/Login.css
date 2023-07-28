@@ -41,6 +41,11 @@
     margin-left: -10%;
   }
   
+  .newUser{
+    font-size: 1.1vw;
+    color: #20509c;
+  }
+  
   .email{
     padding: 1vw;
     border: 0vw solid #eaeaea;
