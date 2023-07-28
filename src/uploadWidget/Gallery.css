@@ -89,7 +89,12 @@
 }
 
 img {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   object-fit: cover;
 }
+
+.image-item.selected {
+  border: 2px solid blue; /* Add a blue border to the selected image */
+}
+
