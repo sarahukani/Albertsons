@@ -1,0 +1,313 @@
+
+.split-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .right-side {
+    flex: 0 0 70%;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  
+  h3 {
+    font-size: 60px;
+    margin-bottom: 16px;
+  }
+
+.locSelect{
+    font-size: 5vw;
+    margin-top: 10%;
+    margin-left: -28%;
+}
+
+.subheader{
+  font-size: 2vw;
+  color: grey;
+  margin-left: -10%;
+  margin-top:1%;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-left:-9%;
+  margin-top: 3%;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.search-input {
+  width: 0vw;
+}
+
+.search-bar {
+  display: flex;
+  width: 900px;
+  height: 51px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.search-input {
+  width:  600%;
+}
+
+.search-icon {
+    margin-right: 8px;
+}
+  
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.back-button {
+  padding:10px;
+  border: 3px solid #20509C;
+  border-radius:13px;
+  outline:none;
+  width: 33%;
+  height: 7%;
+  background-color: #F5F5F5;
+  position: absolute;
+  top: 89%;
+  left: 31.5%;
+  font-size: 20px;
+  justify-content: center;
+  color: #20509C;
+  font-weight: bold;
+}
+
+.back-button:hover{
+  background-color: #dfebff;
+}
+  
+.next-button {
+  padding:10px;
+  border: 3px solid #20509C;
+  border-radius:13px;
+  outline:none;
+  width: 33%;
+  height: 7%;
+  background-color: #20509C;
+  position: absolute;
+  top: 89%;
+  left: 64.5%;
+  font-size: 20px;
+  justify-content: center;
+  color: #EAEAEA;
+  font-weight: bold;
+}
+
+.next-button:hover{
+  background-color: #0e326b;
+}
+  
+.button-text {
+    color: #20509C;
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: normal;
+}
+  
+.next-button .button-text {
+    color: #FFF;
+}
+  
+.s-list{
+  text-align: left;
+  margin-top:1%;
+  margin-left: -38%;
+  list-style: none;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+}
+
+.listEle{
+  margin-top: 2%;
+}
+
+.checktext{
+  font-size: 16px;
+  margin-top:1%;
+  
+} 
+
+.invalidMess{
+  white-space: nowrap;
+  font-size: 1.3vw;
+  color:grey;
+  margin-top:10%;
+  margin-left: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .left-side,
+    .right-side {
+      flex: 1;
+      width: 100%;
+  }
+
+  .back-button{
+    margin-left:-30%;
+    margin-top: 6%;
+    width:48%;
+    height: 5%;
+    font-size: 2vw;
+  }
+
+  .next-button{
+    width: 48%;
+    left: 48.5%;
+    margin-top: 6%;
+    height: 5%;
+    font-size: 2vw;
+  }
+
+  .locSelect{
+    font-size: 4vw;
+    /* margin-top: 3%; */
+    margin-left: -35%;
+    margin-top: 1%;
+}
+
+  .subheader{
+    font-size: 2vw;
+    color: grey;
+    margin-left: -21%;
+    margin-top:0%;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-left:3%;
+    margin-top: 3%;
+  }
+
+.s-list{
+  text-align: left;
+  margin-top:1%;
+  margin-left: -10%;
+  list-style: none;
+}
+
+.listEle{
+  margin-top: 2%;
+}
+
+.checktext{
+  font-size: 16px;
+  margin-top:1%;
+  
+} 
+
+.invalidMess{
+  white-space: nowrap;
+  font-size: 1.3vw;
+  color:grey;
+  margin-top:10%;
+  margin-left: 30%;
+}
+}
+
+@media screen and (max-width: 480px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .left-side,
+    .right-side {
+      flex: 1;
+      width: 100%;
+  }
+
+  .back-button{
+    margin-left:-30%;
+    margin-top: 2%;
+    width:48%;
+  }
+
+  .next-button{
+    width: 48%;
+    left: 48.5%;
+    margin-top: 2%;
+  }
+
+  .locSelect{
+    font-size: 5vw;
+    margin-top: 3%;
+    margin-left: -30%;
+}
+
+  .subheader{
+    font-size: 2.7vw;
+    color: grey;
+    margin-left: -13%;
+    margin-top:1%;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-left:6%;
+    margin-top: 3%;
+  }
+
+  .s-list{
+    text-align: left;
+    margin-top:1%;
+    margin-left: -20%;
+    list-style: none;
+  }
+
+  .listEle{
+    margin-top: 2%;
+  }
+
+.checktext{
+  font-size: 3.3vw;
+  margin-top:1%;
+  
+} 
+
+.invalidMess{
+  white-space: nowrap;
+  font-size: 1.3vw;
+  color:grey;
+  margin-top:10%;
+  margin-left: 30%;
+}
+}

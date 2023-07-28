@@ -1,0 +1,133 @@
+.schedule-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    flex-wrap: wrap; /* Allow flex items to wrap to a new row on smaller screens */
+    justify-content: space-between; /* Distribute items evenly with space between them */
+  }
+  
+  .section1 {
+    flex-basis: 30%; /* Set the initial width of each section to 30% */
+    margin-right: 30px;
+  }
+/*   
+  .section:last-child {
+    margin-right: 0;
+  } */
+  
+  .section1-heading {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .section2 {
+    flex-basis: 30%; /* Set the initial width of each section to 30% */
+    margin-right: 30px;
+  }
+
+
+  .section2-heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .schedule-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: bottom;
+    width: 100%; /* Set width to 100% */
+    margin-top: 35%; /* Add some top margin for spacing */
+  }
+  
+  .schedule-button {
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+  }
+  
+  .input1-container label {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .input-container input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .modal-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+  
+  .modal h3 {
+    margin-top: 0;
+  }
+  
+  .modal-close {
+    background-color: #20509C;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .seperator {
+    background-color: #20509C;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .schedule-container {
+      flex-direction: column; /* Stack the sections vertically on smaller screens */
+      align-items: center; /* Center the flex items vertically */
+    }
+    
+    .section {
+      flex-basis:100%; /* Set each section to occupy full width on smaller screens */
+      margin-right: 0;
+      margin-bottom: 10px; /* Add margin-bottom to create space between input containers */
+    }
+  }
+  

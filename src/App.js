@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Main from './mainComp/Main.js';
+import Login from './loginComp/Login.js';
+import './loginComp/Login.css';
+
+
+import { Routes, Route } from "react-router-dom";
+import ViewPlaylist from './viewPlaylistComp/ViewPlaylist';
+import Schedule from './createPlaylistComp/Schedule.js';
+import StoresLocation from './storeLocationComp/StoresLocation'
+import Verification from './storeLocationComp/verification';
+import Banner from './bannerSelectionComp/Banner'
+import Gallery from './uploadWidget/Gallery'
+import ViewSchedule from './viewScheduleComp/ViewSchedule'
+import CreatePlaylist from './createPlaylistComp/createPlaylist';
+// import {Routes, Route} from "react-router-dom";
+// import ViewPlaylist from './ViewPlaylist';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/sl" element={<StoresLocation />} />
+        <Route path="/verification" element={<Verification />} /> 
+        <Route path="/viewplaylist" element={<ViewPlaylist />} />
+        <Route path="/schedule" element={<Schedule />} /> 
+        <Route path="/banner" element={ <Banner /> }/>
+        <Route path="/gallery" element={ <Gallery /> }/>
+        <Route path="/viewschedule" element={ <ViewSchedule /> }/>
+        <Route path="/createplaylist" element={ <CreatePlaylist /> }/>
+
+      </Routes>
     </div>
   );
 }

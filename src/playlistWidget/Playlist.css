@@ -1,0 +1,21 @@
+.view-playlist-button {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    outline: none;
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 81.5%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+  
+  }
+  
+  .view-playlist-button:hover {
+    background-color: #bae4ef;
+  }

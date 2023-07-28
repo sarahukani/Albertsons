@@ -1,0 +1,32 @@
+
+  
+  /* Styles for the scrollable content */
+  .scrollable-content {
+    padding-top: 67px; /* Set padding to leave space for the fixed header */
+    overflow-y: auto; /* Enable vertical scrolling for the content */
+    height: calc(100vh - 67px); /* Calculate the height of the content to fill the available viewport height, excluding the fixed header */
+      display: grid;
+    grid-template-columns: repeat(2, 300px); /* Adjust the size of the boxes as needed */
+    grid-gap: 100px; /* Adjust the gap between boxes as needed */
+    margin-left: 30px;
+    position: relative; /* Make the container relative to position the boxes within */
+    z-index: 0; /* Ensure the boxes appear below the header */
+    }
+  
+  /* Additional styles for the boxes */
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(2, 300px); /* Adjust the size of the boxes as needed */
+    grid-gap: 100px; /* Adjust the gap between boxes as needed */
+    margin-left: 30px;
+    position: relative; /* Make the container relative to position the boxes within */
+    z-index: 0; /* Ensure the boxes appear below the header */
+  }
+  
+  .box {
+    width: 150px; /* Adjust the size of the boxes as needed */
+    height: 150px; /* Adjust the size of the boxes as needed */
+    background-color: #ccc; /* Gray color */
+    border-radius: 20px; /* Adjust the border-radius to get curved edges */
+  }
+  

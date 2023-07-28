@@ -1,0 +1,90 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  
+}
+
+.popup{
+    position: absolute;
+    /* top: 5%; */
+}
+
+.scrollable {
+  /* position: absolute; */
+  top: 30%;
+  background-color: rgb(237, 237, 237);
+  padding: 10px;
+  border-radius: 6px;
+  width: 1200px;
+  height: 400px;
+  overflow-y: auto; 
+  overflow-x: hidden;
+  /* display:flex; */
+}
+
+.x-out {
+    display:flex;
+    position:absolute;
+    right: 1.1%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border:none;
+    padding-top: 7px;
+    z-index: 9999;
+    color:black;
+  }
+  
+.sched-info-box {
+    width: 1190px;
+    height: 80px; 
+    background-color: rgb(215, 214, 214);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    display: flex;
+    position:relative;
+    margin-top: 8px;
+}
+
+.edit-icon {
+  position:absolute;
+  width:15px;
+  height:15px;
+  right: 1.5%;
+  cursor:pointer;
+}
+
+.title {
+    position: absolute;
+    top: 5%;
+    left: 1%; 
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.headers{
+    position: absolute;
+    top: 35%; 
+    font-size: 16px;
+    font-weight: bold;
+    color: blue;
+}
+
+.headers-info{
+    position: absolute;
+    top: 67%;
+    font-size: 12px;
+    color: black;
+}

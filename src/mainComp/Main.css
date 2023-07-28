@@ -1,0 +1,231 @@
+.mainDiv{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+.AI_GenBox{
+    background-color: #D9D3C9;
+    width: 55vw;
+    height: 36vw;
+    border: 1.3vw solid #D9D3C9;
+    margin: 1.5vw;
+    border-radius: 28px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 4.5vw;
+} 
+/* upload box */
+.Upload{
+    background-color: #E1BBB0;
+    width: 31vw;
+    height: 16vw;
+    border: 1.3vw solid #E1BBB0;
+    margin: 1.5vw;
+    position: absolute;
+    top: 4.5vw;
+    left: 61vw;
+    border-radius: 28px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+}
+
+.viewPlaylist{
+    background-color: #22505D;
+    width: 31vw;
+    height: 16.5vw;
+    border: 1.3vw solid #22505D;
+    margin: 1.5vw;
+    position: absolute;
+    top: 24vw;
+    left: 61vw;
+    border-radius: 28px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 768px){
+    .mainDiv{
+        flex-direction: column;
+    }
+
+    .AI_GenBox{
+        flex: 1;
+        background-color: #D9D3C9;
+        width: 93vw;
+        height: 65vw;
+        border: 1.3vw solid #D9D3C9;
+        margin: 1.5vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+        position: absolute;
+        top: 10.5vw;
+    }
+    .Upload{
+        flex: 1;
+        background-color: #E1BBB0;
+        width: 92vw;
+        height: 40vw;
+        border: 1.3vw solid #E1BBB0;
+        margin: 1.5vw;
+        position: absolute;
+        top: 80.5vw;
+        left: 1vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25); 
+    }
+    .viewPlaylist{
+        flex: 1;
+        background-color: #22505D;
+        width: 92vw;
+        height: 40vw;
+        border: 1.3vw solid #22505D;
+        margin: 1.5vw;
+        position: absolute;
+        top: 125vw;
+        left: 1vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media screen and (max-width: 480px){
+    .mainDiv{
+        flex-direction: column;
+    }
+
+    .AI_GenBox{
+        flex: 1;
+        background-color: #D9D3C9;
+        width: 93vw;
+        height: 65vw;
+        border: 1.3vw solid #D9D3C9;
+        margin: 1.5vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+        position: absolute;
+        top: 10.5vw;
+    }
+    .Upload{
+        flex: 1;
+        background-color: #E1BBB0;
+        width: 92vw;
+        height: 40vw;
+        border: 1.3vw solid #E1BBB0;
+        margin: 1.5vw;
+        position: absolute;
+        top: 80.5vw;
+        left: 1vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25); 
+    }
+    .viewPlaylist{
+        flex: 1;
+        background-color: #22505D;
+        width: 92vw;
+        height: 40vw;
+        border: 1.3vw solid #22505D;
+        margin: 1.5vw;
+        position: absolute;
+        top: 125vw;
+        left: 1vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+    }
+}
+  
+  
+  
+  
+  
+  
+/* .viewPlaylistBtn{
+    padding:10px;
+    border: 3px solid #FFFFFF;
+    border-radius:20px;
+    outline:none;
+    width: 100%;
+    height: 20%;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 80%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.viewPlaylistBtn:hover{
+    background-color: #e3f9ff;
+} */
+
+/* .icon{
+    height: 8%;
+    width: 4%;
+    position: absolute;
+    top: 2.5%;
+    left: 94%;
+} */
+
+/* .detailedDescrip{
+    padding: 10px;
+    width: 45%;
+    height: 40%;
+    background-color: #EAEAEA;
+    border: 3px solid #EAEAEA;
+    border-radius: 18px;
+    position: absolute;
+    top: 7%;
+    left: 1%;
+}
+
+.reccomendations{
+    padding: 10px;
+    width: 43%;
+    height: 51%;
+    background-color: #FFFFFF;
+    border: 3px solid #FFFFFF;
+    border-radius: 18px;
+    position: absolute;
+    top: 7%;
+    left: 52%;
+}
+
+.generateBtn{
+    padding: 10px;
+    width: 49%;
+    height: 9%;
+    background-color: #20509C;
+    border: 3px solid #20509C;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    top: 54%;
+    left: 1%;
+}
+
+.generateBtn:hover{
+    background-color: #3568ba;
+}
+
+.firstText{
+    position: absolute;
+    top: -3%;
+    left: 2%;
+}
+
+.secondText{
+    position: absolute;
+    top: -3%;
+    left: 53%;
+}
+
+.thirdText{
+    position: absolute;
+    top: 64%;
+    left: 2%;
+}
+
+/* .Schedule{
+    position: absolute;
+    bottom: 10%;
+} */

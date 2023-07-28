@@ -1,0 +1,213 @@
+.split-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-side {
+    flex: 0 0 30%;
+    background-image: url("./firstpage.png");
+    background-color: #20509c;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .right-side {
+    flex: 0 0 70%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .headerLogin {
+    font-size: 4vw;
+    text-align: right;
+    margin-top: 12%;
+  }
+  
+  .subLogin {
+    color: grey;
+    margin-top: -1%;
+    font-size: 2vw;
+  }
+  
+  h5 {
+    color: #ff0000;
+    display: inline;
+    /* position: absolute; */
+    margin-left: -10%;
+  }
+  
+  .email{
+    padding: 1vw;
+    border: 0vw solid #eaeaea;
+    border-radius: 15px;
+    outline: none;
+    width: 100%;
+    max-width: 30vw;
+    text-align: center;
+    background-color: #eaeaea;
+    margin-top: 2%;
+  }
+
+  .pass {
+    padding: 1vw;
+    border: 0vw solid #eaeaea;
+    border-radius: 15px;
+    outline: none;
+    width: 100%;
+    max-width: 30vw;
+    text-align: center;
+    background-color: #eaeaea;
+    margin-top: 2%;
+  }
+  
+  .loginBtn {
+    padding: 1vw;
+    border: 0vw solid #20409c;
+    border-radius: 15px;
+    outline: none;
+    width: 100%;
+    max-width: 35vw;
+    height: 8%;
+    text-align: center;
+    background-color: #20409c;
+    font-size: 1.5vw;
+    color: white;
+    font-weight: bold;
+    margin-top: 2%;
+  }
+
+  .loginBtn:hover {
+    background-color: rgb(0, 0, 194);
+    color: white;
+  }
+  
+  .forgetPass {
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    border-style: solid;
+    color: #305da2;
+    font-weight: bold;
+    margin-top: 2%;
+    margin-left: 33%;
+  }
+  
+  .forgetPass:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media Queries */
+  
+  /* For screens with width less than or equal to 768px */
+  @media screen and (max-width: 768px) {
+    .split-container {
+      flex-direction: column;
+    }
+  
+    .left-side,
+    .right-side {
+      flex: 1;
+      width: 100%;
+    }
+
+    .headerLogin{
+      margin-top: 8%;
+      margin-left: -5%;
+      font-size: 5vw;
+    }
+
+    .subLogin{
+      margin-top: 0%;
+      margin-left: -5.6%;
+      font-size: 2.5vw;
+    }
+
+    .email{
+      margin-top: 1%;
+      margin-left: -5.6%;
+      width: 100%;
+      max-width: 40vw;
+    }
+
+    .pass{
+      margin-top: 1%;
+      margin-left: -5.6%;
+      width: 100%;
+      max-width: 40vw;
+    }
+
+    .forgetPass{
+      margin-top: 1%;
+      margin-left: 25%;
+    }
+    .loginBtn{
+        text-align: center;
+        margin-top: 2%;
+        margin-left: -5.6%;
+        width: 100%;
+        max-width: 45vw;
+        height: 6vw;
+        font-size: 2.5vw;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .split-container {
+      flex-direction: column;
+    }
+  
+    .left-side,
+    .right-side {
+      flex: 1;
+      width: 100%;
+    }
+
+    .headerLogin{
+      margin-top: 8%;
+      margin-left: -10%;
+      font-size: 7vw;
+    }
+
+    .subLogin{
+      margin-top: -2%;
+      margin-left: -9%;
+      font-size: 3.5vw;
+    }
+
+    .email{
+      margin-top: 1%;
+      margin-left: -10%;
+      width: 100%;
+      max-width: 50vw;
+    }
+
+    .pass{
+      margin-top: 2%;
+      margin-left: -10%;
+      width: 100%;
+      max-width: 50vw;
+    }
+
+    .forgetPass{
+      margin-top: 1%;
+      margin-left: 25%;
+      font-size: 2.5vw;
+    }
+
+    .loginBtn{
+        text-align: center;
+        margin-top: 3%;
+        margin-left: -10%;
+        width: 100%;
+        max-width: 60vw;
+        height: 7vw;
+        font-size: 2.5vw;
+    }
+  }
+  
+  /* Add more media queries as needed for different screen sizes */
+  

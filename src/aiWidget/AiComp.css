@@ -1,0 +1,461 @@
+.detailedDescrip{
+    padding: 0.8vw;
+    width: 24.5vw;
+    height: 15.2vw;
+    background-color: #EAEAEA;
+    border: 0.3vw solid #EAEAEA;
+    border-radius: 18px;
+    position: absolute;
+    top: 2.5vw;
+    left: 0.5vw;
+}
+
+.reccomendations{
+    padding: 0.8vw;
+    width: 24.5vw;
+    height: 19vw;
+    background-color: #FFFFFF;
+    border: 0.3vw solid #FFFFFF;
+    border-radius: 18px;
+    position: absolute;
+    top: 2.5vw;
+    left: 28.5vw;
+    overflow-y: scroll;
+}
+
+.generateBtn{
+    padding: 0.8vw;
+    width: 26.8vw;
+    height: 3.2vw;
+    background-color: #20509C;
+    border: 0.3vw solid #20509C;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3vw;
+    color: white;
+    position: absolute;
+    top: 20.5vw;
+    left: 1%;
+}
+
+.generateBtn:hover{
+    background-color: #3568ba;
+}
+
+.firstText{
+    position: absolute;
+    top: -1.3vw;
+    left: 1vw;
+    font-size: 1.2vw;
+}
+
+.secondText{
+    position: absolute;
+    top: -1.3vw;
+    left: 29vw;
+    font-size: 1.2vw;
+}
+
+.thirdText{
+    position: absolute;
+    top: 23.5vw;
+    left: 1vw;
+    font-size: 1.2vw;
+}
+
+.location{
+    padding: 0.5vw;
+    border-radius: 12px;
+    border: 0.2vw solid white;
+    width: 16vw;
+    height: 5.5vh;
+    position: absolute;
+    left: 9.5vw;
+}
+
+.age{
+    padding: 0.5vw;
+    border-radius: 12px;
+    border: 0.2vw solid white;
+    width: 14.7vw;
+    height: 2.5vh;
+    position: absolute;
+    left: 9.5vw; 
+    top: 4vw;
+}
+
+.productCategory{
+    padding: 0.5vw;
+    border-radius: 12px;
+    border: 0.2vw solid white;
+    width: 14.7vw;
+    height: 2.5vh;
+    position: absolute;
+    left: 9.5vw; 
+    top: 7.2vw;
+}
+
+.weather{
+    padding: 0.5vw;
+    border-radius: 12px;
+    border: 0.2vw solid white;
+    width: 14.7vw;
+    height: 2.5vh;
+    position: absolute;
+    left: 9.5vw; 
+    top: 10.4vw;
+}
+
+.holiday{
+    padding: 0.5vw;
+    border-radius: 12px;
+    border: 0.2vw solid white;
+    width: 14.7vw;
+    height: 2.5vh;
+    position: absolute;
+    left: 9.5vw; 
+    top: 13.8vw;
+}
+
+.locName{
+    position:absolute;
+    top: -0.5vw;
+    left: 1.5vw;
+    font-size: 1.5vw;
+}
+
+.ageName{
+    position: absolute;   
+    top: 2.5vw;
+    left: 2.8vw;
+    font-size: 1.5vw;
+}
+
+.productName{
+    position: absolute;
+    top: 5.5vw;
+    left: 2vw;
+    text-align: center;
+    font-size: 1.2vw;
+}
+
+.weatherName{
+    position: absolute; 
+    top: 9.1vw;
+    left: 1.5vw;
+    font-size: 1.5vw;
+}
+
+.holidayName{
+    position: absolute;
+    top: 73%; 
+    left: 2vw; 
+    font-size: 1.5vw;
+}
+
+@media screen and (max-width: 768px){
+    .mainDiv{
+        flex-direction: column;
+    }
+
+    .detailedDescrip{
+        padding: 0.8vw;
+        width: 43vw;
+        height: 27vw;
+        position: absolute;
+        top: 4.5vw;
+        left: 0.5vw;
+    }
+    
+    .reccomendations{
+        padding: 0.8vw;
+        width: 43vw;
+        height: 33.5vw;
+        position: absolute;
+        top: 4.5vw;
+        left: 47vw;
+        overflow-y: scroll;
+    }
+    
+    .generateBtn{
+        padding: 0.8vw;
+        width: 45vw;
+        height: 5vw;
+        text-align: center;
+        font-weight: bold;
+        font-size: 2vw;
+        color: white;
+        position: absolute;
+        top: 35vw;
+        left: 0.5vw;
+    }
+    
+    .generateBtn:hover{
+        background-color: #3568ba;
+    }
+    
+    .firstText{
+        position: absolute;
+        top: -1.3vw;
+        left: 2vw;
+        font-size: 2vw;
+    }
+    
+    .secondText{
+        position: absolute;
+        top: -1.3vw;
+        left: 48vw;
+        font-size: 2vw;
+    }
+    
+    .thirdText{
+        position: absolute;
+        top: 40vw;
+        left: 1vw;
+        font-size: 2vw;
+    }
+    
+    .location{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 26.5vw;
+        height: 5.5vh;
+        position: absolute;
+        left: 17vw;
+    }
+    
+    .age{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 4vh;
+        position: absolute;
+        left: 17vw; 
+        top: 6vw;
+    }
+    
+    .productCategory{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 4vh;
+        position: absolute;
+        left: 17vw; 
+        top: 11.5vw;
+    }
+    
+    .weather{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 4vh;
+        position: absolute;
+        left: 17vw; 
+        top: 17vw;
+    }
+    
+    .holiday{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 4vh;
+        position: absolute;
+        left: 17vw; 
+        top: 22.6vw;
+    }
+    
+    .locName{
+        position:absolute;
+        top: -1.3vw;
+        left: 3.5vw;
+        font-size: 2.4vw;
+    }
+    
+    .ageName{
+        position:absolute;
+        top: 3.5vw;
+        left: 5.5vw;
+        font-size: 2.4vw;
+    }
+    
+    .productName{
+        position: absolute;
+        top: 8.5vw;
+        left: 3.5vw;
+        text-align: center;
+        font-size: 2.2vw;
+    }
+    
+    .weatherName{
+        position:absolute;
+        top: 15.5vw;
+        left: 3.5vw;
+        font-size: 2.4vw;
+    }
+    
+    .holidayName{
+        position:absolute;
+        top: 20.5vw;
+        left: 3.5vw;
+        font-size: 2.4vw;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .mainDiv{
+        flex-direction: column;
+    }
+
+    .detailedDescrip{
+        padding: 0.8vw;
+        width: 43vw;
+        height: 27vw;
+        position: absolute;
+        top: 4.5vw;
+        left: 0.5vw;
+    }
+    
+    .reccomendations{
+        padding: 0.8vw;
+        width: 43vw;
+        height: 33.5vw;
+        position: absolute;
+        top: 4.5vw;
+        left: 47vw;
+        overflow-y: scroll;
+    }
+    
+    .generateBtn{
+        padding: 0.8vw;
+        width: 45vw;
+        height: 5vw;
+        text-align: center;
+        font-weight: bold;
+        font-size: 2vw;
+        color: white;
+        position: absolute;
+        top: 35vw;
+        left: 0.5vw;
+    }
+    
+    .generateBtn:hover{
+        background-color: #3568ba;
+    }
+    
+    .firstText{
+        position: absolute;
+        top: -1.3vw;
+        left: 2vw;
+        font-size: 2vw;
+    }
+    
+    .secondText{
+        position: absolute;
+        top: -1.3vw;
+        left: 48vw;
+        font-size: 2vw;
+    }
+    
+    .thirdText{
+        position: absolute;
+        top: 40vw;
+        left: 1vw;
+        font-size: 2vw;
+    }
+    
+    .location{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 26.5vw;
+        height: 3vh;
+        position: absolute;
+        left: 17vw;
+    }
+    
+    .age{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 2vh;
+        position: absolute;
+        left: 17vw; 
+        top: 6vw;
+    }
+    
+    .productCategory{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 2vh;
+        position: absolute;
+        left: 17vw; 
+        top: 11.5vw;
+    }
+    
+    .weather{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 2vh;
+        position: absolute;
+        left: 17vw; 
+        top: 17vw;
+    }
+    
+    .holiday{
+        padding: 0.5vw;
+        border-radius: 12px;
+        border: 0.2vw solid white;
+        width: 25vw;
+        height: 2vh;
+        position: absolute;
+        left: 17vw; 
+        top: 22.6vw;
+    }
+    
+    .locName{
+        position:absolute;
+        top: -1.3vw;
+        left: 3.5vw;
+        font-size: 2.4vw;
+    }
+    
+    .ageName{
+        position:absolute;
+        top: 3.5vw;
+        left: 5.5vw;
+        font-size: 2.4vw;
+    }
+    
+    .productName{
+        position: absolute;
+        top: 8.5vw;
+        left: 3.5vw;
+        text-align: center;
+        font-size: 2.2vw;
+    }
+    
+    .weatherName{
+        position:absolute;
+        top: 15.5vw;
+        left: 3.5vw;
+        font-size: 2.4vw;
+    }
+    
+    .holidayName{
+        position:absolute;
+        top: 20.5vw;
+        left: 3.5vw;
+        font-size: 2.4vw;
+    }
+}
