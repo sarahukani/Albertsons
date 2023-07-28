@@ -4,9 +4,12 @@ import { left } from '@popperjs/core';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import EditIcon from '@mui/icons-material/Edit';
 
+//mod 12 for am pm
+//fix curved stuff for view schedule pop up
+
 const data = [
     {
-      id: 1,
+      id: 0,
       title: "Mother's Day",
       location: '777 Butcher Ave, Los Angeles, CA',
       startingDate: '3/14/24',
@@ -15,7 +18,7 @@ const data = [
       endTime: '23:59'
     },
     {
-      id: 2,
+      id: 1,
       title: 'Halloween',
       location: '423 Roycroft Ave, Los Angeles, CA',
       startingDate: '5/7/23',
@@ -24,7 +27,7 @@ const data = [
       endTime: '11:00'
     },
     {
-      id: 3,
+      id: 2,
       title: "Father's Day",
       location: '123 Lotus Ave, Los Angeles, CA',
       startingDate: '3/14/24',
@@ -32,37 +35,37 @@ const data = [
       endDate: '4/15/24',
       endTime: '5:00'
     }, 
-    {
-        id: 4,
-        title: 'Halloween',
-        location: '423 Roycroft Ave, Los Angeles, CA',
-        startingDate: '5/7/23',
-        startTime: '11:00',
-        endDate: '6/15/24',
-        endTime: '11:00'
-      },
-      {
-        id: 5,
-        title: "Father's Day",
-        location: '123 Lotus Ave, Los Angeles, CA',
-        startingDate: '3/14/24',
-        startTime: '5:00',
-        endDate: '4/15/24',
-        endTime: '5:00'
-      }, 
+    // {
+    //     id: 3,
+    //     title: 'Halloween',
+    //     location: '423 Roycroft Ave, Los Angeles, CA',
+    //     startingDate: '5/7/23',
+    //     startTime: '11:00',
+    //     endDate: '6/15/24',
+    //     endTime: '11:00'
+    //   },
+    //   {
+    //     id: 4,
+    //     title: "Father's Day",
+    //     location: '123 Lotus Ave, Los Angeles, CA',
+    //     startingDate: '3/14/24',
+    //     startTime: '5:00',
+    //     endDate: '4/15/24',
+    //     endTime: '5:00'
+    //   }, 
   ];
 
   //integrate below w Idris' stuff
-  const newScheduling = {
-    id: data[data.length-1].id,
-    title: "Mother's Day",
-    location: '123 Elm St, New York, NY',
-    startingDate: '7/1/25',
-    startTime: '9:00',
-    endDate: '7/5/25',
-    endTime: '18:00'
-  }
-  data.push(newScheduling);
+  // const newScheduling = {
+  //   id: data[data.length-1].id,
+  //   title: "Mother's Day",
+  //   location: '123 Elm St, New York, NY',
+  //   startingDate: '7/1/25',
+  //   startTime: '9:00',
+  //   endDate: '7/5/25',
+  //   endTime: '18:00'
+  // }
+  // data.push(newScheduling);
 
 const convertToDateTime = (dateStr, timeStr) => {
     const startDateTime = `${dateStr} ${timeStr}`;
@@ -77,6 +80,11 @@ const convertToDateTime = (dateStr, timeStr) => {
     });
   };
 
+  //this will be called in Idris' code!
+  const addNewPlaylist = (newEntry) => {
+    data.push(newEntry);
+  };
+
 const ViewSchedulePopup = ({ isOpen, onClose, content }) => {
   if (!isOpen) return null;
 
@@ -84,12 +92,12 @@ const ViewSchedulePopup = ({ isOpen, onClose, content }) => {
 
   return (
     <div className="popup-overlay">
-      <div className='popup'>
+      <div className='popup-view-sched'>
         <HighlightOffIcon className='x-out' onClick={onClose}/>
         <div className="scrollable">
             {sortedData.map((item) => (
             <div className="sched-info-box" key={item.id}>
-                <div className="title">{item.title}</div>
+                <div className="title-view-sched">{item.title}</div>
                 <div className="headers" style={{ left: '1%' }}>
                 Location
                 </div>
@@ -102,7 +110,7 @@ const ViewSchedulePopup = ({ isOpen, onClose, content }) => {
                 <div className="headers-info" style={{ left: '50%' }}>
                 {item.startingDate +' ' +item.startTime+ ' - '+ item.endDate+ ' '+ item.endTime}
                 </div>
-                <EditIcon className="edit-icon"/>
+                <EditIcon id={item.id} className="edit-icon"/>
             </div>
             ))}
         </div>
