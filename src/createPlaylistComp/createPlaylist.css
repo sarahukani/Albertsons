@@ -1,209 +1,119 @@
-.title {
-
+.create-playlist-container {
   display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  border-radius: 10px;
-
-  background: #f5f5f5;
-
-  height: 50px;
-
-  font-weight: bold;
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  padding: 0 16px;
-
 }
 
- 
+.gallery-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.playlist-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: #f5f5f5;
+  height: 50px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 16px;
+}
 
 .text-icon {
-
   width: auto;
-
   height: 500px;
-
   flex-shrink: 0;
-
   background: #d9d9d9;
-
   position: relative;
-
 }
-
- 
 
 .create-section {
-
   display: flex;
-
   align-items: center;
-
   justify-content: flex-end;
-
   background: black;
-
   height: 50px;
-
   font-weight: bold;
-
   color: white;
-
-  width: 100%;
-
   padding-right: 16px;
-
 }
-
- 
 
 .Schedulebtn {
-
   color: #20509c;
-
   font-family: Inter;
-
   background-color: white;
-
   border-radius: 10px;
-
   font-size: 16px;
-
   padding: 10px 20px;
-
   margin-right: 15px;
-
 }
-
- 
 
 .Exportbtn {
-
   color: white;
-
   font-family: Inter;
-
   background-color: #20509c;
-
   border-radius: 10px;
-
   font-size: 16px;
-
   padding: 10px 20px;
-
 }
-
- 
-
-.icon-list {
-
-  list-style: none;
-
-  padding: 0;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: flex-start;
-
-  position: absolute;
-
-  top: 50%;
-
-  right: 16px;
-
-  transform: translateY(-50%);
-
-}
-
- 
-
-.icon-container {
-
-  display: flex;
-
-  align-items: center;
-
-  margin-bottom: 8px;
-
-  cursor: pointer;
-
-  height: 100px;
-}
-
- 
 
 .container {
-
   background-color: #f5f5f5;
-
   position: relative;
-
   padding: 4px 8px;
-
   border-radius: 10px;
-
   font-weight: bold;
-
   color: white;
-
-  width: 900px;
-
-  height: 490px;
-
+  width: 100%;
+  height: 100%;
 }
-
- 
-
-/* Styles for the text overlay */
 
 .text-overlay {
-
   position: absolute;
-
   top: 50%;
-
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   font-size: 20px;
-
   font-weight: bold;
-
   color: white;
-
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-
+  z-index: 1; 
+  pointer-events: none; 
 }
 
-/*.popup {
-  position: absolute;
-  top: 400px;
-  left: 50%;
-  background-color: white;
-  transform: translate(-50%, -50%);
-  padding: 5px;
-  border: 1px solid grey; 
-  border-radius: 6px;
-  z-index: 9999;
-  width: 50%;
-  height: 50%;
-
+.selected-gallery-image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
 }
-*/
 
-
-.editimg {
-  background-color: red;
-  position: absolute;
-  right: 20px; 
-  width: 300px; 
-  height: 300px; 
+.selected-gallery-image img {
+  max-width: 100%;
+  border-radius: 10px;
 }
+
+.selected-gallery-image button {
+  margin-top: 8px;
+  background-color: #20509c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.selected-gallery-image button:hover {
+  background-color: #183f7c;
+}
+
+
+
