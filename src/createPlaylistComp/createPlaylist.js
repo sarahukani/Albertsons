@@ -1,24 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
 import { SketchPicker } from 'react-color';
 import './createPlaylist.css';
 import Gallery from '../uploadWidget/Gallery';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
+import Database from '../data/database';
+import Schedule from './Schedule';
 
 function CreatePlaylist() {
-  const [text, setText] = useState({ text: '', color: '#ffffff' });
-  const [showColorPicker, setShowColorPicker] = useState(false);
-  const [dragging, setDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [title, setTitle] = useState('Enter a title');
-  const [selectedGalleryImage, setSelectedGalleryImage] = useState(null);
-
-  const contentRef = useRef();
+  const [selectedGalleryImages, setSelectedGalleryImages] = useState([]);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [textColor, setTextColor] = useState('#ffffff');
+  const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
+  const [popupContent, setPopupContent] = useState(false);
   const textOverlayRef = useRef();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const handleExport = () => {
-    const content = contentRef.current;
-    // Implementation for exporting playlist to PDF
+    const content = textOverlayRef.current;
     const opt = {
       margin: 0.2,
       filename: 'playlist.pdf',
@@ -29,25 +30,6 @@ function CreatePlaylist() {
     html2pdf().from(content).set(opt).save();
   };
 
-  const handleColorChange = (color) => {
-    const newColor = `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`;
-    setText((prevText) => ({ ...prevText, color: newColor }));
-  };
-
-  const handleTextDragStart = (e) => {
-    setDragging(true);
-  };
-
-  const handleTextDragEnd = (e) => {
-    setDragging(false);
-  };
-
-  const handleTextDrag = (e) => {
-    if (dragging) {
-      setPosition({ x: e.clientX, y: e.clientY });
-    }
-  };
-
   const handleEnterTitle = () => {
     const textInput = window.prompt('Enter your title:', title);
     if (textInput !== null) {
@@ -55,24 +37,58 @@ function CreatePlaylist() {
     }
   };
 
-  useEffect(() => {
-    const clearImagesFromLocalStorage = () => {
-      localStorage.removeItem('galleryImages');
-    };
-    window.addEventListener('beforeunload', clearImagesFromLocalStorage);
-    return () => {
-      window.removeEventListener('beforeunload', clearImagesFromLocalStorage);
-    };
-  }, []);
-
   const handleImageSelect = (image) => {
-    setSelectedGalleryImage(image);
+    const isSelected = selectedGalleryImages.some((selectedImage) => selectedImage.id === image.id);
+
+    if (isSelected) {
+      setSelectedGalleryImages(selectedGalleryImages.filter((selectedImage) => selectedImage.id !== image.id));
+    } else {
+      const textInput = window.prompt('Enter your text for this image:', '');
+      if (textInput !== null) {
+        setSelectedGalleryImages([...selectedGalleryImages, { ...image, text: textInput }]);
+      }
+    }
+  };
+
+  const handleColorChange = (color) => {
+    setTextColor(color.hex);
+  };
+
+  const handleTextDragStart = (e) => {
+    setTextPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleTextDrag = (e) => {
+    setTextPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleSavePlaylist = async () => {
+    try {
+      const imageUrls = selectedGalleryImages.map((image) => image.url);
+
+      await Database.createPlaylist(1, title, imageUrls, startDate, endDate);
+
+      console.log('Playlist created successfully!');
+    } catch (error) {
+      console.error('Error while saving playlist:', error);
+    }
   };
 
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
-        <div className="title">PAVILIONS</div>
+        <Gallery
+          onSelectImage={handleImageSelect}
+          selectedGalleryImages={selectedGalleryImages}
+        />
+      </div>
+
+      <div className="playlist-section">
+        <div className="title">
+          <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
+            {title}
+          </span>
+        </div>
 
         <div className="create-section">
           <div style={{ position: 'relative' }}>
@@ -91,7 +107,7 @@ function CreatePlaylist() {
                   zIndex: '1',
                 }}
               >
-                <SketchPicker color={text.color || '#ffffff'} onChange={handleColorChange} />
+                <SketchPicker color={textColor} onChange={handleColorChange} />
               </div>
             )}
           </div>
@@ -102,44 +118,64 @@ function CreatePlaylist() {
 
           <TextFieldsIcon
             onClick={() => {
-              const textInput = window.prompt('Enter your text:', text.text);
+              const textInput = window.prompt('Enter your text:', '');
               if (textInput !== null) {
-                setText((prevText) => ({ ...prevText, text: textInput }));
+                setSelectedGalleryImages([...selectedGalleryImages, { text: textInput }]);
               }
             }}
           />
 
-          <button className="Schedulebtn">Schedule</button>
-
+          <button className="Schedulebtn" onClick={() => setPopupContent(true)}>
+            Schedule
+          </button>
           <button className="Exportbtn" onClick={handleExport}>
             Export
           </button>
+
+          {/* Save Playlist button */}
+          {selectedGalleryImages.length > 0 && (
+            <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
+              Save Playlist
+            </button>
+          )}
         </div>
 
-        <div className="text-icon" ref={contentRef} onMouseUp={handleTextDragEnd} onMouseMove={handleTextDrag}>
-          <Gallery onSelectImage={handleImageSelect} />
+        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+          {selectedGalleryImages.map((image) => (
+            <div
+              className="selected-gallery-image"
+              key={image.id}
+              style={{ position: 'relative', marginBottom: '16px' }}
+            >
+              <img src={image.url} alt={image.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+              {image.text && (
+                <div
+                  className="text-overlay"
+                  style={{
+                    color: textColor,
+                    top: textPosition.y,
+                    left: textPosition.x,
+                  }}
+                >
+                  {image.text}
+                </div>
+              )}
+              <button>Add to Playlist</button>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="playlist-section">
-        {selectedGalleryImage && (
-          <div className="selected-gallery-image">
-            <img src={selectedGalleryImage.url} alt={selectedGalleryImage.name} />
-            {/* Display the text overlay */}
-            {text.text && (
-              <div
-                className="text-overlay"
-                style={{
-                  color: text.color,
-                }}
-              >
-                {text.text}
-              </div>
-            )}
-            <button>Add to Playlist</button>
+      {popupContent && (
+        <div className="popup">
+          <div className="popup-content">
+            <Schedule onSave={(start, end) => { setStartDate(start); setEndDate(end); setPopupContent(false); }} />
+            <button className="close-btn" onClick={() => setPopupContent(false)}>
+              Close
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
