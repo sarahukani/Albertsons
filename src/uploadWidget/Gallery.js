@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import '../uploadWidget/Gallery.css';
 import Icon from '../mainComp/Icon.js';
 
-const Gallery = () => {
+const Gallery = ({ onSelectImage }) => {
   const [images, setImages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null); // Import setSelectedImage
+  const [selectedImage, setSelectedImage] = useState(null); 
 
   useEffect(() => {
-    // Retrieve the uploaded images from local storage or through state management
     const uploadedImages = JSON.parse(localStorage.getItem('uploadedImages'));
     console.log('Retrieved images:', uploadedImages);
     if (uploadedImages) {
@@ -17,6 +16,7 @@ const Gallery = () => {
 
   const handleImageSelect = (image) => {
     setSelectedImage(image);
+    onSelectImage(image); // Notify the parent component with the selected image
   };
 
   return (
