@@ -1,24 +1,24 @@
 .detailedDescrip{
     padding: 0.8vw;
     width: 24.5vw;
-    height: 15.2vw;
+    height: 30vh;
     background-color: #EAEAEA;
     border: 0.3vw solid #EAEAEA;
     border-radius: 18px;
     position: absolute;
-    top: 2.5vw;
+    top: 4.5vh;
     left: 0.5vw;
 }
 
 .reccomendations{
     padding: 0.8vw;
     width: 24.5vw;
-    height: 19vw;
+    height: 37.4vh;
     background-color: #FFFFFF;
     border: 0.3vw solid #FFFFFF;
     border-radius: 18px;
     position: absolute;
-    top: 2.5vw;
+    top: 4.5vh;
     left: 28.5vw;
     overflow-y: scroll;
 }
@@ -26,7 +26,7 @@
 .generateBtn{
     padding: 0.8vw;
     width: 26.8vw;
-    height: 3.2vw;
+    height: 6.5vh;
     background-color: #20509C;
     border: 0.3vw solid #20509C;
     border-radius: 14px;
@@ -35,7 +35,7 @@
     font-size: 1.3vw;
     color: white;
     position: absolute;
-    top: 20.5vw;
+    top: 40vh;
     left: 1%;
 }
 
@@ -45,21 +45,21 @@
 
 .firstText{
     position: absolute;
-    top: -1.3vw;
+    top: -2.5vh;
     left: 1vw;
     font-size: 1.2vw;
 }
 
 .secondText{
     position: absolute;
-    top: -1.3vw;
+    top: -2.5vh;
     left: 29vw;
     font-size: 1.2vw;
 }
 
 .thirdText{
     position: absolute;
-    top: 23.5vw;
+    top: 46vh;
     left: 1vw;
     font-size: 1.2vw;
 }
@@ -69,9 +69,10 @@
     border-radius: 12px;
     border: 0.2vw solid white;
     width: 16vw;
-    height: 5.5vh;
+    height: 5.3vh;
     position: absolute;
     left: 9.5vw;
+    top: 1vh;
 }
 
 .age{
@@ -82,7 +83,7 @@
     height: 2.5vh;
     position: absolute;
     left: 9.5vw; 
-    top: 4vw;
+    top: 7.6vh;
 }
 
 .productCategory{
@@ -93,7 +94,7 @@
     height: 2.5vh;
     position: absolute;
     left: 9.5vw; 
-    top: 7.2vw;
+    top: 14vh;
 }
 
 .weather{
@@ -104,7 +105,7 @@
     height: 2.5vh;
     position: absolute;
     left: 9.5vw; 
-    top: 10.4vw;
+    top: 20.5vh;
 }
 
 .holiday{
@@ -115,26 +116,26 @@
     height: 2.5vh;
     position: absolute;
     left: 9.5vw; 
-    top: 13.8vw;
+    top: 27vh;
 }
 
 .locName{
     position:absolute;
-    top: -0.5vw;
+    top: -1.2vh;
     left: 1.5vw;
     font-size: 1.5vw;
 }
 
 .ageName{
     position: absolute;   
-    top: 2.5vw;
-    left: 2.8vw;
+    top: 4.5vh;
+    left: 3vw;
     font-size: 1.5vw;
 }
 
 .productName{
     position: absolute;
-    top: 5.5vw;
+    top: 10.5vh;
     left: 2vw;
     text-align: center;
     font-size: 1.2vw;
@@ -142,14 +143,14 @@
 
 .weatherName{
     position: absolute; 
-    top: 9.1vw;
+    top: 18vh;
     left: 1.5vw;
     font-size: 1.5vw;
 }
 
 .holidayName{
     position: absolute;
-    top: 73%; 
+    top: 24vh; 
     left: 2vw; 
     font-size: 1.5vw;
 }
@@ -162,18 +163,18 @@
     .detailedDescrip{
         padding: 0.8vw;
         width: 43vw;
-        height: 27vw;
+        height: 31vh;
         position: absolute;
-        top: 4.5vw;
+        top: 5.3vh;
         left: 0.5vw;
     }
     
     .reccomendations{
         padding: 0.8vw;
         width: 43vw;
-        height: 33.5vw;
+        height: 38vh;
         position: absolute;
-        top: 4.5vw;
+        top: 5.3vh;
         left: 47vw;
         overflow-y: scroll;
     }
@@ -181,13 +182,13 @@
     .generateBtn{
         padding: 0.8vw;
         width: 45vw;
-        height: 5vw;
+        height: 5.5vh;
         text-align: center;
         font-weight: bold;
         font-size: 2vw;
         color: white;
         position: absolute;
-        top: 35vw;
+        top: 40vh;
         left: 0.5vw;
     }
     
@@ -197,21 +198,21 @@
     
     .firstText{
         position: absolute;
-        top: -1.3vw;
+        top: -1.3vh;
         left: 2vw;
         font-size: 2vw;
     }
     
     .secondText{
         position: absolute;
-        top: -1.3vw;
+        top: -1.3vh;
         left: 48vw;
         font-size: 2vw;
     }
     
     .thirdText{
         position: absolute;
-        top: 40vw;
+        top: 45vh;
         left: 1vw;
         font-size: 2vw;
     }
@@ -221,7 +222,7 @@
         border-radius: 12px;
         border: 0.2vw solid white;
         width: 26.5vw;
-        height: 5.5vh;
+        height: 5vh;
         position: absolute;
         left: 17vw;
     }
@@ -231,10 +232,10 @@
         border-radius: 12px;
         border: 0.2vw solid white;
         width: 25vw;
-        height: 4vh;
+        height: 3.5vh;
         position: absolute;
         left: 17vw; 
-        top: 6vw;
+        top: 7.3vh;
     }
     
     .productCategory{
@@ -242,10 +243,10 @@
         border-radius: 12px;
         border: 0.2vw solid white;
         width: 25vw;
-        height: 4vh;
+        height: 3.5vh;
         position: absolute;
         left: 17vw; 
-        top: 11.5vw;
+        top: 13.5vh;
     }
     
     .weather{
@@ -253,10 +254,10 @@
         border-radius: 12px;
         border: 0.2vw solid white;
         width: 25vw;
-        height: 4vh;
+        height: 3.5vh;
         position: absolute;
         left: 17vw; 
-        top: 17vw;
+        top: 19.9vh;
     }
     
     .holiday{
@@ -264,10 +265,10 @@
         border-radius: 12px;
         border: 0.2vw solid white;
         width: 25vw;
-        height: 4vh;
+        height: 3.5vh;
         position: absolute;
         left: 17vw; 
-        top: 22.6vw;
+        top: 26.3vh;
     }
     
     .locName{

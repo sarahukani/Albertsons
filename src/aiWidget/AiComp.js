@@ -7,6 +7,7 @@ export default function AiComp(props){
     const [productCat, setProductCat] = useState("")
     const [weather, setWeather] = useState("")
     const [holiday, setHoliday] = useState("")
+    const [rec, setRec] = useState("")
 
     const handleLocationChange = (event) => {
         let city = ""
@@ -42,18 +43,34 @@ export default function AiComp(props){
         if(location === "" || location === " "){
             alert("Please choose a location")
         } else{
-            console.log(location)
-            console.log(age)
-            console.log(productCat)
-            console.log(weather)
-            console.log(holiday)
-        }
+            // const result = "This will be the reccomendation for the left choices"
+            // setRec(result)
+
+            var myHeaders = new Headers();
+            myHeaders.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
+            myHeaders.append("Accept-Language", "en-US,en;q=0.9");
+            myHeaders.append("Cache-Control", "max-age=0");
+            myHeaders.append("Connection", "keep-alive");
+            myHeaders.append("Upgrade-Insecure-Requests", "1");
+            myHeaders.append("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36");
+            
+            var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+            };
+
+            fetch("http://34.123.247.7:2002/getrec/script-call/?category=icecream&location=nyc&demographic=20s&weather=sunny&name=Rashmi", requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+                    }
     }
 
     return(
         <div className="scroll-div">
-            <p className="firstText">Start with a <b><i>detailed description</i></b></p>
-            <p className="secondText">Here are some <b>recommendations:</b></p>
+            <p className="firstText">Start by <b><i>inputting the following fields:</i></b></p>
+            <p className="secondText">Here are some <b>relevant images:</b></p>
             <div className="detailedDescrip">
                 <h3 className="locName">Location:</h3>
                 <select className="location" onChange={handleLocationChange}>
@@ -74,10 +91,12 @@ export default function AiComp(props){
             </div>
             <button className="generateBtn" onClick={clickGen}>Generate</button>
             <div className="reccomendations">
-                
+                <img src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
+                <img src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
+                <img src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
             </div>
             <div className="imgRecs">
-                <p className="thirdText">Here are some <b>relevant images</b> pulled from the website:</p>
+                <p className="thirdText">Here are some <b>product recommendations:</b></p>
             </div>  
         </div>
     )
