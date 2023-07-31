@@ -91,9 +91,9 @@ export default function AiComp(props){
             </div>
             <button className="generateBtn" onClick={clickGen}>Generate</button>
             <div className="reccomendations">
-                <img src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
-                <img src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
-                <img src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
+                <img className="recImg" src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
+                <img className="recImg" src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
+                <img className="recImg" src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
             </div>
             <div className="imgRecs">
                 <p className="thirdText">Here are some <b>product recommendations:</b></p>

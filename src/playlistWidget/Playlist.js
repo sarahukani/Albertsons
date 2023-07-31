@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 const Playlister = (props) => {
   const navigate = useNavigate();
   const navigateToPlaylist = () => {
-    navigate('/viewplaylist', {state: {storeName: props.storeName}});
+    navigate('/viewplaylist', {state: {
+      storeName: props.storeName,
+      storeList: props.storeList,
+      user: props.user
+    }});
   };
 
   return (
