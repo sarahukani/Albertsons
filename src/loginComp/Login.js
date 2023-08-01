@@ -63,32 +63,22 @@ const Login = () => {
             <h1 className="headerLogin">Hi, welcome back!</h1>
             <h4 className="subLogin">Sign in with your company email</h4>
             <input onChange={handleUserChange} className='email' placeholder='Email'></input>
-            <input onChange={handlePassChange} className='pass' placeholder='Password'></input>
+            <input 
+              onChange={handlePassChange} 
+              className='pass' 
+              placeholder='Password'
+              type="password">
+            </input>
             <button className='forgetPass'>Forgot Password?</button>
             {invalid && 
               <div>
                 <h5>Incorrect username or password</h5>
               </div>}
             <button onClick={validateLogin} className='loginBtn'>Login</button> 
+            <p className="newUser">New user? Contact <b>IT Support</b> to create a new account.</p>
         </div>
       </div>
     )
   }  
   
 export default Login;
-  //       <img src={logo} alt="Logo" />
-      
-  //         <div>
-  //         <input className='Enter your email' placeholder='Email'></input>
-  //         </div>
-  //         <div>
-  //         <input className='pass' placeholder='Password'></input>
-  //         </div>
-  //         <button className='loginBtn'>Login</button> 
-  //       </div>
-  //     </div>
-  //   )
-  // }
-  // export default Login;
-
-

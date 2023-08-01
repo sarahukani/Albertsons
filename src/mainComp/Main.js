@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Main(){
     const { state } = useLocation()
-
+    
     let storeName=""
     let user = "Rashmi" 
     let storeList = []
@@ -21,16 +21,16 @@ export default function Main(){
 
     return(
         <div className="mainDiv">
-            <Icon storeName={storeName} user={user}/>
+            <Icon storeName={storeName} storeList={storeList} user={user}/>
             <div className='AI_GenBox'>
-                <AiComp storeList={storeList}></AiComp>
+                <AiComp storeName={storeName} storeList={storeList} user={user}></AiComp>
             </div>
             <div className="Upload">
-                <Uploader></Uploader> 
+                <Uploader storeName={storeName} storeList={storeList} user={user}></Uploader> 
             </div>
 
             <div className='viewPlaylist'>
-                <Playlist storeName={storeName}></Playlist>
+                <Playlist storeName={storeName} storeList={storeList} user={user}></Playlist>
             </div>
             {/* <div className='Schedule'>
               <Popup></Popup>

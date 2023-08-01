@@ -14,7 +14,7 @@
     z-index: 9999;    
 }
 
-.icon{
+.icon-main{
     height:4.5vw;
     width:4.5vw;
     position: absolute;
@@ -30,7 +30,7 @@
 .logo-container{
     position: absolute;
     left: 1%;
-    top: 3.5vw;
+    top: 3vw;
     transform: translateY(-50%);
 }
 
@@ -72,17 +72,17 @@
         z-index: 9999;    
     }
 
-    .icon{
+    .icon-main{
         height:5vw;
         width:5vw;
         position: absolute;
-        top: 2vw;
+        top: 1.2vw;
         right: 2vw;
     }
     
     .logo{
         height: auto;
-        max-width:8vw;
+        max-width:10vw;
     }
 
     .option-text {
@@ -92,7 +92,7 @@
     .logo-container{
         position: absolute;
         left: 1%;
-        top: 4.5vw;
+        top: 3.5vw;
         transform: translateY(-50%);
     }
     
@@ -125,7 +125,7 @@
         font-size:1.5vw;
     }
 
-    .icon{
+    .icon-main{
         height:6.2vw;
         width:6.2vw;
         position: absolute;
@@ -135,13 +135,13 @@
 
     .logo{
         height: auto;
-        max-width:20vw;
+        max-width:16vw;
     }
 
     .logo-container{
         position: absolute;
         left: 1%;
-        top: 7vw;
+        top: 6vw;
         transform: translateY(-50%);
     }
 }

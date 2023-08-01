@@ -80,10 +80,10 @@ export default function Banner(){
             <ul className="storeList">
                 {storeList.map((store, index) =>
                     <li className="storeNames">
-                        <label class="container">
+                        <label style={{ color: "black" }} className="container">
                             <input type="radio" checked={choice[index]} name="radio"  onChange={() => choiceClick(index)}/>
-                            <span class="checkmark"></span>
                             {store}
+                            <span class="checkmark"></span>
                         </label>
                     </li>
                 )}

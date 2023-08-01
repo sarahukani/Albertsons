@@ -25,13 +25,37 @@
   height: 33vw;
   overflow-y: auto; 
   overflow-x: hidden;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5vw;
+
+  scrollbar-width: thin; /* Firefox fallback */
+  scrollbar-color: #888 #f1f1f1; /* Firefox fallback */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
 }
 
 .x-out {
     display:flex;
     position:absolute;
     top:.3vw;
-    right: 1.5vw;
+    right: .75vw;
     width: 1.5vw;
     height: 1.5vw;
     cursor: pointer;
@@ -44,29 +68,32 @@
     color:black;
   }
   
-.sched-info-box {
-    width: 93vw;
-    height: 6vw; 
+  .sched-info-box {
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* column-gap: 100px; */
+    width: 45.5vw;
+    height: 6.5vw;
     background-color: rgb(215, 214, 214);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
-    display: flex;
-    position:relative;
-    margin-top: .6vw;
-}
+    position: relative;
+    /* margin-top: 0.8vw; */
+    
+  }  
 
 .edit-icon {
   position:absolute;
   width:1.5vw;
   height:1.5vw;
-  right: 1.4vw;
+  right: 0.4vw;
   cursor:pointer;
 }
 
 .title-view-sched {
     position: absolute;
     top: .4vw;
-    left: .9vw; 
+    left: .4vw; 
     font-size: 1.35vw;
     font-weight: bold;
     color: black;
@@ -74,35 +101,69 @@
 
 .headers{
     position: absolute;
-    top: 2.1vw; 
+    /* top: 2.1vw;  */
     font-size: 1.25vw;
     font-weight: bold;
-    color: blue;
+    color: rgb(74, 74, 235);
 }
 
 .headers-info{
     position: absolute;
     top: 3.9vw;
-    font-size: 1vw;
+    font-size: 1.2vw;
     color: black;
+}
+
+.scrollable-locations{
+  /* z-index:100000000; */
+  position: absolute;
+  height:42%;
+  left: 22.8vw;
+  top: 3.9vw;
+  overflow-y: auto; 
+  overflow-x: hidden;
+
+  scrollbar-width: thin; /* Firefox fallback */
+  scrollbar-color: #888 rgb(215, 214, 214); /* Firefox fallback */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgb(225, 224, 224);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
+
+.location-item{
+  font-size: 1.15vw;
 }
 
 @media screen and (max-width: 748px){
   .edit-icon {
     position:absolute;
-    width:1.5vw;
-    height:1.5vw;
-    right: 2.25vw;
+    width:1vw;
+    height:1vw;
+    right: 1vw;
     cursor:pointer;
   }
 
   .x-out {
+    width: 1vw;
+    height: 1vw;
     display:flex;
     position:absolute;
     top:.3vw;
-    right: 2.5vw;
-    width: 1.5vw;
-    height: 1.5vw;
+    right: 1vw;
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -117,8 +178,8 @@
 @media screen and (max-width: 480px){
   .edit-icon {
     position:absolute;
-    width:2vw;
-    height:2vw;
+    width:1vw;
+    height:1vw;
     right: 3vw;
     cursor:pointer;
   }
@@ -127,16 +188,16 @@
     display:flex;
     position:absolute;
     top:.3vw;
-    right: 5vw;
+    right: 4vw;
     width: 1.5vw;
     height: 1.5vw;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    /* padding: 5px; */
     border:none;
-    /* padding-top: 7px; */
     z-index: 9999;
     color:black;
   }
 }
+
+

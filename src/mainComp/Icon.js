@@ -105,6 +105,14 @@ export default function Icon(props){ //props param to pass in store name from ma
     const handleLogoutButtonClick = () => {
         navigate('/');
     }
+    
+    const handleLogoClick = () => {
+        navigate("/main", {state: {storeList: props.storeList, 
+                                    storeName: props.storeName,
+                                    user: props.user
+        }})
+    }
+
 
     return (
         <div>
@@ -113,10 +121,11 @@ export default function Icon(props){ //props param to pass in store name from ma
                     className="logo"
                     src = {storeLink}
                     alt="Store Logo"
+                    onClick={handleLogoClick}
                 />
             </div>
             <img
-                className="icon"
+                className="icon-main"
                 src="https://th.bing.com/th/id/R.ea0d38e91f172b985c948f989e98c39f?rik=NR0pbQNo1c8XMw&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_357118.png&ehk=cUAdriibLw7xEDkfIXfwIR3GAAijwWJWZIpc7ctVbmo%3d&risl=&pid=ImgRaw&r=0"
                 alt="Icon"
                 onClick={toggleDropdown}

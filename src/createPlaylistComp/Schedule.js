@@ -1,11 +1,9 @@
-
-
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../mainComp/Main.css';
 
-const Schedule = () => {
+const Schedule = ({ onSave }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
@@ -14,11 +12,28 @@ const Schedule = () => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const handleSchedule = () => {
-    
+    // You can validate the selected dates and times before proceeding with saving
+    if (!startDate || !endDate || !startTime || !endTime) {
+      // Show an error message or handle the error appropriately
+      console.error('Please select both start and end dates and times.');
+      return;
+    }
+
+    // Combine the selected start date and time into a single Date object
+    const startDateTime = new Date(startDate);
+    startDateTime.setHours(startTime.getHours());
+    startDateTime.setMinutes(startTime.getMinutes());
+
+    // Combine the selected end date and time into a single Date object
+    const endDateTime = new Date(endDate);
+    endDateTime.setHours(endTime.getHours());
+    endDateTime.setMinutes(endTime.getMinutes());
+
+    // Pass the combined startDateTime and endDateTime to the onSave function
+    onSave(startDateTime, endDateTime);
+
     setUploadSuccess(true);
     setShowModal(true);
-
-    
   };
 
   const closeModal = () => {
@@ -27,11 +42,9 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      
       <div className="section1">
         <div className="section1-heading">Confirm Location</div>
       </div>
-
 
       <div className="section2">
         <div className="section2-heading">Starting Date & Time</div>
@@ -45,13 +58,7 @@ const Schedule = () => {
             maxLength="2"
             placeholder="MM"
           />
-
-
-          
         </div>
-
-
-
 
         <div className="input1-container">
           <label htmlFor="start-time">Enter Start Time:</label>
@@ -66,8 +73,8 @@ const Schedule = () => {
             id="start-time"
           />
         </div>
-        
       </div>
+
       <div className="section">
         <div className="section2-heading">Ending Date & Time</div>
         <div className="input1-container">
@@ -94,20 +101,13 @@ const Schedule = () => {
           />
         </div>
       </div>
+
       <div className="schedule-button-container">
         <button className="schedule-button" onClick={handleSchedule}>
-        Schedule
+          Schedule
         </button>
-        </div>
+      </div>
 
-      {/* <div className="schedule-button-container">
-        <button className="schedule-button" onClick={handleSchedule}>
-        Schedule
-        </button>
-        </div> */}
-
-
-  
       {showModal && (
         <div className={`modal ${uploadSuccess ? 'success' : 'failure'}`}>
           {uploadSuccess ? (
@@ -133,8 +133,6 @@ const Schedule = () => {
           )}
         </div>
       )}
-      
-      
     </div>
   );
 };

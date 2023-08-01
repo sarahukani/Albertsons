@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { States } from './States.js'
+import { getStates } from './States.js'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -9,10 +9,10 @@ import { useLocation } from 'react-router-dom'
 import './StoresLocation.css';
 
 const StoreLocation = () => {
-  const [selectedState, setSelectedState] = useState(null);
-  const [stateOptions, setStateOptions] = useState(States);
-
   const { state } = useLocation()
+  const [selectedState, setSelectedState] = useState(null);
+  const [stateOptions, setStateOptions] = useState(getStates(state.storeList));
+  
   let storeN = "Pavilions"
   if(state){
     storeN = state.storeName

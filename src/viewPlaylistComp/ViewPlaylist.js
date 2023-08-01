@@ -89,7 +89,7 @@ export default function ViewPlaylist(props) {
 
   return (
     <div className="card-container">
-      <Icon storeName={props.storeName}></Icon>
+      <Icon storeName={state.storeName} storeList={state.storeList} user={state.user}></Icon>
       <div className="top-cards">
         {topCampaigns.map((campaign, index) => (
           <Card key={index} className="card" sx={{ height: 250, width: 260 }}>
