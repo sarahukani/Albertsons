@@ -142,6 +142,7 @@ export default class Database {
        return storePlaylistsData;
    }  
 
+
    // **************************************************************************
    // PRODUCT-QUERIES **********************************************************
    // **************************************************************************
@@ -170,6 +171,7 @@ export default class Database {
           'Content-Type': 'application/json' // Set the Content-Type header to application/json
         },
         body: JSON.stringify(product),
+
       };
        const response = await fetch(`${backendOrigin}/products/create/${pID}`, requestOptions);
        const productData = await response.json();
@@ -183,6 +185,7 @@ export default class Database {
        const successMessage = await response.json();
        return successMessage;
    }
+
 
    // **************************************************************************
    // PLAYLIST-QUERIES *********************************************************
