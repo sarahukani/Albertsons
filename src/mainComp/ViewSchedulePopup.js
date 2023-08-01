@@ -1,17 +1,13 @@
 import React, { useState, useRef } from 'react';
 import './ViewSchedulePopup.css';
-import { left } from '@popperjs/core';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import EditIcon from '@mui/icons-material/Edit';
-
-//fix curved stuff for view schedule pop up
-//have to be directly over edit button for it to work clicking, fix that
 
 const data = [
     {
       id: 0,
       title: "Mother's Day",
-      location: '777 Butcher Ave, Los Angeles, CA',
+      location: ['777 Butcher Ave, Los Angeles, CA','777 Butcher Ave, Los Angeles, CA','777 Butcher Ave, Los Angeles, CA','777 Butcher Ave, Los Angeles, CA'],
       startingDate: '3/14/24',
       startTime: '6:00',
       startMeridiem: 'am',
@@ -32,6 +28,96 @@ const data = [
     },
     {
       id: 2,
+      title: "Father's Day",
+      location: '123 Lotus Ave, Los Angeles, CA',
+      startingDate: '3/15/24',
+      startTime: '5:00',
+      startMeridiem: 'am',
+      endDate: '4/15/24',
+      endTime: '5:00',
+      endMeridiem: 'pm'
+    },
+    {
+      id: 3,
+      title: 'Halloween',
+      location: '423 Roycroft Ave, Los Angeles, CA',
+      startingDate: '5/7/23',
+      startTime: '11:00',
+      startMeridiem: "pm",
+      endDate: '6/15/24',
+      endTime: '11:00',
+      endMeridiem: 'pm'
+    },
+    {
+      id: 4,
+      title: "Father's Day",
+      location: '123 Lotus Ave, Los Angeles, CA',
+      startingDate: '3/15/24',
+      startTime: '5:00',
+      startMeridiem: 'am',
+      endDate: '4/15/24',
+      endTime: '5:00',
+      endMeridiem: 'pm'
+    },
+    {
+      id: 5,
+      title: 'Halloween',
+      location: '423 Roycroft Ave, Los Angeles, CA',
+      startingDate: '5/7/23',
+      startTime: '11:00',
+      startMeridiem: "pm",
+      endDate: '6/15/24',
+      endTime: '11:00',
+      endMeridiem: 'pm'
+    },
+    {
+      id: 6,
+      title: "Father's Day",
+      location: '123 Lotus Ave, Los Angeles, CA',
+      startingDate: '3/15/24',
+      startTime: '5:00',
+      startMeridiem: 'am',
+      endDate: '4/15/24',
+      endTime: '5:00',
+      endMeridiem: 'pm'
+    }
+    ,
+    {
+      id: 7,
+      title: 'Halloween',
+      location: '423 Roycroft Ave, Los Angeles, CA',
+      startingDate: '5/7/23',
+      startTime: '11:00',
+      startMeridiem: "pm",
+      endDate: '6/15/24',
+      endTime: '11:00',
+      endMeridiem: 'pm'
+    },
+    {
+      id: 8,
+      title: "Father's Day",
+      location: '123 Lotus Ave, Los Angeles, CA',
+      startingDate: '3/15/24',
+      startTime: '5:00',
+      startMeridiem: 'am',
+      endDate: '4/15/24',
+      endTime: '5:00',
+      endMeridiem: 'pm'
+    }
+    ,
+    {
+      id: 9,
+      title: 'Halloween',
+      location: '423 Roycroft Ave, Los Angeles, CA',
+      startingDate: '5/7/23',
+      startTime: '11:00',
+      startMeridiem: "pm",
+      endDate: '6/15/24',
+      endTime: '11:00',
+      endMeridiem: 'pm'
+    },
+    {
+      id: 10,
       title: "Father's Day",
       location: '123 Lotus Ave, Los Angeles, CA',
       startingDate: '3/15/24',
@@ -71,7 +157,7 @@ const data = [
     });
   };
 
-  //this will be called in Idris' code!
+  //this will be called in Idris' code
   const addNewPlaylist = (newEntry) => {
     data.push(newEntry);
   };
@@ -90,28 +176,42 @@ const ViewSchedulePopup = ({ isOpen, onClose, content }) => {
     //if the user hits the x button, go back to my code and change nothing (if edit and x out)
     //if user hits schedule, send that info back to my code and update it
   };
-
+ 
   return (
     <div className="popup-overlay">
       <div className='popup-view-sched'>
-        <HighlightOffIcon className='x-out' onClick={onClose}/>
+        <HighlightOffIcon 
+          className='x-out' 
+          sx={{height:'2vw', width:'2vw'}}
+          onClick={onClose}/>
         <div className="scrollable">
             {sortedData.map((item) => (
             <div className="sched-info-box" key={item.id}>
                 <div className="title-view-sched">{item.title}</div>
-                <div className="headers" style={{ left: '1%' }}>
-                Location
-                </div>
-                <div className="headers" style={{ left: '50%' }}>
+                <div className="headers" style={{ left: '1%', top: '2.2vw' }}>
                 Date & Time
                 </div>
                 <div className="headers-info" style={{ left: '1%' }}>
-                {item.location}
-                </div>
-                <div className="headers-info" style={{ left: '50%' }}>
                 {item.startingDate +' ' +item.startTime+ item.startMeridiem +' - '+ item.endDate+ ' '+ item.endTime + item.endMeridiem}
                 </div>
-                <EditIcon id={item.id} className="edit-icon" onClick={handleEditClick}/>
+                <div className="headers" style={{ left: '50%', top:'2.2vw' }}>
+                Locations
+                </div>
+                <div className='scrollable-locations'>
+                  {Array.isArray(item.location)
+                      ? item.location.map((location, index) => (
+                          <div key={index} className="location-item">
+                            {location}
+                          </div>
+                        ))
+                      : <div className="location-item">{item.location}</div>
+                    }
+                </div>
+                <EditIcon 
+                  id={item.id} 
+                  sx={{width:'2vw', height:'2vw'}}
+                  className="edit-icon" 
+                  onClick={handleEditClick}/>
             </div>
             ))}
         </div>
