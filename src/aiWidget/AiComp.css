@@ -10,6 +10,13 @@
     left: 0.5vw;
 }
 
+.recImg{
+    width: 21vw;
+    height: 28vh;
+    margin-left: 1.5vw;
+    margin-top: 6vh;   
+}
+
 .reccomendations{
     padding: 0.8vw;
     width: 24.5vw;
@@ -179,6 +186,13 @@
         overflow-y: scroll;
     }
     
+    .recImg{
+        width: 35vw;
+        height: 27vh;
+        margin-left: 3.5vw;
+        margin-top: 6vh;   
+    }
+
     .generateBtn{
         padding: 0.8vw;
         width: 45vw;
@@ -332,6 +346,13 @@
         overflow-y: scroll;
     }
     
+    .recImg{
+        width: 35vw;
+        height: 15vh;
+        margin-left: 4.5vw;
+        margin-top: 0vh;   
+    }
+
     .generateBtn{
         padding: 0.8vw;
         width: 45vw;

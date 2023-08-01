@@ -5,8 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Playlister = (props) => {
   const navigate = useNavigate();
-  const navigateToViewPlaylist = () => {
-    navigate('/viewplaylist', {state: {storeName: props.storeName}});
+  const navigateToPlaylist = () => {
+    navigate('/viewplaylist', {state: {
+      storeName: props.storeName,
+      storeList: props.storeList,
+      user: props.user
+    }});
   };
   const navigateToCreatePlaylist = () => {
     navigate('/createplaylist', {state: {storeName: props.storeName}});
@@ -27,7 +31,7 @@ const Playlister = (props) => {
       <button className="create-playlist-button" onClick={navigateToCreatePlaylist}>
           Create Playlist
         </button>
-        <button className="view-playlist-button" onClick={navigateToViewPlaylist}>
+        <button className="view-playlist-button" onClick={navigateToPlaylist}>
           View Playlists
         </button>
       </div>

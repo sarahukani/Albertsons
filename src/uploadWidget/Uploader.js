@@ -5,7 +5,7 @@ import { MdCloudUpload } from 'react-icons/md';
 import { RiCheckLine } from 'react-icons/ri';
 import Database from '../data/database';
 
-export default function Uploader() {
+export default function Uploader(props) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -53,7 +53,11 @@ export default function Uploader() {
 
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    navigate('/gallery');
+    navigate('/gallery', {state: {
+      storeList: props.storeList,
+      storeName: props.storeName,
+      user: props.user
+    }});
   };
 
   useEffect(() => {

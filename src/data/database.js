@@ -48,6 +48,51 @@ export default class Database {
         return storeList;
     }
 
+    static async createPlaylist(id, name, imageUrls, startDate, endDate) {
+        const playlistData = {
+          id: id,
+          name: name,
+          imageUrls: imageUrls,
+          startDate: startDate,
+          endDate: endDate,
+        };
+      
+        try {
+          const response = await fetch(`${backendOrigin}/playlists/create/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(playlistData),
+          });
+      
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+      
+          const data = await response.json();
+          console.log('Playlist saved:', data);
+          // Perform any other actions or update the UI as needed
+        } catch (error) {
+          console.error('Error while saving playlist:', error);
+        }
+      };
+
+
+    static async getAllProducts() {
+        try {
+            const response = await fetch(`${backendOrigin}/products`);
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    }
+      
+
 
     static async uploadProductImages(file) {
             var formdata = new FormData();
@@ -65,3 +110,5 @@ export default class Database {
             .catch(error => console.log('error', error));
     }
 }
+
+

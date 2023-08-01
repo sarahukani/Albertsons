@@ -1,211 +1,181 @@
-import React, { useState, useRef, useEffect } from "react";
-
-import html2pdf from "html2pdf.js";
-
-import { SketchPicker } from "react-color";
-
-import "./createPlaylist.css";
-
-import Gallery from "../uploadWidget/Gallery";
-
-import TextFieldsIcon from "@mui/icons-material/TextFields";
+import React, { useState, useRef } from 'react';
+import html2pdf from 'html2pdf.js';
+import { SketchPicker } from 'react-color';
+import './createPlaylist.css';
+import Gallery from '../uploadWidget/Gallery';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import Database from '../data/database';
+import Schedule from './Schedule';
 
 function CreatePlaylist() {
-  const [text, setText] = useState({ text: "", color: "#ffffff" });
-
+  const [title, setTitle] = useState('Enter a title');
+  const [selectedGalleryImages, setSelectedGalleryImages] = useState([]);
   const [showColorPicker, setShowColorPicker] = useState(false);
-
-  const [dragging, setDragging] = useState(false);
-
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const [title, setTitle] = useState("Enter a title");
-
-  const contentRef = useRef();
-
+  const [textColor, setTextColor] = useState('#ffffff');
+  const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
+  const [popupContent, setPopupContent] = useState(false);
   const textOverlayRef = useRef();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const handleExport = () => {
-    const content = contentRef.current;
-
-    if (content && content.childNodes.length > 0) {
-      // Add the text overlay to the images
-
-      const textOverlay = document.createElement("div");
-
-      textOverlay.innerText = text.text;
-
-      textOverlay.style.position = "absolute";
-
-      textOverlay.style.top = `${position.y}px`;
-
-      textOverlay.style.left = `${position.x}px`;
-
-      textOverlay.style.transform = "translate(-50%, -50%)";
-
-      textOverlay.style.fontSize = "20px";
-
-      textOverlay.style.fontWeight = "bold";
-
-      textOverlay.style.color = text.color || "white"; // Set default color to white
-
-      textOverlay.style.textShadow = "1px 1px 2px rgba(0, 0, 0, 0.8)";
-
-      content.childNodes.forEach((child) => {
-        if (child.tagName === "IMG") {
-          child.parentElement.appendChild(textOverlay.cloneNode(true));
-        }
-      });
-
-      html2pdf().from(content).save("exported_image.pdf");
-
-      const textOverlays = document.querySelectorAll(".image-item div");
-
-      textOverlays.forEach((overlay) => overlay.remove());
-    } else {
-      alert("Please add images to the gallery before exporting.");
-    }
-  };
-
-  const handleColorChange = (color) => {
-    const newColor = `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`;
-
-    setText((prevText) => ({ ...prevText, color: newColor }));
-  };
-
-  const handleTextDragStart = (e) => {
-    setDragging(true);
-  };
-
-  const handleTextDragEnd = (e) => {
-    setDragging(false);
-  };
-
-  const handleTextDrag = (e) => {
-    if (dragging) {
-      setPosition({ x: e.clientX, y: e.clientY });
-    }
+    const content = textOverlayRef.current;
+    const opt = {
+      margin: 0.2,
+      filename: 'playlist.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+    html2pdf().from(content).set(opt).save();
   };
 
   const handleEnterTitle = () => {
-    const textInput = window.prompt("Enter your title:", title);
-
+    const textInput = window.prompt('Enter your title:', title);
     if (textInput !== null) {
       setTitle(textInput);
     }
   };
 
-  // Clear images from localStorage on page refresh
+  const handleImageSelect = (image) => {
+    const isSelected = selectedGalleryImages.some((selectedImage) => selectedImage.id === image.id);
 
-  useEffect(() => {
-    const clearImagesFromLocalStorage = () => {
-      localStorage.removeItem("galleryImages");
-    };
+    if (isSelected) {
+      setSelectedGalleryImages(selectedGalleryImages.filter((selectedImage) => selectedImage.id !== image.id));
+    } else {
+      const textInput = window.prompt('Enter your text for this image:', '');
+      if (textInput !== null) {
+        setSelectedGalleryImages([...selectedGalleryImages, { ...image, text: textInput }]);
+      }
+    }
+  };
 
-    window.addEventListener("beforeunload", clearImagesFromLocalStorage);
+  const handleColorChange = (color) => {
+    setTextColor(color.hex);
+  };
 
-    return () => {
-      window.removeEventListener("beforeunload", clearImagesFromLocalStorage);
-    };
-  }, []);
+  const handleTextDragStart = (e) => {
+    setTextPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleTextDrag = (e) => {
+    setTextPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleSavePlaylist = async () => {
+    try {
+      const imageUrls = selectedGalleryImages.map((image) => image.url);
+
+      await Database.createPlaylist(1, title, imageUrls, startDate, endDate);
+
+      console.log('Playlist created successfully!');
+    } catch (error) {
+      console.error('Error while saving playlist:', error);
+    }
+  };
 
   return (
-    <div>
-      <div className="title">PAVILIONS</div>
+    <div className="create-playlist-container">
+      <div className="gallery-section">
+        <Gallery
+          onSelectImage={handleImageSelect}
+          selectedGalleryImages={selectedGalleryImages}
+        />
+      </div>
 
-      <div className="create-section">
-        <div style={{ position: "relative" }}>
-          <img
-           // src="https://th.bing.com/th/id/R.86aff27675b3c44f1ba9bcef9e9ab268%3Frik=AjaxIZSY%252f%252b0pHQ&riu=http%253a%252f%252fthehealthgardener.com%252fwp-content%252fuploads%252f2018%252f11%252fcolour-wheel.png&ehk=d1uaGkz9InPVRYv%252b%252fZWTJTVTk%252fE%252bOtOIPj6NhxBJCww%253d&risl=&pid=ImgRaw&r=0%22"
-            alt="Color Wheel"
-            style={{ width: "30px", height: "30px", marginRight: "10px" }}
-            onClick={() => setShowColorPicker(!showColorPicker)}
+      <div className="playlist-section">
+        <div className="title">
+          <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
+            {title}
+          </span>
+        </div>
+
+        <div className="create-section">
+          <div style={{ position: 'relative' }}>
+            <img
+              alt="Color Wheel"
+              style={{ width: '30px', height: '30px', marginRight: '10px' }}
+              onClick={() => setShowColorPicker(!showColorPicker)}
+            />
+
+            {showColorPicker && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: '0',
+                  zIndex: '1',
+                }}
+              >
+                <SketchPicker color={textColor} onChange={handleColorChange} />
+              </div>
+            )}
+          </div>
+
+          <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
+            {title}
+          </span>
+
+          <TextFieldsIcon
+            onClick={() => {
+              const textInput = window.prompt('Enter your text:', '');
+              if (textInput !== null) {
+                setSelectedGalleryImages([...selectedGalleryImages, { text: textInput }]);
+              }
+            }}
           />
 
-          {showColorPicker && (
-            <div
-              style={{
-                position: "absolute",
+          <button className="Schedulebtn" onClick={() => setPopupContent(true)}>
+            Schedule
+          </button>
+          <button className="Exportbtn" onClick={handleExport}>
+            Export
+          </button>
 
-                top: "100%",
-
-                left: "0",
-
-                zIndex: "1",
-              }}
-            >
-              <SketchPicker
-                color={text.color || "#ffffff"}
-                onChange={handleColorChange}
-              />
-            </div>
+          {/* Save Playlist button */}
+          {selectedGalleryImages.length > 0 && (
+            <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
+              Save Playlist
+            </button>
           )}
         </div>
 
-        <span onClick={handleEnterTitle} style={{ cursor: "pointer" }}>
-          {title}
-        </span>
-
-        <TextFieldsIcon
-          onClick={() => {
-            const textInput = window.prompt("Enter your text:", text.text);
-
-            if (textInput !== null) {
-              setText((prevText) => ({ ...prevText, text: textInput }));
-            }
-          }}
-        />
-
-        <button className="Schedulebtn">Schedule</button>
-
-        <button className="Exportbtn" onClick={handleExport}>
-          Export
-        </button>
-      </div>
-
-      <div
-        className="text-icon"
-        ref={contentRef}
-        onMouseUp={handleTextDragEnd}
-        onMouseMove={handleTextDrag}
-      >
-        <div className="container">
-        <div className="editimg">   <h1> for edit images   </h1></div>
-
-          <Gallery />
-
-          {text.text && (
+        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+          {selectedGalleryImages.map((image) => (
             <div
-              ref={textOverlayRef}
-              className="text-overlay"
-              style={{
-                position: "absolute",
-
-                top: `${position.y}px`,
-
-                left: `${position.x}px`,
-
-                transform: "translate(-50%, -50%)",
-
-                fontSize: "20px",
-
-                fontWeight: "bold",
-
-                color: text.color || "white",
-
-                textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)",
-
-                cursor: dragging ? "grabbing" : "grab",
-              }}
-              onMouseDown={handleTextDragStart}
+              className="selected-gallery-image"
+              key={image.id}
+              style={{ position: 'relative', marginBottom: '16px' }}
             >
-              {text.text}
+              <img src={image.url} alt={image.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+              {image.text && (
+                <div
+                  className="text-overlay"
+                  style={{
+                    color: textColor,
+                    top: textPosition.y,
+                    left: textPosition.x,
+                  }}
+                >
+                  {image.text}
+                </div>
+              )}
+              <button>Add to Playlist</button>
             </div>
-          )}
-          
+          ))}
         </div>
-              
       </div>
+
+      {popupContent && (
+        <div className="popup">
+          <div className="popup-content">
+            <Schedule onSave={(start, end) => { setStartDate(start); setEndDate(end); setPopupContent(false); }} />
+            <button className="close-btn" onClick={() => setPopupContent(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
