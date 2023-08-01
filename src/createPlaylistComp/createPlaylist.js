@@ -1,18 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import html2pdf from "html2pdf.js";
-
 import { SketchPicker } from "react-color";
-
 import "./createPlaylist.css";
-
 import Gallery from "../uploadWidget/Gallery";
-
 import TextFieldsIcon from "@mui/icons-material/TextFields";
+import Schedule from "./Schedule.js";
+import "./Schedule.css";
+import { useNavigate } from "react-router-dom";
 
 
 
 function CreatePlaylist() {
+
+    const navigate = useNavigate()
+    const [popupContent, setPopupContent] = useState(false);
+
+    const handleClosePopup = () => {
+        setPopupContent(false);
+    };
+
+    const handlePopupOpen = () => {
+        setPopupContent(true);
+    }
 
     const [text, setText] = useState({ text: "", color: "#ffffff" });
 
@@ -246,7 +255,16 @@ function CreatePlaylist() {
 
                 />
 
-                <button className="Schedulebtn">Schedule</button>
+                <button className="Schedulebtn" onClick={handlePopupOpen}>Schedule</button>
+                    {popupContent && (
+                        <div className="popup">
+                        <div className="popup-content">
+                          <Schedule />
+                          <button className="close-btn" onClick={handleClosePopup}>Close</button>
+                        </div>
+                      </div>
+                    )}
+               
 
                 <button className="Exportbtn" onClick={handleExport}>
 
