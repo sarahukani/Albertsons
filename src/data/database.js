@@ -280,6 +280,3 @@ export default class Database {
         return productRecommendations;
    }
   
-
-
-}

@@ -4,9 +4,12 @@ import '../uploadWidget/Uploader.css';
 import { MdCloudUpload } from 'react-icons/md';
 import { RiCheckLine } from 'react-icons/ri';
 import Database from '../data/database';
+import Gallery from '../uploadWidget/Gallery.js';
 
-export default function Uploader(props) {
+
+export default function Uploader( props ) {
   const [images, setImages] = useState([]);
+  const [showGallery, setShowGallery] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const fileInputRef = useRef(null);
@@ -14,9 +17,7 @@ export default function Uploader(props) {
 
   const handleImageUpload = async (event) => {
     const files = event.target.files;
-
-    const file = Array.from(files)[0];
-    await Database.uploadProductImages(file);
+    await Database.uploadProductImages(files);
 
     setLoading(true);
     try {
@@ -53,11 +54,7 @@ export default function Uploader(props) {
 
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    navigate('/gallery', {state: {
-      storeList: props.storeList,
-      storeName: props.storeName,
-      user: props.user
-    }});
+    navigate('/gallery');
   };
 
   useEffect(() => {
@@ -69,10 +66,7 @@ export default function Uploader(props) {
 
   return (
     <main>
-    {successMessage ? (
-      <div className="success-message">
-          <RiCheckLine color="green" size={40} />{successMessage}</div>
-    ) : (
+      {!successMessage && ( // Only show the upload widget if there's no success message
         <div className={`upload-widget ${loading ? 'loading' : ''}`}>
           {(images.length === 0 || images.length > 0) && !loading && (
             <>
@@ -96,23 +90,29 @@ export default function Uploader(props) {
         </div>
       )}
 
-      {loading && (
+      {successMessage && ( // Show the success message if there is one
+        <div className="success-message">
+          <RiCheckLine color="green" size={40} /> {successMessage}
+        </div>
+      )}
+
+      {loading && ( // Show the loading bar only if loading is true
         <div className="loading-container">
           <div className="loading-bar"></div>
-          <div className="loading-text">
-            Uploading...</div>
+          <div className="loading-text">Uploading...</div>
         </div>
       )}
 
       <div className="gallery-button-container">
         <button
-          className="view-gallery-button"
-          onClick={navigateToGallery}
-          disabled={loading || successMessage}
+        className="view-gallery-button"
+        onClick={navigateToGallery}
+        disabled={loading || successMessage}
         >
-          View All Uploads
+        View All Uploads
         </button>
-      </div>
+      {/* {showGallery && <Gallery />} Conditionally render the Gallery component */}
+    </div>
     </main>
   );
 }
