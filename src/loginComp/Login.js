@@ -27,6 +27,8 @@ const Login = () => {
       const currUser = await Database.postUserSession({
         email: user,
         password: pass,
+        // email: 'a@a.com',
+        // password: 'a',
       });
 
       if (currUser !== undefined) {
@@ -67,7 +69,7 @@ const Login = () => {
               onChange={handlePassChange} 
               className='pass' 
               placeholder='Password'
-              type="password">
+              >
             </input>
             <button className='forgetPass'>Forgot Password?</button>
             {invalid && 
