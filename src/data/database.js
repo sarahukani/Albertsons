@@ -2,6 +2,22 @@ import backendOrigin from "../config/origin";
 
 export default class Database {
 
+    // **************************************************************************
+    // USER TABLE QUERIES *******************************************************
+    // **************************************************************************
+
+    static async getAllUsers() {
+        const response = await fetch(`${backendOrigin}/users`);
+        const userData = await response.json();
+        return userData;
+    }
+
+    static async getUserByID(userID){
+        const response = await fetch(`${backendOrigin}/users/${userID}`);
+        const userData = await response.json();
+        return userData;
+    }
+
     static async postUserSession(loginRequest) {
         console.log(loginRequest);
         try {
@@ -25,90 +41,212 @@ export default class Database {
         }
     }
 
-    static async getAllUsers() {
-        const response = await fetch(`${backendOrigin}/users`);
-        const userData = await response.json();
-        return userData;
-    }
+    // **************************************************************************
+    // STORE TABLE QUERIES ******************************************************
+    // **************************************************************************
 
-    static async getStoreById(storeId) {
-        const response = await fetch(`${backendOrigin}/stores/${storeId}`);
+    static async getStoreByID(storeID) {
+        const response = await fetch(`${backendOrigin}/stores/${storeID}`);
         const storeData = await response.json();
-        // console.log(storeData);
-
         return storeData;
     }
 
-    static async getStoresByStoreIds(storeIds) {
+    static async getStoresByStoreIDs(storeIDs) {
         let storeList = [];
-        for (let i = 0; i < storeIds.length; i++) {
-            storeList.push(Database.getStoreById(storeIds[i]));
-            // console.log(Database.getStoreById(storeIds[i]));
+        for (let i = 0; i < storeIDs.length; i++) {
+            storeList.push(Database.getStoreByID(storeIDs[i]));
         }
         return storeList;
     }
 
-    static async createPlaylist(id, name, imageUrls, startDate, endDate) {
-        const playlistData = {
-          id: id,
-          name: name,
-          imageUrls: imageUrls,
-          startDate: startDate,
-          endDate: endDate,
-        };
-      
-        try {
-          const response = await fetch(`${backendOrigin}/playlists/create/${id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(playlistData),
-          });
-      
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-      
-          const data = await response.json();
-          console.log('Playlist saved:', data);
-          // Perform any other actions or update the UI as needed
-        } catch (error) {
-          console.error('Error while saving playlist:', error);
-        }
-      };
+    static async getAllStores() {
+        const response = await fetch(`${backendOrigin}/stores`);
+        const storeData = await response.json();
+        return storeData;
+    }
 
+    static async pushStoreProductsList(storeID, productID) {
+        const response = await fetch(`${backendOrigin}/stores/add-product/${storeID}/${productID}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const storeData = await response.json();
+        return storeData;
+    }
+
+    static async popStoreProductsList(storeID, productID) {
+        const response = await fetch(`${backendOrigin}/stores/delete-product/${storeID}/${productID}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const storeData = await response.json();
+        return storeData;
+    }
+
+    static async pushStorePlaylist(storeID, playlistID) {
+        const response = await fetch(`${backendOrigin}/stores/add-playlist/${storeID}/${playlistID}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const storeData = await response.json();
+        return storeData;
+    }
+
+    static async popStorePlaylist(storeID, playlistID) {
+        const response = await fetch(`${backendOrigin}/stores/delete-playlist/${storeID}/${playlistID}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const storeData = await response.json();
+        return storeData;
+    }
+
+    // TODO: Make it dynamic to pop/push multiple products
+    static async updateStoreProductsList() {}
+
+    // TODO: Make it dynamic to pop/push multiple playlists
+    static async updateStorePlaylists() {}
+
+    static async getCurrentLocationProducts(storeID) {
+        const response = await fetch(`${backendOrigin}/stores/current-products/${storeID}`);
+        const storeProductsData = await response.json();
+        return storeProductsData;
+    }   
+
+    static async getCurrentLocationPlaylists(storeID) {
+        const response = await fetch(`${backendOrigin}/stores/current-playlists/${storeID}`);
+        const storePlaylistsData = await response.json();
+        return storePlaylistsData;
+    }   
+
+    // **************************************************************************
+    // PRODUCT TABLE QUERIES ****************************************************
+    // **************************************************************************
+
+    static async getProductbyID(storeID) {
+        const response = await fetch(`${backendOrigin}/products/${storeID}`);
+        const storeProductID = await response.json();
+        return storeProductID;
+    }
 
     static async getAllProducts() {
-        try {
-            const response = await fetch(`${backendOrigin}/products`);
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
+        const response = await fetch(`${backendOrigin}/products`);
+        const productData = await response.json();
+        return productData;
     }
-      
 
+    static async createProduct(pID, name, price, imageURL){
+        let product = {
+            name: name,
+            price: price,
+            imageURL: imageURL
+        };
+        let requestOptions = {
+            method: 'PUT',
+            body: JSON.stringify(product),
+        };
+        const response = await fetch(`${backendOrigin}/products/create/${pID}`, requestOptions);
+        const productData = await response.json();
+        return productData;
+    }
 
-    static async uploadProductImages(file) {
+    static async deleteProduct(pID) {
+        const response = await fetch(`${backendOrigin}/products/delete/${pID}`, {
+            method: "DELETE"
+        });
+        const successMessage = await response.json();
+        return successMessage;
+    }
+
+    // **************************************************************************
+    // PLAYLIST QUERIES *********************************************************
+    // **************************************************************************
+
+    static async getAllPlaylists() {
+        const response = await fetch(`${backendOrigin}/playlists`);
+        const playlistData = await response.json();
+        return playlistData;
+    }
+
+    static async getPlaylistbyID(playlistID) {
+        const response = await fetch(`${backendOrigin}/playlists/${playlistID}`);
+        const storePlaylistsData = await response.json();
+        return storePlaylistsData;
+    }
+
+    static async createPlaylist(name, imageURLs, startDate, endDate) {
+        let playlist = {
+            name : name, 
+            images : imageURLs, 
+            startDate : startDate,
+            endDate : endDate
+        };
+
+        let requestOptions = {
+            method: 'PUT',
+            body: JSON.stringify(playlist),
+        };
+        const response = await fetch(`${backendOrigin}/playlists/create`, requestOptions);
+        const playlistData = await response.json();
+        return playlistData;
+    }
+
+    static async deletePlaylists(plID) {
+        const response = await fetch(`${backendOrigin}/playlists/delete/${plID}`, {
+            method: "DELETE"
+        });
+        const successMessage = await response.json();
+        return successMessage;
+    }
+
+    // **************************************************************************
+    // CLOUD STORAGE QUERIES ****************************************************
+    // **************************************************************************
+
+    static async uploadProductImage(file) {
+        var formdata = new FormData();
+        formdata.append("files", file);
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+        };
+        fetch(`${backendOrigin}/gcp/upload-multiple`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    }
+
+    static async uploadProductImages(files) {
             var formdata = new FormData();
-            formdata.append("file", file);
-
+            for (let i = 0; i < files.length; i++) {
+                formdata.append("files", files[i]);
+            }
             var requestOptions = {
                 method: 'POST',
                 body: formdata,
             };
-        
-        
-            fetch(`${backendOrigin}/gcp/upload`, requestOptions)
+            fetch(`${backendOrigin}/gcp/upload-multiple`, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
+
+    static async deleteImage(pID) {
+        const response = await fetch(`${backendOrigin}/gcp/delete/${pID}`);
+        const successMessage = await response.json();
+        return successMessage;
+    }
+
+    // **************************************************************************
+    // ALBERT QUERIES ***********************************************************
+    // **************************************************************************
+
 }
-
-
