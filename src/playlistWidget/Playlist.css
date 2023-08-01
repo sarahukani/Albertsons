@@ -1,21 +1,123 @@
+.carousel-playlist-widget{
+  position:absolute;
+  top:0%;
+  right: 29%;
+  border-radius:20px;
+  width: 42%;
+  height: 42%;
+}
+
+.create-playlist-button {
+  /* padding: 10px; */
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  outline: none;
+  width: 47%;
+  height: 20%;
+  position: absolute;
+  top: 81.5%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  position: absolute;
+}
+
 .view-playlist-button {
-    padding: 10px;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 20px;
-    outline: none;
-    width: 100%;
-    height: 20%;
-    position: absolute;
-    top: 81.5%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 13px;
-    cursor: pointer;
-    position: absolute;
-  
+  /* padding: 10px; */
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  outline: none;
+  width: 47%;
+  height: 20%;
+  position: absolute;
+  top: 81.5%;
+  right: 0%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  position: absolute;
   }
   
   .view-playlist-button:hover {
     background-color: #bae4ef;
   }
+
+  .create-playlist-button:hover {
+    background-color: #bae4ef;
+  }
+
+  @media screen and (max-width: 900px){
+    .carousel-playlist-widget{
+      position:absolute;
+      top:1vh;
+      right: 6vw;
+      border-radius:20px;
+      width: 18vw;
+      height:18vh;
+    }
+  }
+ 
+  @media screen and (max-width: 768px){
+    .carousel-playlist-widget{
+      position:absolute;
+      top:2vh;
+      right: 34vw;
+      border-radius:20px;
+      width: 25vw;
+      height:25vh;
+    }
+
+  }
+/*
+  @media screen and (max-width: 480px){
+    .carousel-playlist-widget{
+      position:absolute;
+      top:2vh;
+      right: 34vw;
+      border-radius:20px;
+      width: 25vw;
+      height:25vh;
+    }
+
+    .create-playlist-button {
+      display:flex;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid white;
+      border-radius: 20px;
+      outline: none;
+      width: 45vw;
+      height: 7vh;
+      position: absolute;
+      top: 32vh;
+      left: 0vw;
+      text-align: center;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      position: absolute;
+    }
+    
+    .view-playlist-button {
+        display:flex;
+        padding: 10px;
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 20px;
+        outline: none;
+        width: 45vw;
+        height: 7vh;
+        position: absolute;
+        top: 32vh;
+        right: 0vw;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        position: absolute;
+      }
+  } */
