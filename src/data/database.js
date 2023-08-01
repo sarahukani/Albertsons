@@ -279,4 +279,5 @@ export default class Database {
         console.log(productRecommendations);
         return productRecommendations;
    }
-}  
+  
+}
