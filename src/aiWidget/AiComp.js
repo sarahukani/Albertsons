@@ -1,3 +1,4 @@
+import Database from "../data/database"
 import "./AiComp.css"
 import { useState } from 'react'
 
@@ -7,25 +8,19 @@ export default function AiComp(props){
     const [productCat, setProductCat] = useState("")
     const [weather, setWeather] = useState("")
     const [holiday, setHoliday] = useState("")
-    const [rec, setRec] = useState("")
+    const [rec, setRec] = useState([])
 
     const handleLocationChange = (event) => {
-        let city = ""
-        let state = ""
+        let store = {}
         for(let i = 0; i < props.storeList.length; i++){
-            let target = props.storeList[i].location.address + ", " + props.storeList[i].location.city + " " + props.storeList[i].location.state
-            // console.log(event.target.value)
-            // console.log(target) 
+            let target = props.storeList[i].location.address + ", " + props.storeList[i].location.city + " " + props.storeList[i].location.state 
             if(target === event.target.value){
-                city = props.storeList[i].location.city
-                state = props.storeList[i].location.state
+                store = props.storeList[i]
             }
         }
-
-        const city_state = city + " " + state
-
-        setLocation(city_state);
+        setLocation(store);
     };
+
     const handleAgeChange = (event) => {
         setAge(event.target.value);
     };
@@ -39,32 +34,37 @@ export default function AiComp(props){
         setHoliday(event.target.value);
     };
 
-    function clickGen(){
+    async function clickGen(){
         if(location === "" || location === " "){
             alert("Please choose a location")
         } else{
             // const result = "This will be the reccomendation for the left choices"
             // setRec(result)
-
-            var myHeaders = new Headers();
-            myHeaders.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
-            myHeaders.append("Accept-Language", "en-US,en;q=0.9");
-            myHeaders.append("Cache-Control", "max-age=0");
-            myHeaders.append("Connection", "keep-alive");
-            myHeaders.append("Upgrade-Insecure-Requests", "1");
-            myHeaders.append("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36");
+            let products = await Database.getProductRecommendations("177", "Cereal");
+            //console.log(products);
             
-            var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-            };
+            let url = ``
+            let pid = 0
+            let name = ``
+            let price = ``
+            let tempProd = ""
+            let tempStore = ""
+            let recList = []
 
-            fetch("http://34.123.247.7:2002/getrec/script-call/?category=icecream&location=nyc&demographic=20s&weather=sunny&name=Rashmi", requestOptions)
-                .then(response => response.json())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-                    }
+            for (let i = 1; i < products.length; i += 3){
+                url = `https://images.albertsons-media.com/is/image/ABS/${products[i+2]}?$ng-ecom-product-card-desktop-jpg$&defaultImage=Not_Available`
+                pid = products[i+2]
+                name = products[i]
+                price = products[i+1]
+
+                tempProd = await Database.createProduct(pid, name, price, url)
+                tempStore = await Database.pushStoreProductsList(location.id, pid)
+                recList.push(tempProd)
+            }
+            // console.log(recList);
+
+            setRec(recList)
+        }
     }
 
     return(
@@ -91,12 +91,20 @@ export default function AiComp(props){
             </div>
             <button className="generateBtn" onClick={clickGen}>Generate</button>
             <div className="reccomendations">
-                <img className="recImg" src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
-                <img className="recImg" src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
-                <img className="recImg" src="https://images.albertsons-media.com/is/image/ABS/960109087?$ecom-product-card-desktop-jpg$&defaultImage=Not_Available"/>
+                {rec.map((recommendation) =>
+                    <img className="recImg" src={recommendation.imageURL}/>
+                )} 
             </div>
             <div className="imgRecs">
                 <p className="thirdText">Here are some <b>product recommendations:</b></p>
+                <ol className="recList">
+                    {rec.map((recommendation) =>
+                        <li>
+                            {recommendation.name}<br />
+                            <b>&emsp;Price: ${recommendation.price}</b>
+                        </li>
+                    )}
+                </ol>
             </div>  
         </div>
     )

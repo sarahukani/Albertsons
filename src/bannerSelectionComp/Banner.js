@@ -19,7 +19,7 @@ export default function Banner(){
     }
 
     useEffect(() => {
-        Database.getStoresByStoreIds(storeIds)
+        Database.getStoresByStoreIDs(storeIds)
             .then((data) => {
                 Promise.all(data)
                     .then((resolvedStores)=> {
