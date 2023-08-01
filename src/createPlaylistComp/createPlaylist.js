@@ -9,7 +9,7 @@ import Schedule from './Schedule';
 
 function CreatePlaylist() {
   const [title, setTitle] = useState('Enter a title');
-  const [selectedGalleryImages, setSelectedGalleryImages] = useState([]);
+  const [selectedGalleryItems, setSelectedGalleryItems] = useState([]);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [textColor, setTextColor] = useState('#ffffff');
   const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
@@ -51,9 +51,9 @@ function CreatePlaylist() {
 
   const handleSavePlaylist = async () => {
     try {
-      const imageUrls = selectedGalleryImages.map((image) => image.url);
+      const imageUrls = selectedGalleryItems.map((item) => item.url);
 
-      await Database.createPlaylist(1, title, imageUrls, startDate, endDate);
+      await Database.createPlaylist(title, imageUrls, startDate, endDate);
 
       console.log('Playlist created successfully!');
     } catch (error) {
@@ -61,26 +61,24 @@ function CreatePlaylist() {
     }
   };
 
-  // Move 'Enter a title' text rendering to a separate variable
   const enterTitleText = title === 'Enter a title' ? title : null;
 
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
         <Gallery
-          onSelectImage={(image) => setSelectedGalleryImages([...selectedGalleryImages, image])}
+          onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])}
         />
       </div>
 
       <div className="playlist-section">
-        {/* Render 'Enter a title' only once in the create section */}
         <div className="title">
           <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
             {enterTitleText}
           </span>
         </div>
 
-        <div className="create-section">
+        <div className="create-section" style={{ background: 'black' }}>
           <div style={{ position: 'relative' }}>
             <img
               src="https://3.bp.blogspot.com/-twz3yfFATFY/T3SRLKVd-yI/AAAAAAAAAKo/xFSYgRIcwrc/s1600/COLOUR-WHEEL.jpg"
@@ -94,7 +92,7 @@ function CreatePlaylist() {
                 style={{
                   position: 'absolute',
                   top: '100%',
-                  left: '0',
+                  left: 0,
                   zIndex: '1',
                 }}
               >
@@ -103,16 +101,16 @@ function CreatePlaylist() {
             )}
           </div>
 
-          {/* Render the actual title in the create section */}
-          <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
+          <span onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
             {title !== 'Enter a title' && title}
           </span>
 
           <TextFieldsIcon
+            style={{ color: 'white' }}
             onClick={() => {
               const textInput = window.prompt('Enter your text:', '');
               if (textInput !== null) {
-                setSelectedGalleryImages([...selectedGalleryImages, { text: textInput }]);
+                setSelectedGalleryItems([...selectedGalleryItems, { text: textInput }]);
               }
             }}
           />
@@ -124,10 +122,9 @@ function CreatePlaylist() {
             Export
           </button>
 
-          {/* Save Playlist button */}
-          {selectedGalleryImages.length > 0 && (
+          {selectedGalleryItems.length > 0 && (
             <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
-              Save Playlist
+              Save
             </button>
           )}
         </div>
@@ -138,18 +135,18 @@ function CreatePlaylist() {
           onMouseDown={handleTextDragStart}
           onMouseMove={handleTextDrag}
         >
-          {selectedGalleryImages.map((image) => (
+          {selectedGalleryItems.map((item) => (
             <div
               className="selected-gallery-image"
-              key={image.id}
+              key={item.id}
               style={{ position: 'relative', marginBottom: '16px' }}
             >
               <img
-                src={image.url}
-                alt={image.name}
+                src={item.url}
+                alt={item.name}
                 style={{ maxWidth: '100%', borderRadius: '10px' }}
               />
-              {image.text && (
+              {item.text && (
                 <div
                   className="text-overlay"
                   style={{
@@ -163,7 +160,7 @@ function CreatePlaylist() {
                     left: '50%',
                   }}
                 >
-                  {image.text}
+                  {item.text}
                 </div>
               )}
             </div>
@@ -174,7 +171,6 @@ function CreatePlaylist() {
       {popupContent && (
         <div className="popup">
           <div className="popup-content">
-            {/* Pass the onSave function to the Schedule component */}
             <Schedule
               onSave={(start, end) => {
                 setStartDate(start);

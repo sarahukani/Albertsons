@@ -48,17 +48,16 @@ export default class Database {
         return storeList;
     }
 
-    static async createPlaylist(id, name, imageUrls, startDate, endDate) {
+    static async createPlaylist(name, imageUrls, startDate, endDate) {
         const playlistData = {
-          id: id,
           name: name,
-          imageUrls: imageUrls,
+          images: imageUrls,
           startDate: startDate,
           endDate: endDate,
         };
       
         try {
-          const response = await fetch(`${backendOrigin}/playlists/create/${id}`, {
+          const response = await fetch(`${backendOrigin}/playlists/create`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -102,7 +101,6 @@ export default class Database {
                 method: 'POST',
                 body: formdata,
             };
-        
         
             fetch(`${backendOrigin}/gcp/upload`, requestOptions)
             .then(response => response.text())
