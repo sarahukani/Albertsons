@@ -162,6 +162,14 @@
     font-size: 1.5vw;
 }
 
+.recList{
+    font-size: 1.15vw;
+    
+    position: absolute;
+    top: 51vh;
+    left: 2vw;
+}
+
 @media screen and (max-width: 768px){
     .mainDiv{
         flex-direction: column;
