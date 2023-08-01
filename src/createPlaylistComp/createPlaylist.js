@@ -37,19 +37,6 @@ function CreatePlaylist() {
     }
   };
 
-  const handleImageSelect = (image) => {
-    const isSelected = selectedGalleryImages.some((selectedImage) => selectedImage.id === image.id);
-
-    if (isSelected) {
-      setSelectedGalleryImages(selectedGalleryImages.filter((selectedImage) => selectedImage.id !== image.id));
-    } else {
-      const textInput = window.prompt('Enter your text for this image:', '');
-      if (textInput !== null) {
-        setSelectedGalleryImages([...selectedGalleryImages, { ...image, text: textInput }]);
-      }
-    }
-  };
-
   const handleColorChange = (color) => {
     setTextColor(color.hex);
   };
@@ -74,25 +61,29 @@ function CreatePlaylist() {
     }
   };
 
+  // Move 'Enter a title' text rendering to a separate variable
+  const enterTitleText = title === 'Enter a title' ? title : null;
+
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
         <Gallery
-          onSelectImage={handleImageSelect}
-          selectedGalleryImages={selectedGalleryImages}
+          onSelectImage={(image) => setSelectedGalleryImages([...selectedGalleryImages, image])}
         />
       </div>
 
       <div className="playlist-section">
+        {/* Render 'Enter a title' only once in the create section */}
         <div className="title">
           <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
-            {title}
+            {enterTitleText}
           </span>
         </div>
 
         <div className="create-section">
           <div style={{ position: 'relative' }}>
             <img
+              src="https://3.bp.blogspot.com/-twz3yfFATFY/T3SRLKVd-yI/AAAAAAAAAKo/xFSYgRIcwrc/s1600/COLOUR-WHEEL.jpg"
               alt="Color Wheel"
               style={{ width: '30px', height: '30px', marginRight: '10px' }}
               onClick={() => setShowColorPicker(!showColorPicker)}
@@ -112,8 +103,9 @@ function CreatePlaylist() {
             )}
           </div>
 
+          {/* Render the actual title in the create section */}
           <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
-            {title}
+            {title !== 'Enter a title' && title}
           </span>
 
           <TextFieldsIcon
@@ -140,14 +132,23 @@ function CreatePlaylist() {
           )}
         </div>
 
-        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+        <div
+          className="text-icon"
+          ref={textOverlayRef}
+          onMouseDown={handleTextDragStart}
+          onMouseMove={handleTextDrag}
+        >
           {selectedGalleryImages.map((image) => (
             <div
               className="selected-gallery-image"
               key={image.id}
               style={{ position: 'relative', marginBottom: '16px' }}
             >
-              <img src={image.url} alt={image.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+              <img
+                src={image.url}
+                alt={image.name}
+                style={{ maxWidth: '100%', borderRadius: '10px' }}
+              />
               {image.text && (
                 <div
                   className="text-overlay"
@@ -155,12 +156,16 @@ function CreatePlaylist() {
                     color: textColor,
                     top: textPosition.y,
                     left: textPosition.x,
+                    position: 'absolute',
+                    width: '100%',
+                    transform: 'translate(-50%, -50%)',
+                    top: '50%',
+                    left: '50%',
                   }}
                 >
                   {image.text}
                 </div>
               )}
-              <button>Add to Playlist</button>
             </div>
           ))}
         </div>
@@ -169,7 +174,14 @@ function CreatePlaylist() {
       {popupContent && (
         <div className="popup">
           <div className="popup-content">
-            <Schedule onSave={(start, end) => { setStartDate(start); setEndDate(end); setPopupContent(false); }} />
+            {/* Pass the onSave function to the Schedule component */}
+            <Schedule
+              onSave={(start, end) => {
+                setStartDate(start);
+                setEndDate(end);
+                setPopupContent(false);
+              }}
+            />
             <button className="close-btn" onClick={() => setPopupContent(false)}>
               Close
             </button>
