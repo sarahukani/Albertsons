@@ -69,6 +69,7 @@ const Login = () => {
               onChange={handlePassChange} 
               className='pass' 
               placeholder='Password'
+              type="password"
               >
             </input>
             <button className='forgetPass'>Forgot Password?</button>
