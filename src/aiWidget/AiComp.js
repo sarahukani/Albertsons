@@ -25,7 +25,10 @@ export default function AiComp(props){
         setAge(event.target.value);
     };
     const handleProductChange = (event) => {
-        setProductCat(event.target.value);
+        let tempproduct = event.target.value
+        tempproduct = tempproduct.replaceAll(" ", "+")
+        console.log(tempproduct)
+        setProductCat(tempproduct);
     };
     const handleWeatherChange = (event) => {
         setWeather(event.target.value);
@@ -40,7 +43,7 @@ export default function AiComp(props){
         } else{
             // const result = "This will be the reccomendation for the left choices"
             // setRec(result)
-            let products = await Database.getProductRecommendations("177", "Cereal");
+            let products = await Database.getProductRecommendations("177", productCat);
             //console.log(products);
             
             let url = ``
@@ -80,7 +83,7 @@ export default function AiComp(props){
                     )}
                 </select>
                 <br></br>
-                <h3 className="ageName">Age:</h3>
+                <h3 className="ageName">Demographic:</h3>
                 <input className="age" onChange={handleAgeChange}></input>
                 <h3 className="productName">Product<br></br> Category:</h3>
                 <input className="productCategory" onChange={handleProductChange}></input>
@@ -95,7 +98,7 @@ export default function AiComp(props){
                     <img className="recImg" src={recommendation.imageURL}/>
                 )} 
             </div>
-            <div className="imgRecs">
+            <div className="imgRecs-container">
                 <p className="thirdText">Here are some <b>product recommendations:</b></p>
                 <ol className="recList">
                     {rec.map((recommendation) =>
