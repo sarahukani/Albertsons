@@ -25,12 +25,12 @@
     width:1.5vw;
     height:1.5vw;
     right: 0.4vw;
-    cursor:pointer;
+    /* cursor:pointer; */
   }
   
   .image-container {
     position: relative;
-    height: 140px;
+    height: 25vh;
     /* overflow: hidden; */
   }
   
@@ -42,6 +42,37 @@
     height: 28vh; /* Set the height to 100% to fill the container */
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+  }
+
+  .more-options-dropdown{
+    position: absolute;
+    top: 3vh;
+    right: 0.7vw;
+    height: 6.5vh;
+    width:7.5vw;
+    background-color: white;
+    padding: .5vw;
+    border: 1px solid gray;
+    border-radius: 6%;
+    z-index: 9999;   
+  }
+
+  .divider {
+    border-top: 1px solid black;
+    margin: .75vh 0;
+  }
+
+  .dropdown-option {
+    display: flex;
+    align-items: center;
+    /* text-align:center; */
+    cursor: pointer;
+    /* justify-content:center; */
+  }
+
+  .dropdown-text {
+    font-size:.7vw;
+    text-align:center;
   }
   
   .show-image1 .MuiCardMedia-root:nth-child(1),
@@ -70,8 +101,10 @@
     display: flex;
     justify-content: center;
     bottom: 43vh;
-    margin-top: 20px;
-    width: 200%; 
+    margin-top: 2vh;
+    width: 100%; 
+    /* margin-right:1vw; */
+    /* margin-left:1vw; */
   }
 
   .bottom-cards {
@@ -80,7 +113,7 @@
     justify-content: center;
     bottom: 2vh;
     /* margin-top: 20px; */
-    width: 200%;
+    width: 100%;
   }
 
   .card {
@@ -113,3 +146,17 @@
     bottom: 1px;
   }
   
+  @media screen and (max-width: 768px){
+    .more-options-dropdown{
+      position: absolute;
+      top: 3vh;
+      right: 0.7vw;
+      height: 4.5vh;
+      width:7.5vw;
+      background-color: white;
+      padding: .5vw;
+      border: 1px solid gray;
+      border-radius: 6%;
+      z-index: 9999;   
+    }
+  }
