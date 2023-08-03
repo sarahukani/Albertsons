@@ -19,7 +19,7 @@ export default function Banner(){
     }
 
     useEffect(() => {
-        Database.getStoresByStoreIds(storeIds)
+        Database.getStoresByStoreIDs(storeIds)
             .then((data) => {
                 Promise.all(data)
                     .then((resolvedStores)=> {
@@ -80,7 +80,7 @@ export default function Banner(){
             <ul className="storeList">
                 {storeList.map((store, index) =>
                     <li className="storeNames">
-                        <label style={{ color: "black" }} className="container">
+                        <label style={{ color: "black" }} className="storeListContainer">
                             <input type="radio" checked={choice[index]} name="radio"  onChange={() => choiceClick(index)}/>
                             {store}
                             <span class="checkmark"></span>

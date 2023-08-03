@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../uploadWidget/Uploader.css';
 import { MdCloudUpload } from 'react-icons/md';
 import { RiCheckLine } from 'react-icons/ri';
 import Database from '../data/database';
 import Gallery from '../uploadWidget/Gallery.js';
+import backendOrigin from '../config/origin';
 
 
 export default function Uploader( props ) {
@@ -14,48 +15,52 @@ export default function Uploader( props ) {
   const [successMessage, setSuccessMessage] = useState('');
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
+  const [data, setData] = useState("");
+
 
   const handleImageUpload = async (event) => {
     const files = event.target.files;
-    await Database.uploadProductImages(files);
-
-    setLoading(true);
+    setLoading(false);
+    console.log("images uploaded");
+  
     try {
-      const newImages = await Promise.all(
-        Array.from(files).map(async (file) => ({
-          name: file.name,
-          url: await uploadImage(file),
-        }))
-      );
-      setImages((prevImages) => [...prevImages, ...newImages]);
-      setSuccessMessage('Image uploaded successfully');
-      const fileInputValue = fileInputRef.current.value;
-      setTimeout(() => {
-        if (fileInputRef.current) {
-          fileInputRef.current.value = null; // Reset file input value
-        }
-      }, 2000); // Clear success message and reset file input value after 15 seconds
-    } catch (error) {
-      console.error('Error uploading image:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+      setLoading(true);
+      const pids = await Database.uploadProductImages(files);
+      console.log('The response is:', pids);
+  
+      // Rest of the logic that depends on the pids
+      let pIDs = pids.split(",").filter(pid => pid.trim() !== ""); // Filter out empty strings
+      console.log(pIDs);
 
-  const uploadImage = (file) => {
-    return new Promise((resolve, reject) => {
-      // Simulating image upload delay with setTimeout
-      setTimeout(() => {
-        const imageUrl = URL.createObjectURL(file);
-        resolve(imageUrl);
-      }, 2000);
-    });
-  };
+      let urls = pIDs.map(pid => {
+        return `https://storage.googleapis.com/product_images_albertsons/${pid}`;
+      });
+        
+      console.log(urls);
+  
+      for (var i = 0; i < urls.length; i++) {
+          let productName = "Andrew";
+          let price = "1000.11";
+          await Database.createProduct(pIDs[i], productName, price, urls[i]);
+          await Database.pushStoreProductsList(props.storeList[0].id, pIDs[i]);
+      }
+
+      setLoading(false);
+      setSuccessMessage('Images uploaded successfully!');
+
+      // ...
+    } catch (error) {
+      console.error('Error uploading product images:', error);
+      // Handle the error, if any
+    }
+  }
+
+
 
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    navigate('/gallery');
-  };
+    navigate('/gallery', { state: { storeIds: props.storeList } });
+  }; 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -70,7 +75,7 @@ export default function Uploader( props ) {
         <div className={`upload-widget ${loading ? 'loading' : ''}`}>
           {(images.length === 0 || images.length > 0) && !loading && (
             <>
-              <MdCloudUpload color="#FFFFFF" size={60} />
+              <MdCloudUpload color="#0C5497" size={60} />
               <label htmlFor="file-input" className="form">
                 Select Images to Upload
               </label>
@@ -108,6 +113,7 @@ export default function Uploader( props ) {
         className="view-gallery-button"
         onClick={navigateToGallery}
         disabled={loading || successMessage}
+        style={{ color: 'white' }}
         >
         View All Uploads
         </button>

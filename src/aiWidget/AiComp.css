@@ -34,13 +34,13 @@
     padding: 0.8vw;
     width: 26.8vw;
     height: 6.5vh;
-    background-color: #20509C;
+    background-color: #FFFFFF;
     border: 0.3vw solid #20509C;
     border-radius: 14px;
     text-align: center;
     font-weight: bold;
     font-size: 1.3vw;
-    color: white;
+    color: #0c5497;
     position: absolute;
     top: 40vh;
     left: 1%;
@@ -67,8 +67,10 @@
 .thirdText{
     position: absolute;
     top: 46vh;
-    left: 1vw;
+    left: 2vw;
     font-size: 1.2vw;
+    color: #FFFFFF
+
 }
 
 .location{
@@ -211,6 +213,7 @@
     }
     
     .firstText{
+        color: #FFFFFF;
         position: absolute;
         top: -1.3vh;
         left: 2vw;
@@ -334,6 +337,7 @@
         position: absolute;
         top: 4.5vw;
         left: 0.5vw;
+        background-color: #EAEAEA;
     }
     
     .reccomendations{

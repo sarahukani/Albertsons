@@ -3,6 +3,8 @@ import '../uploadWidget/Gallery.css';
 import Icon from '../mainComp/Icon.js';
 import EditIcon from '@mui/icons-material/Edit';
 import Uploader from '../uploadWidget/Uploader.js'
+import { useLocation } from 'react-router-dom';
+import Database from '../data/database';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
@@ -11,14 +13,27 @@ const Gallery = () => {
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
+  const location = useLocation();
+  const { storeIds } = location.state || {}; 
+
   useEffect(() => {
-    // Retrieve the uploaded images from local storage or through state management
-    const uploadedImages = JSON.parse(localStorage.getItem('uploadedImages'));
-    console.log('Retrieved images:', uploadedImages);
-    if (uploadedImages) {
-      setImages(uploadedImages);
+    async function fetchData() {
+      try {
+        console.log(storeIds);
+        let products = await Database.getCurrentLocationProducts(storeIds[0].id);
+        console.log('Fetched products:', products);
+
+        // Extract the image_url from each product and create a new array
+        // const productImages = products.map((product) => product.image_url);
+
+        setImages(products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
     }
-  }, []);
+
+    fetchData();
+  }, [storeIds]);
 
   const handleSelectIcon = (EditIcon) => {
     setShowInput((prevShowInput) => !prevShowInput);
@@ -77,8 +92,8 @@ const Gallery = () => {
             style={{ position: 'relative' }}
           >
             {/* Display the image */}
-            {image.url ? (
-              <img src={image.url} alt={image.name} />
+            {image.imageURL ? (
+              <img src={image.imageURL} alt={image.name} />
             ) : (
               <div className="image-placeholder">Image Not Available</div>
             )}
@@ -106,7 +121,7 @@ const Gallery = () => {
             )}
 
             {/* Display the edit icon for all images */}
-            {image.url && (
+            {image.imageURL && (
               <div className="edit-container">
                 <div className="edit-button" onClick={handleSelectIcon}>
                   <EditIcon />
