@@ -79,7 +79,7 @@ export default function Banner(){
             <p className="subHeader">Select ONE banner from the list below.</p>
             <ul className="storeList">
                 {storeList.map((store, index) =>
-                    <li className="storeNames">
+                    <li key={index} className="storeNames">
                         <label style={{ color: "black" }} className="container">
                             <input type="radio" checked={choice[index]} name="radio"  onChange={() => choiceClick(index)}/>
                             {store}
