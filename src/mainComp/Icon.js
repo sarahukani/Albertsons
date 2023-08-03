@@ -52,7 +52,7 @@ export default function Icon(props){ //props param to pass in store name from ma
         storeLink = randalls;
     } else if (actualStore === "AlbertsonsMarket") {
         storeLink = albertsonsMarket;
-    } else if (actualStore === "Pavillions") {
+    } else if (actualStore === "Pavilions") {
         storeLink = pavillions;
     } else if (actualStore === "StarMarket") {
         storeLink = starMarket;
@@ -99,7 +99,7 @@ export default function Icon(props){ //props param to pass in store name from ma
     };
 
     const handleProfileButtonClick = () => {
-        console.log('profile');
+        navigate('/profile', {state: {user: props.user}});
     }
 
     const handleLogoutButtonClick = () => {
