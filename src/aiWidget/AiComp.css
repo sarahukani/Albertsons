@@ -20,7 +20,7 @@
 .reccomendations{
     padding: 0.8vw;
     width: 24.5vw;
-    height: 37.4vh;
+    height: 68vh;
     background-color: #FFFFFF;
     border: 0.3vw solid #FFFFFF;
     border-radius: 18px;
@@ -135,9 +135,9 @@
 
 .ageName{
     position: absolute;   
-    top: 4.5vh;
-    left: 3vw;
-    font-size: 1.5vw;
+    top: 5.9vh;
+    left: 1.2vw;
+    font-size: 1.1vw;
 }
 
 .productName{
@@ -164,11 +164,14 @@
 
 .recList{
     font-size: 1.15vw;
-    
+    overflow: break-word;
+    width: 22.5vw;
     position: absolute;
     top: 51vh;
-    left: 2vw;
+    left: 0.5vw;
+    
 }
+
 
 @media screen and (max-width: 768px){
     .mainDiv{
@@ -187,7 +190,7 @@
     .reccomendations{
         padding: 0.8vw;
         width: 43vw;
-        height: 38vh;
+        height: 65vh;
         position: absolute;
         top: 5.3vh;
         left: 47vw;
@@ -302,14 +305,14 @@
     
     .ageName{
         position:absolute;
-        top: 3.5vw;
-        left: 5.5vw;
-        font-size: 2.4vw;
+        top: 5.2vw;
+        left: 2.2vw;
+        font-size: 2vw;
     }
     
     .productName{
         position: absolute;
-        top: 8.5vw;
+        top: 9vw;
         left: 3.5vw;
         text-align: center;
         font-size: 2.2vw;
@@ -327,6 +330,15 @@
         top: 20.5vw;
         left: 3.5vw;
         font-size: 2.4vw;
+    }
+    .recList{
+        font-size: 1.9vw;
+        overflow: break-word;
+        width: 37vw;
+        position: absolute;
+        top: 49vh;
+        left: 0.1vw;
+        
     }
 }
 

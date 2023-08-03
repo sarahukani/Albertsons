@@ -9,8 +9,8 @@
 
 .create-playlist-button {
   /* padding: 10px; */
-  background-color: white;
-  border: 1px solid white;
+  background-color: #22505D;
+  border: 1px solid #22505D;
   border-radius: 20px;
   outline: none;
   width: 47%;
@@ -22,12 +22,13 @@
   font-size: 13px;
   cursor: pointer;
   position: absolute;
+  color: #FFFFFF;
 }
 
 .view-playlist-button {
   /* padding: 10px; */
-  background-color: white;
-  border: 1px solid white;
+  background-color: #22505D;
+  border: 1px solid #22505D;
   border-radius: 20px;
   outline: none;
   width: 47%;
@@ -40,6 +41,7 @@
   font-size: 13px;
   cursor: pointer;
   position: absolute;
+  color: #FFFFFF;
   }
   
   .view-playlist-button:hover {
