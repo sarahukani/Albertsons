@@ -1,13 +1,13 @@
 .detailedDescrip{
     padding: 0.8vw;
-    width: 24.5vw;
+    width: 26vw;
     height: 30vh;
     background-color: #EAEAEA;
     border: 0.3vw solid #EAEAEA;
     border-radius: 18px;
     position: absolute;
     top: 4.5vh;
-    left: 0.5vw;
+    left: -0.3vw;
 }
 
 .recImg{
@@ -32,7 +32,7 @@
 
 .generateBtn{
     padding: 0.8vw;
-    width: 26.8vw;
+    width: 27.5vw;
     height: 6.5vh;
     background-color: #20509C;
     border: 0.3vw solid #20509C;
@@ -43,7 +43,7 @@
     color: white;
     position: absolute;
     top: 40vh;
-    left: 1%;
+    left: -0.3vw;
 }
 
 .generateBtn:hover{
@@ -69,6 +69,90 @@
     top: 46vh;
     left: 1vw;
     font-size: 1.2vw;
+}
+
+.ageInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 9vh;
+    left: 26vw;
+}
+
+.age-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 10vh;
+    left: 27.1vw;
+}
+
+.productInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 15.4vh;
+    left: 26vw;
+}
+
+.product-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 16.3vh;
+    left: 27.1vw;
+}
+
+.weatherInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 21.8vh;
+    left: 26vw;
+}
+
+.weather-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 22.5vh;
+    left: 27.1vw;
+}
+
+.holidayInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 28.2vh;
+    left: 26vw;
+}
+
+.holiday-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 29.5vh;
+    left: 27.1vw;
 }
 
 .location{

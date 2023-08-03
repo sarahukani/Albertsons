@@ -357,7 +357,7 @@ function CreatePlaylist() {
 
                               />
 
-                          <button className="close-btn" onClick={handleClosePopup}>Close</button>
+                          <button className="close-btn" onClick={handleClosePopup}>X</button>
 
                         </div>
 

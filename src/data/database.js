@@ -270,10 +270,26 @@ export default class Database {
    // ALBERT-QUERIES ***********************************************************
    // **************************************************************************
 
-   static async getProductRecommendations(storeID, category) {
+   static async getProductRecommendations(storeID, category, age, weather, holiday) {
         const queryParams = new URLSearchParams();
-        queryParams.append("storeid", storeID);
-        queryParams.append("category", category);
+        // const options = [storeID, category, age, weather, holiday]
+        
+        if(!(storeID === "")){
+            queryParams.append("storeid", storeID);
+        }
+        if(!(category === "")){
+            queryParams.append("category", category);
+        }
+        if(!(age === "")){
+            queryParams.append("demographic", age);
+        }
+        if(!(weather === "")){
+            queryParams.append("weather", weather);
+        }
+        if(!(holiday === "")){
+            queryParams.append("holiday", holiday);
+        }
+
 
         const url = `${albertOrigin}?${queryParams.toString()}`;
         console.log(url);
