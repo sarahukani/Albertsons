@@ -10,7 +10,8 @@ import DownloadIcon from '@mui/icons-material/Download';
 import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import './ViewPlaylist.css'; // Import the CSS file for component-specific styles
+import './ViewPlaylist.css';
+import Schedule from '../createPlaylistComp/Schedule';
 
 export default function ViewPlaylist(props) {
   const campaigns = [
@@ -61,6 +62,11 @@ export default function ViewPlaylist(props) {
   const [showImage1, setShowImage1] = React.useState(true);
   const { state } = useLocation();
   const [isDropdownOpenArray, setIsDropdownOpenArray] = useState(Array(campaigns.length).fill(false));
+  const [isSchedulePopupOpen, setIsSchedulePopupOpen] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [popupContent, setPopupContent] = useState(false);
+  
   const navigate = useNavigate();
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -92,12 +98,13 @@ export default function ViewPlaylist(props) {
     console.log('download');
   }
 
-  const handleSchedule = () => {
-    navigate("/schedule", {state: {storeList: props.storeList, 
-      storeName: props.storeName,
-      user: props.user
-}})
-  }
+  const handleCloseSchedulePopup = () => {
+    setPopupContent(false);
+  };
+
+  const handlePopupOpen = () => {
+    setPopupContent(true);
+  };
 
   const MoreOptionsPopup = ({ onClose, onDownload, onSchedule }) => {
     return (
@@ -132,8 +139,24 @@ export default function ViewPlaylist(props) {
               sx={{cursor:"pointer"}}
               onClick={() => handleMoreOptions(index)}/>
               {isDropdownOpenArray[index] && (
-                <MoreOptionsPopup onClose={() => handleClosePopup(index)} onSchedule={handleSchedule} onDownload={handleDownload}/> 
+                <MoreOptionsPopup onClose={() => handleClosePopup(index)} onSchedule={handlePopupOpen} onDownload={handleDownload}/> 
               )}
+
+              {popupContent && (
+                  <div className="popup">
+                  <div className="popup-content">
+                  <Schedule
+                        onSave={(start, end) => {
+                          setStartDate(start);
+                          setEndDate(end);
+                          setPopupContent(false);
+                        }}
+                        />
+                    <button className="close-btn" onClick={handleCloseSchedulePopup}>Close</button>
+                  </div>
+                </div>
+              )}
+
               <div className={`image ${showImage1 ? 'show-image1' : 'show-image2'}`}>
                 <CardMedia
                   component="img"
@@ -189,7 +212,21 @@ export default function ViewPlaylist(props) {
                 onClick={() => handleMoreOptions(index + topCampaigns.length)}
               />
               {isDropdownOpenArray[index + topCampaigns.length] && (
-                <MoreOptionsPopup onClose={() => handleClosePopup(index + topCampaigns.length)} onSchedule={handleSchedule} onDownload={handleDownload} />
+                <MoreOptionsPopup onClose={() => handleClosePopup(index + topCampaigns.length)} onSchedule={handlePopupOpen} onDownload={handleDownload} />
+              )}
+              {popupContent && (
+                  <div className="popup">
+                  <div className="popup-content">
+                  <Schedule
+                        onSave={(start, end) => {
+                          setStartDate(start);
+                          setEndDate(end);
+                          setPopupContent(false);
+                        }}
+                        />
+                    <button className="close-btn" onClick={handleCloseSchedulePopup}>Close</button>
+                  </div>
+                </div>
               )}
               <div className={`image ${showImage1 ? 'show-image1' : 'show-image2'}`}>
                 <CardMedia

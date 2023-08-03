@@ -48,13 +48,13 @@
     position: absolute;
     top: 3vh;
     right: 0.7vw;
-    height: 6.5vh;
+    height: 6.8vh;
     width:7.5vw;
     background-color: white;
     padding: .5vw;
     border: 1px solid gray;
     border-radius: 6%;
-    z-index: 9999;   
+    z-index: 998;   
   }
 
   .divider {
@@ -157,6 +157,6 @@
       padding: .5vw;
       border: 1px solid gray;
       border-radius: 6%;
-      z-index: 9999;   
+      z-index: 999;   
     }
   }
