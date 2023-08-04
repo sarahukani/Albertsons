@@ -51,7 +51,7 @@ export default function Uploader( props ) {
       }, 2000);
     });
   };
-
+  //navigate to gallery
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
     navigate('/gallery', {state: {

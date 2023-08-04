@@ -29,15 +29,16 @@
   border: 1px solid #b8b8b8;
   width: 16vw;
   height: 5vh;
-  margin-top: 3vh;
+  margin-top: 4vh;
   margin-left: 1vw;
 }
 
 .locationChoice{
-  margin-top: 11vh;
+  margin-top: 8vh;
+  margin-left: 1vw;
   font-size: 1.7vw;
   font-weight: bold;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .storeListPopup{

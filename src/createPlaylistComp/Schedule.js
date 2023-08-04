@@ -75,7 +75,7 @@ const Schedule = ({ onSave }) => {
           <option>Playlist 4</option>
           <option>Playlist 5</option>
         </select>
-        <div className="locationChoice">Chose Your Locations:</div>
+        <div className="locationChoice">Choose Locations:</div>
         <div className="storeList-container">
           <ul className="storeListPopup">
             {sl.map((store, index) =>

@@ -13,7 +13,7 @@ import backendOrigin from "../config/origin.js";
 ***************************************************************************
 ***************************************************************************
 */
-let albertOrigin = "http://34.68.232.71:2002/getrec/script-call/";
+let albertOrigin = "http://34.68.232.71:2002";
 
 export default class Database {
     
@@ -291,7 +291,7 @@ export default class Database {
         }
 
 
-        const url = `${albertOrigin}?${queryParams.toString()}`;
+        const url = `${albertOrigin}/getrec/script-call/?${queryParams.toString()}`;
         console.log(url);
         const response = await fetch(url);
         const productRecommendations = await response.json();
