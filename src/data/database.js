@@ -246,6 +246,8 @@ export default class Database {
         for (let i = 0; i < files.length; i++) {
             formdata.append("files", files[i]);
         }
+        })
+    }
 
 
     // **************************************************************************
@@ -480,8 +482,8 @@ export default class Database {
             console.log('error', error);
             reject(error); // Reject the promise if there's an error
             });
-        });
-  }
+        
+        }
 
    static async deleteImage(pID) {
        const response = await fetch(`${backendOrigin}/gcp/delete/${pID}`);
@@ -505,11 +507,6 @@ export default class Database {
         console.log(productRecommendations);
         return productRecommendations;
    }
- 
-        .then(response => response.text())
-        .then(result => {return result})
-        .catch(error => console.log('error', error));
-    }
 
     // static async uploadProductImages(files) {
     //     let pids = "";
