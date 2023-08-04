@@ -57,10 +57,24 @@ export default function Uploader( props ) {
 
 
 
+  const uploadImage = (file) => {
+    return new Promise((resolve, reject) => {
+      // Simulating image upload delay with setTimeout
+      setTimeout(() => {
+        const imageUrl = URL.createObjectURL(file);
+        resolve(imageUrl);
+      }, 2000);
+    });
+  };
+
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    navigate('/gallery', { state: { storeIds: props.storeList } });
-  }; 
+    navigate('/gallery', {state: {
+      storeName: props.storeName,
+      storeList: props.storeList,
+      user: props.user
+    }});
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
