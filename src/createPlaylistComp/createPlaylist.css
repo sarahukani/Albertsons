@@ -1,11 +1,24 @@
 
+
+body, html {
+
+  margin: 0;
+
+  padding: 0;
+
+  height: 100%;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
 .create-playlist-container {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr; /* Equal-width columns */
+  grid-template-columns: 1fr 1fr; 
 
-  grid-gap: 16px; /* Spacing between columns */
+  grid-gap: 16px; 
 
   height: 100%;
 
@@ -296,7 +309,6 @@
 
  
 
-/* Popup Styles */
 
 .popup {
   position: fixed;
@@ -344,7 +356,6 @@
 
  
 
-/* Responsive adjustments */
 
 @media (max-width: 768px) {
 
@@ -358,13 +369,12 @@
 
  
 
-/* Additional adjustments */
 
 @media (max-width: 500px) {
 
   .text-icon {
 
-    height: 300px; /* Reduce height on smaller screens */
+    height: 300px; 
 
   }
 

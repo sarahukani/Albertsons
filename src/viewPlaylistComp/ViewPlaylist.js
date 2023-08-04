@@ -8,60 +8,59 @@ import { useLocation } from 'react-router-dom'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import DownloadIcon from '@mui/icons-material/Download';
 import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './ViewPlaylist.css';
 import Schedule from '../createPlaylistComp/Schedule';
+import axios from 'axios';
+import jsPDF from 'jspdf';
+import Database from '../data/database.js';
+import ImageCarousel from '../playlistWidget/ImageCarousel.js';
 
 export default function ViewPlaylist(props) {
-  const campaigns = [
-    {
-      title: 'Independence Day',
-      imageURLs: [
-        'https://cdn3.vectorstock.com/i/1000x1000/36/82/independence-day-sale-background-4th-of-july-vector-15543682.jpg',
-        'https://th.bing.com/th/id/OIP.BAPlSkYYsgHPTQOmWRMWBQHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-    {
-      title: 'Valentine Chocolate Sale',
-      imageURLs: [
-        'https://th.bing.com/th/id/OIP.BYPIV7Q6MhkKmATWe2AVhwHaGF?w=214&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://nypost.com/wp-content/uploads/sites/2/2022/02/v-day-sale.png'
-      ],
-    },
-    {
-      title: 'Memorial Day',
-      imageURLs: [
-        'https://th.bing.com/th/id/OIP.igdpQI7Px8-qK-3VCJy36AHaHa?w=210&h=184&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://media.istockphoto.com/id/473651862/vector/memorial-day-sale-tag-eps-10-vector.jpg?s=612x612&w=0&k=20&c=wbPiBtb-Nj2E8nHoMSCifumKMRDUYOuJ9BBzvCYurhc='
-      ],
-    },
-    {
-      title: 'Big Sale',
-      imageURLs: [
-        'https://th.bing.com/th/id/OIP.gI4xCF41cjQCEHuddHXHmAHaGW?w=242&h=208&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.3nfK7NQWRDYal6PFc6HXFwHaGV?w=228&h=195&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-    {
-      title: 'Whole Store Discount',
-      imageURLs: [
-        'https://th.bing.com/th/id/OIP.rlbU0-Y19dyx-Gli3MwylwHaFj?w=239&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.4DENtJjm11xIKSh8VbbosQHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.5&pid=1.7'
-      ],
-    },
-    {
-      title: '1 Month Campaign',
-      imageURLs: [
-        'https://th.bing.com/th/id/OIP.lwGHEdxVMRMxJX0D_HTP0QHaGV?w=200&h=171&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.GkcmDTv9DPWeR8x6aw5x9gHaGV?w=200&h=171&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-  ];
+  const { state } = useLocation();
+  const [playlists, setPlaylists] = useState([]); // State to hold fetched playlists
+
+//   const storeList = state.storeList;
+//   for(let i=0;i<storeList.length;i++){
+//     console.log(storeList[i].id);
+// }
+
+  // useEffect(() => {
+  //   // Fetch playlist data from the database and update state
+  //   const fetchPlaylistData = async () => {
+  //     try {
+  //       const fetchedPlaylists = await Database.getCurrentLocationPlaylists(state.storeList[0].id);
+  //       setPlaylists(fetchedPlaylists);
+  //     } catch (error) {
+  //       console.error('Error fetching playlist data:', error);
+  //     }
+  //   };
+  //   fetchPlaylistData(); 
+  // }, []);
+
+  useEffect(() => {
+    // Fetch playlist data from the database for each store in storeList
+    const fetchPlaylistData = async () => {
+      try {
+        const fetchedPlaylists = [];
+  
+        for (const store of state.storeList) {
+          const playlists = await Database.getCurrentLocationPlaylists(store.id);
+          fetchedPlaylists.push(...playlists);
+        }
+  
+        setPlaylists(fetchedPlaylists);
+      } catch (error) {
+        console.error('Error fetching playlist data:', error);
+      }
+    };
+
+    fetchPlaylistData();
+  }, []);
 
   const [showImage1, setShowImage1] = React.useState(true);
-  const { state } = useLocation();
-  const [isDropdownOpenArray, setIsDropdownOpenArray] = useState(Array(campaigns.length).fill(false));
+  const [isDropdownOpenArray, setIsDropdownOpenArray] = useState(Array(playlists.length).fill(false));
   const [isSchedulePopupOpen, setIsSchedulePopupOpen] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -94,9 +93,29 @@ export default function ViewPlaylist(props) {
     });
   };
 
-  const handleDownload = () => {
-    console.log('download');
-  }
+  const handleDownload = async (index) => {
+    // console.log(playlists);
+
+    const images = await Promise.all((playlists[index].images).map(async (link) => {
+      const response = await axios.get(link, { responseType: 'arraybuffer' });
+      const imageBlob = new Blob([response.data], { type: 'image/jpeg' });
+      return URL.createObjectURL(imageBlob);
+    }));
+    const pdfDoc = new jsPDF();
+    images.forEach((image, index) => {
+      if (index !== 0) {
+        pdfDoc.addPage();
+      }
+      // Adjust the scale factor to improve image quality
+      const scaleFactor = 1; // Experiment with different values (e.g., 1, 1.5, 2)
+      const imageWidth = 70;
+      const imageHeight = 60;
+
+      pdfDoc.addImage(image, 'JPEG', 10, 10, imageWidth * scaleFactor, imageHeight * scaleFactor);
+    });
+
+    pdfDoc.save('playlist.pdf'); //title+playlist
+  };
 
   const handleCloseSchedulePopup = () => {
     setPopupContent(false);
@@ -106,12 +125,20 @@ export default function ViewPlaylist(props) {
     setPopupContent(true);
   };
 
-  const MoreOptionsPopup = ({ onClose, onDownload, onSchedule }) => {
+  const MoreOptionsPopup = ({ arrayIndex, onClose, onDownload, onSchedule }) => {
+    const handleDownloadClick = () => {
+      onDownload(arrayIndex); // Pass the arrayIndex to the parent's onDownload handler
+    };
+
     return (
       <div className="more-options-dropdown">
         <div className="dropdown-option" >
-            <DownloadIcon sx={{height:'1.25vw', width:'1.25vw', marginRight:'.4vw'}}/>
-            <span onClick={onDownload} className="dropdown-text">Download Playlist</span>
+            <DownloadIcon 
+              id={arrayIndex} 
+              sx={{height:'1.25vw', width:'1.25vw', marginRight:'.4vw'}}
+              onClick={handleDownloadClick}
+            />
+            <span onClick={handleDownloadClick} className="dropdown-text">Download Playlist</span>
         </div>
         <div className="divider"></div>
         <div className="dropdown-option">
@@ -122,24 +149,28 @@ export default function ViewPlaylist(props) {
     );
   };
 
-  const topCampaigns = campaigns.slice(0, 3); // Select the first three campaigns
-  const bottomCampaigns = campaigns.slice(3, 6); // Select the last three campaigns
 
   return (
     <div className="card-container">
       <Icon storeName={state.storeName} storeList={state.storeList} user={state.user}></Icon>
       <div className="view-playlist-header">All Playlists</div>
-      <div className="top-cards">
-        {topCampaigns.map((campaign, index) => (
-          <Card key={index} className="card" sx={{ height: "37vh", width: "30.5vw", backgroundColor:'lightgray', 
-          borderRadius:'10px', boxShadow: '5px 10px 15px darkgray'}}>
+      <div className="campaign-list">
+        {playlists.map((campaign, index) =>
+        <Card key={index} className="card" sx={{ height: "37vh", width: "calc(30% - 20px)", backgroundColor:'lightgray', 
+                  borderRadius:'10px', boxShadow: '5px 10px 15px darkgray', marginBottom: "20px"}}>
             <div className="image-container">
             <MoreHorizIcon 
               className='etc-icon' 
               sx={{cursor:"pointer"}}
               onClick={() => handleMoreOptions(index)}/>
               {isDropdownOpenArray[index] && (
-                <MoreOptionsPopup onClose={() => handleClosePopup(index)} onSchedule={handlePopupOpen} onDownload={handleDownload}/> 
+                <MoreOptionsPopup 
+                  arrayIndex={index} 
+                  onClose={() => handleClosePopup(index)} 
+                  onSchedule={handlePopupOpen} 
+                  // onDownload={handleDownload(index)}
+                  onDownload={(clickedIndex) => handleDownload(clickedIndex)}
+                /> 
               )}
 
               {popupContent && (
@@ -156,34 +187,8 @@ export default function ViewPlaylist(props) {
                   </div>
                 </div>
               )}
-
-              <div className={`image ${showImage1 ? 'show-image1' : 'show-image2'}`}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[0]}
-                  alt={campaign.title}
-                />
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[1]}
-                  alt={campaign.title}
-                />
-              </div>
-              <div className={`image ${showImage1 ? 'show-image2' : 'show-image1'}`}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[0]}
-                  alt={campaign.title}
-                />
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[1]}
-                  alt={campaign.title}
-                />
+            <div className='image-carousel-wrapper'>
+              <ImageCarousel images={playlists[index].images} />
               </div>
             </div>
             <CardContent sx={{paddingBottom:'0px', padding:'0px', paddingTop:'40px'}} >
@@ -195,79 +200,12 @@ export default function ViewPlaylist(props) {
                 sx={{position:"relative", bottom: '0vh', fontSize:'1.5vw', justifyContent:'center', 
                 display:'flex', fontWeight:'bold'}}
                 >
-                {campaign.title}
+                {playlists[index].name}
               </Typography>
             </CardContent>
-          </Card>
-        ))}
-      </div>
-      <div className="bottom-cards">
-        {bottomCampaigns.map((campaign, index) => (
-          <Card key={index} className="card" sx={{  height: "37vh", width: "30.5vw", backgroundColor:'lightgray',
-          borderRadius:'10px', boxShadow: '5px 10px 15px darkgray' }}>
-            <div className="image-container">
-              <MoreHorizIcon 
-                className='etc-icon' 
-                sx={{cursor:"pointer"}}
-                onClick={() => handleMoreOptions(index + topCampaigns.length)}
-              />
-              {isDropdownOpenArray[index + topCampaigns.length] && (
-                <MoreOptionsPopup onClose={() => handleClosePopup(index + topCampaigns.length)} onSchedule={handlePopupOpen} onDownload={handleDownload} />
-              )}
-              {popupContent && (
-                  <div className="popup">
-                  <div className="popup-content">
-                  <Schedule
-                        onSave={(start, end) => {
-                          setStartDate(start);
-                          setEndDate(end);
-                          setPopupContent(false);
-                        }}
-                        />
-                    <button className="close-btn" onClick={handleCloseSchedulePopup}>Close</button>
-                  </div>
-                </div>
-              )}
-              <div className={`image ${showImage1 ? 'show-image1' : 'show-image2'}`}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[0]}
-                  alt={campaign.title}
-                />
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[1]}
-                  alt={campaign.title}
-                />
-              </div>
-              <div className={`image ${showImage1 ? 'show-image2' : 'show-image1'}`}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[0]}
-                  alt={campaign.title}
-                />
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={campaign.imageURLs[1]}
-                  alt={campaign.title}
-                />
-              </div>
-            </div>
-            <CardContent sx={{paddingBottom:'0px', padding:'0px', paddingTop:'40px'}}>
-              <Typography gutterBottom variant="h5" component="div" className="card-title"
-              sx={{position:"relative", bottom: '0vh', fontSize:'1.5vw', justifyContent:'center', 
-              display:'flex', fontWeight:'bold'}}
-              >
-                {campaign.title}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+        </Card>
+        )}
+        </div>
     </div>
   );
 }
