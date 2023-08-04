@@ -16,19 +16,18 @@ const Gallery = ( props ) => {
   const {state} = useLocation();
 
   let storeIds = {}
-
+  // console.log("Props.storeIds", props.storeIds);
+  // console.log("State.storeIds", state.storeList);
   if(!state.storeIds) {
     storeIds = props.storeIds;
   } else{
     storeIds = state.storeIds;
   }
 
-   
-
   useEffect(() => {
     async function fetchData() {
       try {
-        console.log(storeIds);
+        console.log("This is storeIds", storeIds);
         let products = await Database.getCurrentLocationProducts(storeIds[0].id);
         console.log('Fetched products:', products);
 

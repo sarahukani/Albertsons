@@ -69,9 +69,11 @@ export default function Uploader( props ) {
 
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    navigate('/gallery', {state: {
+    console.log("This is from uploader.js: ", props.storeList);
+    navigate('/gallery', 
+    {state: {
       storeName: props.storeName,
-      storeList: props.storeList,
+      storeIds: props.storeList,
       user: props.user
     }});
   };
