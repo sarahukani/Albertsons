@@ -17,6 +17,7 @@ const Playlister = (props) => {
       storeName : props.storeName,
       storeList : props.storeList,
       user : props.user
+
     }});
   };
   const images = [

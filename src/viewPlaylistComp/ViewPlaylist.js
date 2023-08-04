@@ -6,12 +6,68 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useLocation } from 'react-router-dom'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import './ViewPlaylist.css'; // Import the CSS file for component-specific styles
+import DownloadIcon from '@mui/icons-material/Download';
+import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import './ViewPlaylist.css';
+import Schedule from '../createPlaylistComp/Schedule';
 
 export default function ViewPlaylist(props) {
-  const [showImage1, setShowImage1] = React.useState(true);
-  const { state } = useLocation()
+  const campaigns = [
+    {
+      title: 'Independence Day',
+      imageURLs: [
+        'https://cdn3.vectorstock.com/i/1000x1000/36/82/independence-day-sale-background-4th-of-july-vector-15543682.jpg',
+        'https://th.bing.com/th/id/OIP.BAPlSkYYsgHPTQOmWRMWBQHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+      ],
+    },
+    {
+      title: 'Valentine Chocolate Sale',
+      imageURLs: [
+        'https://th.bing.com/th/id/OIP.BYPIV7Q6MhkKmATWe2AVhwHaGF?w=214&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+        'https://nypost.com/wp-content/uploads/sites/2/2022/02/v-day-sale.png'
+      ],
+    },
+    {
+      title: 'Memorial Day',
+      imageURLs: [
+        'https://th.bing.com/th/id/OIP.igdpQI7Px8-qK-3VCJy36AHaHa?w=210&h=184&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+        'https://media.istockphoto.com/id/473651862/vector/memorial-day-sale-tag-eps-10-vector.jpg?s=612x612&w=0&k=20&c=wbPiBtb-Nj2E8nHoMSCifumKMRDUYOuJ9BBzvCYurhc='
+      ],
+    },
+    {
+      title: 'Big Sale',
+      imageURLs: [
+        'https://th.bing.com/th/id/OIP.gI4xCF41cjQCEHuddHXHmAHaGW?w=242&h=208&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+        'https://th.bing.com/th/id/OIP.3nfK7NQWRDYal6PFc6HXFwHaGV?w=228&h=195&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+      ],
+    },
+    {
+      title: 'Whole Store Discount',
+      imageURLs: [
+        'https://th.bing.com/th/id/OIP.rlbU0-Y19dyx-Gli3MwylwHaFj?w=239&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+        'https://th.bing.com/th/id/OIP.4DENtJjm11xIKSh8VbbosQHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.5&pid=1.7'
+      ],
+    },
+    {
+      title: '1 Month Campaign',
+      imageURLs: [
+        'https://th.bing.com/th/id/OIP.lwGHEdxVMRMxJX0D_HTP0QHaGV?w=200&h=171&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+        'https://th.bing.com/th/id/OIP.GkcmDTv9DPWeR8x6aw5x9gHaGV?w=200&h=171&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+      ],
+    },
+  ];
 
+  const [showImage1, setShowImage1] = React.useState(true);
+  const { state } = useLocation();
+  const [isDropdownOpenArray, setIsDropdownOpenArray] = useState(Array(campaigns.length).fill(false));
+  const [isSchedulePopupOpen, setIsSchedulePopupOpen] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [popupContent, setPopupContent] = useState(false);
+  
+  const navigate = useNavigate();
   React.useEffect(() => {
     const timer = setInterval(() => {
       setShowImage1((prevShowImage1) => !prevShowImage1);
@@ -22,75 +78,49 @@ export default function ViewPlaylist(props) {
     };
   }, []);
 
-  const handleMoreOptions = (event) => {
-    console.log("hi");
+  const handleMoreOptions = (index) => {
+      setIsDropdownOpenArray((prevIsDropdownOpen) => {
+      const newIsDropdownOpen = [...prevIsDropdownOpen];
+      newIsDropdownOpen[index] = !newIsDropdownOpen[index];
+      return newIsDropdownOpen;
+    });
   };
 
-  const campaigns = [
-    {
-      title: 'Independence Day',
-      imageURLs: [
-        // 'https://th.bing.com/th?id=OIP.72FkqQ1Qnib6yKGfpq_nqAHaJQ&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2',
-        // 'https://th.bing.com/th/id/OIP.XWLAfrBwUP7DGMYDOcNJHwAAAA?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://cdn3.vectorstock.com/i/1000x1000/36/82/independence-day-sale-background-4th-of-july-vector-15543682.jpg',
-        // 'https://th.bing.com/th/id/OIP.Ytt18POZ5DK30KyaMuWe3AHaFj?w=202&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.faXoLu4X0FqWqccRcOJVAwAAAA?w=118&h=191&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.BAPlSkYYsgHPTQOmWRMWBQHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-    {
-      title: 'Valentine Chocolate Sale',
-      imageURLs: [
-        // 'https://th.bing.com/th/id/OIP.awtxZe5rZqDCvcbEsgkBmQHaFT?w=263&h=188&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.lHfnd7DlNztIkHKli-OkvAHaHa?w=171&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.pK2XdBdluwIWO6IbmSGjNQHaED?w=309&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.BYPIV7Q6MhkKmATWe2AVhwHaGF?w=214&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://nypost.com/wp-content/uploads/sites/2/2022/02/v-day-sale.png'
-        // 'https://th.bing.com/th/id/OIP.IZHETVyPKIWJi3lLtE9YvgHaKd?w=203&h=287&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-    {
-      title: 'Memorial Day',
-      imageURLs: [
-        // 'https://th.bing.com/th/id/OIP.1TbPzV1OkW23HB7jJ-Q57gHaEK?w=298&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.dskebpCC-bsieu-_aojZnQHaEK?w=282&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.dC1KnR7JdD903Hb4Fz1pqwHaEK?w=266&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.igdpQI7Px8-qK-3VCJy36AHaHa?w=210&h=184&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://media.istockphoto.com/id/473651862/vector/memorial-day-sale-tag-eps-10-vector.jpg?s=612x612&w=0&k=20&c=wbPiBtb-Nj2E8nHoMSCifumKMRDUYOuJ9BBzvCYurhc='
-        // 'https://th.bing.com/th/id/OIP.OfZJ0_uceNyEFGB8M3wbagHaC1?w=278&h=133&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-    {
-      title: 'Big Sale',
-      imageURLs: [
-        // 'https://th.bing.com/th/id/OIP.DeekCWN6SnLURHamS3LidAHaGW?w=206&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.gI4xCF41cjQCEHuddHXHmAHaGW?w=242&h=208&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.3nfK7NQWRDYal6PFc6HXFwHaGV?w=228&h=195&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP._qvBvyz9PjXF0D5du7sXLgHaGW?w=231&h=198&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.8EFUpqPo67DaxcLwOBypHwHaGW?w=180&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-    {
-      title: 'Whole Store Discount',
-      imageURLs: [
-        // 'https://th.bing.com/th/id/OIP._xPlgCFC9JODmWeOPwOtcQHaCp?w=333&h=125&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.n_3z_kqyuw4DeTLTruIMlQHaIY?w=136&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.yZgKbWMn99GmbU_cjIhWZQHaFj?w=199&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.rlbU0-Y19dyx-Gli3MwylwHaFj?w=239&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.D-0b8gvhMmVnCa3uHI0bcwAAAA?w=133&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.4DENtJjm11xIKSh8VbbosQHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.5&pid=1.7'
-      ],
-    },
-    {
-      title: '1 Month Campaign',
-      imageURLs: [
-        'https://th.bing.com/th/id/OIP.lwGHEdxVMRMxJX0D_HTP0QHaGV?w=200&h=171&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        'https://th.bing.com/th/id/OIP.GkcmDTv9DPWeR8x6aw5x9gHaGV?w=200&h=171&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.I0aKHbgzNW7Gzxslp2VrmAHaFj?w=212&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // 'https://th.bing.com/th/id/OIP.0mXPE50WMRrf2WN_qTQRswHaE7?w=184&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-      ],
-    },
-  ];
+  const handleClosePopup = (index) => {
+     setIsDropdownOpenArray((prevIsDropdownOpen) => {
+      const newIsDropdownOpen = [...prevIsDropdownOpen];
+      newIsDropdownOpen[index] = false;
+      return newIsDropdownOpen;
+    });
+  };
+
+  const handleDownload = () => {
+    console.log('download');
+  }
+
+  const handleCloseSchedulePopup = () => {
+    setPopupContent(false);
+  };
+
+  const handlePopupOpen = () => {
+    setPopupContent(true);
+  };
+
+  const MoreOptionsPopup = ({ onClose, onDownload, onSchedule }) => {
+    return (
+      <div className="more-options-dropdown">
+        <div className="dropdown-option" >
+            <DownloadIcon sx={{height:'1.25vw', width:'1.25vw', marginRight:'.4vw'}}/>
+            <span onClick={onDownload} className="dropdown-text">Download Playlist</span>
+        </div>
+        <div className="divider"></div>
+        <div className="dropdown-option">
+            <ScheduleSendIcon  sx={{height:'1.25vw', width:'1.25vw', marginRight:'.4vw'}}/>
+            <span onClick={onSchedule} className="dropdown-text">Schedule Playlist</span>
+        </div> 
+      </div>
+    );
+  };
 
   const topCampaigns = campaigns.slice(0, 3); // Select the first three campaigns
   const bottomCampaigns = campaigns.slice(3, 6); // Select the last three campaigns
@@ -103,11 +133,30 @@ export default function ViewPlaylist(props) {
         {topCampaigns.map((campaign, index) => (
           <Card key={index} className="card" sx={{ height: "37vh", width: "30.5vw", backgroundColor:'lightgray', 
           borderRadius:'10px', boxShadow: '5px 10px 15px darkgray'}}>
+            <div className="image-container">
             <MoreHorizIcon 
               className='etc-icon' 
-              // sx={{height:'2vw', width:'2vw'}}
-              onClick={handleMoreOptions}/>
-            <div className="image-container">
+              sx={{cursor:"pointer"}}
+              onClick={() => handleMoreOptions(index)}/>
+              {isDropdownOpenArray[index] && (
+                <MoreOptionsPopup onClose={() => handleClosePopup(index)} onSchedule={handlePopupOpen} onDownload={handleDownload}/> 
+              )}
+
+              {popupContent && (
+                  <div className="popup">
+                  <div className="popup-content">
+                  <Schedule
+                        onSave={(start, end) => {
+                          setStartDate(start);
+                          setEndDate(end);
+                          setPopupContent(false);
+                        }}
+                        />
+                    <button className="close-btn" onClick={handleCloseSchedulePopup}>Close</button>
+                  </div>
+                </div>
+              )}
+
               <div className={`image ${showImage1 ? 'show-image1' : 'show-image2'}`}>
                 <CardMedia
                   component="img"
@@ -143,7 +192,7 @@ export default function ViewPlaylist(props) {
                 variant="h5" 
                 component="div" 
                 className="card-title"
-                sx={{position:"relative", bottom: '0px', fontSize:'1.2rem', justifyContent:'center', 
+                sx={{position:"relative", bottom: '0vh', fontSize:'1.5vw', justifyContent:'center', 
                 display:'flex', fontWeight:'bold'}}
                 >
                 {campaign.title}
@@ -156,11 +205,29 @@ export default function ViewPlaylist(props) {
         {bottomCampaigns.map((campaign, index) => (
           <Card key={index} className="card" sx={{  height: "37vh", width: "30.5vw", backgroundColor:'lightgray',
           borderRadius:'10px', boxShadow: '5px 10px 15px darkgray' }}>
-            <MoreHorizIcon 
-              className='etc-icon' 
-              // sx={{height:'2vw', width:'2vw'}}
-              onClick={handleMoreOptions}/>
             <div className="image-container">
+              <MoreHorizIcon 
+                className='etc-icon' 
+                sx={{cursor:"pointer"}}
+                onClick={() => handleMoreOptions(index + topCampaigns.length)}
+              />
+              {isDropdownOpenArray[index + topCampaigns.length] && (
+                <MoreOptionsPopup onClose={() => handleClosePopup(index + topCampaigns.length)} onSchedule={handlePopupOpen} onDownload={handleDownload} />
+              )}
+              {popupContent && (
+                  <div className="popup">
+                  <div className="popup-content">
+                  <Schedule
+                        onSave={(start, end) => {
+                          setStartDate(start);
+                          setEndDate(end);
+                          setPopupContent(false);
+                        }}
+                        />
+                    <button className="close-btn" onClick={handleCloseSchedulePopup}>Close</button>
+                  </div>
+                </div>
+              )}
               <div className={`image ${showImage1 ? 'show-image1' : 'show-image2'}`}>
                 <CardMedia
                   component="img"
@@ -192,7 +259,7 @@ export default function ViewPlaylist(props) {
             </div>
             <CardContent sx={{paddingBottom:'0px', padding:'0px', paddingTop:'40px'}}>
               <Typography gutterBottom variant="h5" component="div" className="card-title"
-              sx={{position:"relative", bottom: '0px', fontSize:'1.2rem', justifyContent:'center', 
+              sx={{position:"relative", bottom: '0vh', fontSize:'1.5vw', justifyContent:'center', 
               display:'flex', fontWeight:'bold'}}
               >
                 {campaign.title}

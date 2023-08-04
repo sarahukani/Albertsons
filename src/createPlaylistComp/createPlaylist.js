@@ -207,26 +207,36 @@ function CreatePlaylist() {
         </div>
       </div>
 
-      <button className="Schedulebtn" onClick={handlePopupOpen}>
-        Schedule
-      </button>
+      <button className="Schedulebtn" onClick={handlePopupOpen}>Schedule</button>
 
-      {popupContent && (
-        <div className="popup">
-          <div className="popup-content">
-            <Schedule
-              onSave={(start, end) => {
-                setStartDate(start);
-                setEndDate(end);
-                setPopupContent(false);
-              }}
-            />
-            <button className="close-btn" onClick={handleClosePopup}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+                    {popupContent && (
+
+                        <div className="popup">
+
+                        <div className="popup-content">
+
+                        <Schedule
+
+                              onSave={(start, end) => {
+
+                                setStartDate(start);
+
+                                setEndDate(end);
+
+                                setPopupContent(false);
+
+                              }}
+
+                              />
+
+                          <button className="close-btn" onClick={handleClosePopup}>X</button>
+
+                        </div>
+
+                      </div>
+
+                    )}
+
     </div>
   );
 }

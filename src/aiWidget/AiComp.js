@@ -22,16 +22,28 @@ export default function AiComp(props){
     };
 
     const handleAgeChange = (event) => {
-        setAge(event.target.value);
+        let tempage = event.target.value
+        tempage = tempage.replaceAll(" ", "+")
+        console.log(tempage)
+        setAge(tempage);
     };
     const handleProductChange = (event) => {
-        setProductCat(event.target.value);
+        let tempproduct = event.target.value
+        tempproduct = tempproduct.replaceAll(" ", "+")
+        console.log(tempproduct)
+        setProductCat(tempproduct);
     };
     const handleWeatherChange = (event) => {
-        setWeather(event.target.value);
+        let tempweather = event.target.value
+        tempweather = tempweather.replaceAll(" ", "+")
+        console.log(tempweather)
+        setWeather(tempweather);
     };
     const handleHolidayChange = (event) => {
-        setHoliday(event.target.value);
+        let tempholiday = event.target.value
+        tempholiday = tempholiday.replaceAll(" ", "+")
+        console.log(tempholiday)
+        setHoliday(tempholiday);
     };
 
     async function clickGen(){
@@ -40,8 +52,8 @@ export default function AiComp(props){
         } else{
             // const result = "This will be the reccomendation for the left choices"
             // setRec(result)
-            let products = await Database.getProductRecommendations("177", "Cereal");
-            //console.log(products);
+            let products = await Database.getProductRecommendations(location.id, productCat, age, weather, holiday);
+            console.log(products);
             
             let url = ``
             let pid = 0
@@ -52,10 +64,11 @@ export default function AiComp(props){
             let recList = []
 
             for (let i = 1; i < products.length; i += 3){
-                url = `https://images.albertsons-media.com/is/image/ABS/${products[i+2]}?$ng-ecom-product-card-desktop-jpg$&defaultImage=Not_Available`
                 pid = products[i+2]
                 name = products[i]
                 price = products[i+1]
+                url = `https://images.albertsons-media.com/is/image/ABS/${pid}?$ng-ecom-product-card-desktop-jpg$&defaultImage=Not_Available`
+
 
                 tempProd = await Database.createProduct(pid, name, price, url)
                 tempStore = await Database.pushStoreProductsList(location.id, pid)
@@ -65,6 +78,39 @@ export default function AiComp(props){
 
             setRec(recList)
         }
+    }
+
+    //For the info of each of the fields 
+    const [ageOpen, setAgeOpen] = useState(false)
+    const openAge = () =>{
+        setAgeOpen(true)
+    }
+    const closeAge = () =>{
+        setAgeOpen(false)
+    }
+
+    const [productOpen, setProductOpen] = useState(false)
+    const openProduct = () =>{
+        setProductOpen(true)
+    }
+    const closeProduct = () =>{
+        setProductOpen(false)
+    }
+
+    const [weatherOpen, setWeatherOpen] = useState(false)
+    const openWeather = () =>{
+        setWeatherOpen(true)
+    }
+    const closeWeather = () =>{
+        setWeatherOpen(false)
+    }
+
+    const [holidayOpen, setHolidayOpen] = useState(false)
+    const openHoliday = () =>{
+        setHolidayOpen(true)
+    }
+    const closeHoliday = () =>{
+        setHolidayOpen(false)
     }
 
     return(
@@ -80,12 +126,20 @@ export default function AiComp(props){
                     )}
                 </select>
                 <br></br>
-                <h3 className="ageName">Age:</h3>
+                
+                <img onMouseOver={openAge} onMouseLeave={closeAge} className="ageInfoIcon" src="https://cdn-icons-png.flaticon.com/512/471/471662.png"/>
+                <h3 className="ageName">Demographic:</h3>
                 <input className="age" onChange={handleAgeChange}></input>
+                
+                <img onMouseOver={openProduct} onMouseLeave={closeProduct} className="productInfoIcon" src="https://cdn-icons-png.flaticon.com/512/471/471662.png"/>
                 <h3 className="productName">Product<br></br> Category:</h3>
                 <input className="productCategory" onChange={handleProductChange}></input>
+                
+                <img onMouseOver={openWeather} onMouseLeave={closeWeather} className="weatherInfoIcon" src="https://cdn-icons-png.flaticon.com/512/471/471662.png"/>
                 <h3 className="weatherName">Weather:</h3>
                 <input className="weather" onChange={handleWeatherChange}></input>
+                
+                <img onMouseOver={openHoliday} onMouseLeave={closeHoliday} className="holidayInfoIcon" src="https://cdn-icons-png.flaticon.com/512/471/471662.png"/>
                 <h3 className="holidayName">Holiday:</h3>
                 <input className="holiday" onChange={handleHolidayChange}></input>
             </div>
@@ -95,7 +149,7 @@ export default function AiComp(props){
                     <img className="recImg" src={recommendation.imageURL}/>
                 )} 
             </div>
-            <div className="imgRecs">
+            <div className="imgRecs-container">
                 <p className="thirdText">Here are some <b>product recommendations:</b></p>
                 <ol className="recList">
                     {rec.map((recommendation) =>
@@ -105,7 +159,31 @@ export default function AiComp(props){
                         </li>
                     )}
                 </ol>
-            </div>  
+            </div>
+
+            {ageOpen && (
+                <div className="age-info-container">
+                    <i>ex: under 6 months, 21 and over, teens, 19-25</i>
+                </div>
+            )}
+
+            {productOpen && (
+                <div className="product-info-container">
+                    <i>ex: charcuterie board, beverages, organic fruit</i>
+                </div>
+            )}
+
+            {weatherOpen && (
+                <div className="weather-info-container">
+                    <i>ex: snowy day, sunny day, warm, cold</i>
+                </div>
+            )}
+
+            {holidayOpen && (
+                <div className="holiday-info-container">
+                    <i>ex: Valentines Day, Fourth of July</i>
+                </div>
+            )}  
         </div>
     )
 }

@@ -36,10 +36,6 @@ const Login = () => {
         navigate('/banner', {state: {user: currUser}})
         console.log("This is the current User:", currUser);
         valid = true;
-        const users = await Database.getAllUsers();
-        for(let i=0; i<users.length;i++){
-          console.log(users[i]);
-        }
       } else {
         throw new Error("Invalid login credentials");
       }

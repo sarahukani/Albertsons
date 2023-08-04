@@ -4,27 +4,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 12vw;
+  height: 25vh;
   width: 30.8vw;
   cursor: pointer;
   position: absolute;
   top: 0%;
   left: 0%;
-  border: 2px dashed #FFFFFF;
+  border: 2px dashed #0C5497;
   border-radius: 20px;
 }
 
-/* .success-message {
+.success-message {
   border: 2px dashed #FFFFFF;
   border: none;
-} */
+}
 
 .form {
-  color: white;
+  color: #0C5497;
 }
 
 .upload-widget.loading {
-  border: 2px dashed #FFFFFF;
+  border: 2px dashed #FFFF;
   border: none;
 }
 
@@ -33,7 +33,7 @@
   border-radius: 10px;
   height: 5px;
   width: 100%; 
-  background-color: #f2f2f2;
+  background-color: #0C5497;
   position: absolute;
   bottom: 5px; 
   top: 85px;
@@ -43,7 +43,7 @@
 
 
 .loading-text {
-  color: white;
+  color: #0C5497;
   text-align: center;
   margin-top: 10px;
   position: absolute;
@@ -59,7 +59,7 @@
   display: block;
   height: 100%;
   width: 0;
-  background-color: green;
+  background-color: #0C5497;
   position: absolute;
   top: 20;
   left: 0;
@@ -81,8 +81,8 @@
 /* view all uploads button */
 .view-gallery-button {
   padding: 10px;
-  background-color: white;
-  border: 1px solid white;
+  background-color: #0C5497;
+  border: 1px solid #FFFF;
   border-radius: 20px;
   outline: none;
   width: 100%;
@@ -98,11 +98,11 @@
 }
 
 .view-gallery-button:hover {
-  background-color: #f1e4e1;
+  background-color: #bae4ef;
 }
 
 .success-message {
-  color: white;
+  color: #0C5497;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,7 +113,7 @@
   position: absolute;
   top: 0%;
   left: 0%;
-  border: 2px dashed #FFFFFF;
+  border: 2px dashed #0C5497;
   border-radius: 20px;
 }
 
