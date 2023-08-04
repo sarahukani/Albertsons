@@ -49,6 +49,7 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
+  margin-right: 150px;
 }
 
 .search-input {
@@ -172,6 +173,13 @@ input[type=checkbox] {
     flex-direction: column;
   }
 
+  .search-input-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 150px;
+  }
+
   .left-side,
     .right-side {
       flex: 1;
@@ -245,6 +253,13 @@ input[type=checkbox] {
 @media screen and (max-width: 480px) {
   .split-container {
     flex-direction: column;
+  }
+
+  .search-input-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 150px;
   }
 
   .left-side,
