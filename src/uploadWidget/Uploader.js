@@ -20,9 +20,8 @@ export default function Uploader( props ) {
 
   const handleImageUpload = async (event) => {
     const files = event.target.files;
-    setLoading(false);
     console.log("images uploaded");
-  
+    // setLoading(true);
     try {
       setLoading(true);
       const pids = await Database.uploadProductImages(files);
@@ -39,44 +38,30 @@ export default function Uploader( props ) {
       console.log(urls);
   
       for (var i = 0; i < urls.length; i++) {
-          let productName = "Andrew";
-          let price = "1000.11";
+          let productName = "Uploaded";
+          let price = "0.00";
           await Database.createProduct(pIDs[i], productName, price, urls[i]);
           await Database.pushStoreProductsList(props.storeList[0].id, pIDs[i]);
+          setSuccessMessage('Images uploaded successfully!');
+          console.log('Images uploaded successfully!')
+          setTimeout(() => {
+            if (event.target.files) {
+              event.target.files.value = null; // Reset file input value
+            }
+          }, 2000); // Clear success message and reset file input value after 15 seconds
       }
-
-      setLoading(false);
-      setSuccessMessage('Images uploaded successfully!');
-
-      // ...
     } catch (error) {
       console.error('Error uploading product images:', error);
       // Handle the error, if any
+    } finally {
+      setLoading(false);
     }
   }
 
-
-
-  const uploadImage = (file) => {
-    return new Promise((resolve, reject) => {
-      // Simulating image upload delay with setTimeout
-      setTimeout(() => {
-        const imageUrl = URL.createObjectURL(file);
-        resolve(imageUrl);
-      }, 2000);
-    });
-  };
-
   const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    console.log("This is from uploader.js: ", props.storeList);
-    navigate('/gallery', 
-    {state: {
-      storeName: props.storeName,
-      storeIds: props.storeList,
-      user: props.user
-    }});
-  };
+    navigate('/gallery', { state: { storeIds: props.storeList } });
+  }; 
 
   useEffect(() => {
     const timer = setTimeout(() => {
