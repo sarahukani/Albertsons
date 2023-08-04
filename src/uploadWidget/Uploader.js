@@ -58,10 +58,14 @@ export default function Uploader( props ) {
     }
   }
 
-  const navigateToGallery = () => {
+ const navigateToGallery = () => {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
-    navigate('/gallery', { state: { storeIds: props.storeList } });
-  }; 
+    navigate('/gallery', {state: {
+      storeName: props.storeName,
+      storeList: props.storeList,
+      user: props.user
+    }});
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
