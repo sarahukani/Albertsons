@@ -94,10 +94,10 @@ function CreatePlaylist() {
   const handleSavePlaylist = async () => {
     let playlist = {};
     try {
-      const imageUrls = selectedGalleryItems.map((item) => item.url);
+      const imageUrls = selectedGalleryItems.map((item) => item.imageURL);
       console.log(title, imageUrls);
       playlist = await Database.createPlaylist(title, imageUrls, startDate, endDate);
-      console.log(playlist);
+      console.log("The playlist: ", playlist);
       console.log('Playlist created successfully!');
     } catch (error) {
       console.error('Error while saving playlist:', error);
@@ -119,7 +119,7 @@ function CreatePlaylist() {
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
-        <Gallery onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
+        <Gallery storeIds={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
       </div>
 
       <div className="playlist-section">
@@ -184,7 +184,7 @@ function CreatePlaylist() {
         <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
           {selectedGalleryItems.map((item) => (
             <div className="selected-gallery-image" key={item.id} style={{ position: 'relative', marginBottom: '16px' }}>
-              <img src={item.url} alt={item.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+              <img src={item.imageURL} alt={item.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
               {item.text && (
                 <div
                   className="text-overlay"
@@ -207,7 +207,7 @@ function CreatePlaylist() {
         </div>
       </div>
 
-      <button className="Schedulebtn" onClick={handlePopupOpen}>Schedule</button>
+      { <button className="Schedulebtn" onClick={handlePopupOpen}>Schedule</button>  }
 
                     {popupContent && (
 
