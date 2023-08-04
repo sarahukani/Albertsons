@@ -1,6 +1,5 @@
 
 
-/* createPlaylist.css */
 
 
 body, html {
@@ -21,9 +20,9 @@ body, html {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr; /* Equal-width columns */
+  grid-template-columns: 1fr 1fr; 
 
-  grid-gap: 16px; /* Spacing between columns */
+  grid-gap: 16px; 
 
   height: 100%;
 
@@ -314,7 +313,6 @@ body, html {
 
  
 
-/* Popup Styles */
 
 .popup {
 
@@ -384,7 +382,6 @@ body, html {
 
  
 
-/* Responsive adjustments */
 
 @media (max-width: 768px) {
 
@@ -398,13 +395,12 @@ body, html {
 
  
 
-/* Additional adjustments */
 
 @media (max-width: 500px) {
 
   .text-icon {
 
-    height: 300px; /* Reduce height on smaller screens */
+    height: 300px; 
 
   }
 

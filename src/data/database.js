@@ -207,13 +207,18 @@ export default class Database {
        let playlist = {
            name : name,
            images : imageURLs,
-           startDate : startDate,
-           endDate : endDate
+           startDate: startDate.toISOString(),
+           endDate: endDate.toISOString(),
        };
+
+       console.log(playlist);
 
        let requestOptions = {
            method: 'PUT',
            body: JSON.stringify(playlist),
+           headers: {
+            'Content-Type': 'application/json',
+          },
        };
        const response = await fetch(`${backendOrigin}/playlists/create`, requestOptions);
        const playlistData = await response.json();
@@ -241,24 +246,37 @@ export default class Database {
        };
        fetch(`${backendOrigin}/gcp/upload-multiple`, requestOptions)
        .then(response => response.text())
-       .then(result => console.log(result))
+       .then(result => {
+            console.log(result);
+            return result;
+        })
        .catch(error => console.log('error', error));
    }
 
    static async uploadProductImages(files) {
-           var formdata = new FormData();
-           for (let i = 0; i < files.length; i++) {
-               formdata.append("files", files[i]);
-           }
-           var requestOptions = {
-               method: 'POST',
-               body: formdata,
-           };
-           fetch(`${backendOrigin}/gcp/upload-multiple`, requestOptions)
-           .then(response => response.text())
-           .then(result => console.log(result))
-           .catch(error => console.log('error', error));
-   }
+        return new Promise((resolve, reject) => {
+        let pids = "";
+        var formdata = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formdata.append("files", files[i]);
+        }
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+        };
+        fetch(`${backendOrigin}/gcp/upload-multiple`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+            console.log("THIS IS THE RESULT OF THE API CALL: ", result);
+            pids = result;
+            resolve(pids); // Resolve the promise with the result value
+            })
+            .catch(error => {
+            console.log('error', error);
+            reject(error); // Reject the promise if there's an error
+            });
+        });
+  }
 
    static async deleteImage(pID) {
        const response = await fetch(`${backendOrigin}/gcp/delete/${pID}`);

@@ -13,7 +13,11 @@ const Playlister = (props) => {
     }});
   };
   const navigateToCreatePlaylist = () => {
-    navigate('/createplaylist', {state: {storeName: props.storeName}});
+    navigate('/createplaylist', {state: {
+      storeName : props.storeName,
+      storeList : props.storeList,
+      user : props.user
+    }});
   };
   const images = [
     'https://images.albertsons-media.com/is/image/ABS/960306244-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available',
