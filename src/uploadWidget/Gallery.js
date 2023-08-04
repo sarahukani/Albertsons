@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import Database from '../data/database';
 
 
-const Gallery = ({ onSelectImage }) => {
+const Gallery = ( props ) => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [description, setDescription] = useState('');
@@ -15,8 +15,15 @@ const Gallery = ({ onSelectImage }) => {
   const [inputValue, setInputValue] = useState('');
   const {state} = useLocation();
 
-  const location = useLocation();
-  const { storeIds } = location.state || {}; 
+  let storeIds = {}
+
+  if(!state.storeIds) {
+    storeIds = props.storeIds;
+  } else{
+    storeIds = state.storeIds;
+  }
+
+   
 
   useEffect(() => {
     async function fetchData() {
@@ -48,7 +55,7 @@ const Gallery = ({ onSelectImage }) => {
     setSelectedImage((prevSelectedImage) =>
       prevSelectedImage === image ? null : image
     );
-    onSelectImage(image);
+    props.onSelectImage(image);
   };
 
   const handleInputChange = (event) => {
