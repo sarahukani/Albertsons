@@ -1,13 +1,13 @@
 .detailedDescrip{
     padding: 0.8vw;
-    width: 24.5vw;
+    width: 26vw;
     height: 30vh;
     background-color: #EAEAEA;
     border: 0.3vw solid #EAEAEA;
     border-radius: 18px;
     position: absolute;
     top: 4.5vh;
-    left: 0.5vw;
+    left: -0.3vw;
 }
 
 .recImg{
@@ -20,7 +20,7 @@
 .reccomendations{
     padding: 0.8vw;
     width: 24.5vw;
-    height: 37.4vh;
+    height: 68vh;
     background-color: #FFFFFF;
     border: 0.3vw solid #FFFFFF;
     border-radius: 18px;
@@ -32,7 +32,7 @@
 
 .generateBtn{
     padding: 0.8vw;
-    width: 26.8vw;
+    width: 27.5vw;
     height: 6.5vh;
     background-color: #FFFFFF;
     border: 0.3vw solid #20509C;
@@ -43,7 +43,7 @@
     color: #0c5497;
     position: absolute;
     top: 40vh;
-    left: 1%;
+    left: -0.3vw;
 }
 
 .generateBtn:hover{
@@ -71,6 +71,90 @@
     font-size: 1.2vw;
     color: #FFFFFF
 
+}
+
+.ageInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 9vh;
+    left: 26vw;
+}
+
+.age-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 10vh;
+    left: 27.1vw;
+}
+
+.productInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 15.4vh;
+    left: 26vw;
+}
+
+.product-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 16.3vh;
+    left: 27.1vw;
+}
+
+.weatherInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 21.8vh;
+    left: 26vw;
+}
+
+.weather-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 22.5vh;
+    left: 27.1vw;
+}
+
+.holidayInfoIcon{
+    height: 2.6vh;
+    width: 1.2vw;
+    position: absolute;
+    top: 28.2vh;
+    left: 26vw;
+}
+
+.holiday-info-container{
+    display: inline-block; /* or display: inline; */
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    padding: 0.4vw;
+    border-radius: 4px;
+    position: absolute;
+    top: 29.5vh;
+    left: 27.1vw;
 }
 
 .location{
@@ -137,9 +221,9 @@
 
 .ageName{
     position: absolute;   
-    top: 4.5vh;
-    left: 3vw;
-    font-size: 1.5vw;
+    top: 5.9vh;
+    left: 1.2vw;
+    font-size: 1.1vw;
 }
 
 .productName{
@@ -164,6 +248,17 @@
     font-size: 1.5vw;
 }
 
+.recList{
+    font-size: 1.15vw;
+    overflow: break-word;
+    width: 22.5vw;
+    position: absolute;
+    top: 51vh;
+    left: 0.5vw;
+    
+}
+
+
 @media screen and (max-width: 768px){
     .mainDiv{
         flex-direction: column;
@@ -181,7 +276,7 @@
     .reccomendations{
         padding: 0.8vw;
         width: 43vw;
-        height: 38vh;
+        height: 65vh;
         position: absolute;
         top: 5.3vh;
         left: 47vw;
@@ -297,14 +392,14 @@
     
     .ageName{
         position:absolute;
-        top: 3.5vw;
-        left: 5.5vw;
-        font-size: 2.4vw;
+        top: 5.2vw;
+        left: 2.2vw;
+        font-size: 2vw;
     }
     
     .productName{
         position: absolute;
-        top: 8.5vw;
+        top: 9vw;
         left: 3.5vw;
         text-align: center;
         font-size: 2.2vw;
@@ -322,6 +417,15 @@
         top: 20.5vw;
         left: 3.5vw;
         font-size: 2.4vw;
+    }
+    .recList{
+        font-size: 1.9vw;
+        overflow: break-word;
+        width: 37vw;
+        position: absolute;
+        top: 49vh;
+        left: 0.1vw;
+        
     }
 }
 

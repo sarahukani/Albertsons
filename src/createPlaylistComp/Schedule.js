@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+
 import DatePicker from 'react-datepicker';
+
 import 'react-datepicker/dist/react-datepicker.css';
+
 import '../mainComp/Main.css';
+
+import "./Schedule.css"
+
+ 
 
 const Schedule = ({ onSave }) => {
   const [startDate, setStartDate] = useState(null);
@@ -12,56 +19,102 @@ const Schedule = ({ onSave }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const handleSchedule = () => {
-    // You can validate the selected dates and times before proceeding with saving
+    console.log("in handle schedule")
     if (!startDate || !endDate || !startTime || !endTime) {
-      // Show an error message or handle the error appropriately
       console.error('Please select both start and end dates and times.');
       return;
     }
 
-    // Combine the selected start date and time into a single Date object
     const startDateTime = new Date(startDate);
     startDateTime.setHours(startTime.getHours());
     startDateTime.setMinutes(startTime.getMinutes());
 
-    // Combine the selected end date and time into a single Date object
     const endDateTime = new Date(endDate);
     endDateTime.setHours(endTime.getHours());
     endDateTime.setMinutes(endTime.getMinutes());
-
-    // Pass the combined startDateTime and endDateTime to the onSave function
-    onSave(startDateTime, endDateTime);
-
     setUploadSuccess(true);
     setShowModal(true);
+    // onSave(startDateTime, endDateTime);
+    
   };
 
   const closeModal = () => {
     setShowModal(false);
   };
 
+  const sl = [{id: "8010", location: {address:"1 Main Street"}}, {id: "9010", location: {address:"2 Main Street"}}, {id: "9210", location: {address:"3 Main Street"}}]
+  
+  //refactor this code (this is repetitive with the store location page)
+  const initializeCheckedState = (storeList) => {
+    const initialState = {};
+    for (const store of storeList) {
+      initialState[store.id] = false;
+    }
+    return initialState;
+  };
+
+  const [checkedState, setCheckedState] = useState(() =>
+    initializeCheckedState(sl)
+  );
+
+  const handleOnChange = (storeId) => {
+    setCheckedState(prevState => ({
+      ...prevState, 
+      [storeId]: !prevState[storeId]
+    }))
+  }
+
   return (
     <div className="schedule-container">
       <div className="section1">
-        <div className="section1-heading">Confirm Location</div>
+        <div className="section1-heading">Choose Your Playlist:</div>
+        <select className="playlistSelection">
+          <option>Playlist 1</option>
+          <option>Playlist 2</option>
+          <option>Playlist 3</option>
+          <option>Playlist 4</option>
+          <option>Playlist 5</option>
+        </select>
+        <div className="locationChoice">Chose Your Locations:</div>
+        <div className="storeList-container">
+          <ul className="storeListPopup">
+            {sl.map((store, index) =>
+            <li className="storeNameList">
+              <label>
+                <input 
+                    type="checkbox"
+                    className="check"
+                    id={`custom-checkbox-${index}`}
+                    name={store}
+                    value={store}
+                    checked={checkedState[store.id]}
+                    onChange={() => handleOnChange(store.id)}
+                  />  
+                  <span class="checktext">{store.location.address}</span>
+              </label>
+            </li>
+            )}
+          </ul>
+        </div>
       </div>
 
       <div className="section2">
         <div className="section2-heading">Starting Date & Time</div>
         <div className="input1-container">
-          <label htmlFor="start-date">Enter Start Date:</label>
+          <p className="start-date">Enter Start Date:</p>
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="MM-dd-yyyy"
             id="start-date"
             maxLength="2"
             placeholder="MM"
+            className="start-date-chooser"
           />
         </div>
 
         <div className="input1-container">
-          <label htmlFor="start-time">Enter Start Time:</label>
+          <p className="start-time">Enter Start Time:</p>
           <DatePicker
             selected={startTime}
             onChange={(time) => setStartTime(time)}
@@ -71,24 +124,27 @@ const Schedule = ({ onSave }) => {
             timeCaption="Time"
             dateFormat="HH:mm"
             id="start-time"
+            className='start-time-chooser'
           />
         </div>
       </div>
 
-      <div className="section">
-        <div className="section2-heading">Ending Date & Time</div>
+      <div className="section3">
+        <div className="section3-heading">Ending Date & Time</div>
         <div className="input1-container">
-          <label htmlFor="end-date">Enter End Date:</label>
+          <p className="end-date">Enter End Date:</p>
           <DatePicker
             dayAriaLabel="day"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="MM-dd-yyyy"
             id="end-date"
+            className="end-date-chooser"
           />
         </div>
+
         <div className="input1-container">
-          <label htmlFor="end-time">Enter End Time:</label>
+          <p className="end-time">Enter End Time:</p>
           <DatePicker
             selected={endTime}
             onChange={(time) => setEndTime(time)}
@@ -98,6 +154,7 @@ const Schedule = ({ onSave }) => {
             timeCaption="Time"
             dateFormat="HH:mm"
             id="end-time"
+            className="end-time-chooser"
           />
         </div>
       </div>
@@ -116,16 +173,21 @@ const Schedule = ({ onSave }) => {
                 <span className="modal-icon">&#x2714;</span>
                 <h3>Schedule Successful</h3>
               </div>
+
               <button className="modal-close" onClick={closeModal}>
                 Close
               </button>
             </>
+
           ) : (
+
             <>
+
               <div className="modal-content">
                 <span className="modal-icon">&#x2716;</span>
                 <h3>Schedule Failed</h3>
               </div>
+
               <button className="modal-close" onClick={closeModal}>
                 Close
               </button>

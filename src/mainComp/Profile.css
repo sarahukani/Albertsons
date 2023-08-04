@@ -1,0 +1,116 @@
+.profile-page-container{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    background-color: #032644;
+}
+
+.profile-container{
+    position:absolute;
+    height:75vh;
+    width:70vw;
+    left:15vw;
+    top:16vh;
+    background-color: #20509C;
+    border-radius: 2vw;
+    align-items: center; 
+}
+
+.image-container-profile{
+    position: absolute;
+    height: 35vh;
+    width:70vw;
+    left:0vw;
+    top:0vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.user-image{
+    position: absolute;
+    height:13vw;
+    width:13vw;
+}
+
+.user-email{
+    position:absolute;
+    color:white;
+    font-size: 1.8vw;
+    top:35vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.your-stores{
+    position:absolute;
+    color:white;
+    font-size: 1.5vw;
+    top:40.7vh;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+.scrollable-store-info{
+    position:absolute;
+    height:25vh;
+    width:45vw;
+    left:13vw;
+    top:47vh;
+    /* border-radius:6px; */
+    background-color: white;
+    overflow-y: auto; 
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    scrollbar-width: thin; /* Firefox fallback */
+    scrollbar-color: #888 #f1f1f1; /* Firefox fallback */
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 6px;
+      }
+    
+      &::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+      }
+    
+      &::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 6px;
+      }
+    
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+      }
+}
+
+.store-divider {
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 5px 0; /* Adjust the margin as per your preference */
+}
+
+.line {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%; /* Set the width to 100% */
+    margin: 5px 0; /* Adjust the margin as per your preference */
+}
+
+.entry {
+    /* Add these styles */
+    width: 100%;
+    padding: 5px;
+}
+
+.entry-text {
+    /* Add these styles */
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

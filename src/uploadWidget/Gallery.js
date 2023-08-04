@@ -6,12 +6,14 @@ import Uploader from '../uploadWidget/Uploader.js'
 import { useLocation } from 'react-router-dom';
 import Database from '../data/database';
 
-const Gallery = () => {
+
+const Gallery = ({ onSelectImage }) => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [description, setDescription] = useState('');
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const {state} = useLocation();
 
   const location = useLocation();
   const { storeIds } = location.state || {}; 
@@ -46,6 +48,7 @@ const Gallery = () => {
     setSelectedImage((prevSelectedImage) =>
       prevSelectedImage === image ? null : image
     );
+    onSelectImage(image);
   };
 
   const handleInputChange = (event) => {
@@ -79,10 +82,19 @@ const Gallery = () => {
     marginBottom: '10px',
   };
 
+  let storeName = '';
+  let user = 'Rashmi';
+  let storeList = [];
+  if (state) {
+    storeName = state.storeName;
+    user = state.user;
+    storeList = state.storeList;
+  }
+
   return (
     <div className="gallery-container">
       All uploads
-      <Icon />
+      <Icon storeName={storeName} storeList={storeList} user={user} />
       <div className="image-grid">
         {images.map((image, index) => (
           <div
