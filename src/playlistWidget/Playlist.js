@@ -14,9 +14,10 @@ const Playlister = (props) => {
   };
   const navigateToCreatePlaylist = () => {
     navigate('/createplaylist', {state: {
-      storeName: props.storeName,
-      storeList: props.storeList,
-      user: props.user
+      storeName : props.storeName,
+      storeList : props.storeList,
+      user : props.user
+
     }});
   };
   const images = [
