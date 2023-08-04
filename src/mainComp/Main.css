@@ -2,14 +2,14 @@
     display: flex;
     height: 100vh;
     align-items: center;
-    background-color: #dce8fc;
+    background-color: #032644;
 }
 
 .AI_GenBox{
-    background-color: #D9D3C9;
+    background-color: #0C5497;
     width: 55vw;
     height: 77vh;
-    border: 1.3vw solid #D9D3C9;
+    border: 1.3vw solid #0C5497;
     margin: 1.5vw;
     border-radius: 28px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
@@ -18,10 +18,10 @@
 } 
 /* upload box */
 .Upload{
-    background-color: #E1BBB0;
+    background-color: #FFFF;
     width: 31vw;
     height: 33.5vh;
-    border: 1.3vw solid #E1BBB0;
+    border: 1.3vw solid #FFFF;
     margin: 1.5vw;
     position: absolute;
     top: 10vh;
@@ -31,11 +31,10 @@
 }
 
 .viewPlaylist{
-    /* background-color: #22505D; */
-    background-color: #FFFFFF;
+    background-color: #FFFF;
     width: 31vw;
     height: 35.5vh;
-    border: 1.3vw solid #FFFFFF;
+    border: 1.3vw solid #FFFF;
     margin: 1.5vw;
     position: absolute;
     top: 51.5vh;
@@ -51,10 +50,10 @@
 
     .AI_GenBox{
         flex: 1;
-        background-color: #D9D3C9;
+        background-color: #0C5497;
         width: 93vw;
         height: 74vh;
-        border: 1.3vw solid #D9D3C9;
+        border: 1.3vw solid #0C5497;
         margin: 1.5vw;
         border-radius: 28px;
         box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
@@ -63,10 +62,10 @@
     }
     .Upload{
         flex: 1;
-        background-color: #E1BBB0;
+        background-color: #FFFF;
         width: 92vw;
         height: 44vh;
-        border: 1.3vw solid #E1BBB0;
+        border: 1.3vw solid #FFFF;
         margin: 1.5vw;
         position: absolute;
         top: 90vh;
@@ -76,7 +75,7 @@
     }
     .viewPlaylist{
         flex: 1;
-        background-color: #22505D;
+        background-color: #FFFF;
         width: 92vw;
         height: 35vw;
         border: 1.3vw solid #22505D;
