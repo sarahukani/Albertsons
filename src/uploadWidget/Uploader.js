@@ -62,7 +62,7 @@ export default function Uploader( props ) {
     localStorage.setItem('uploadedImages', JSON.stringify(images));
     navigate('/gallery', {state: {
       storeName: props.storeName,
-      storeList: props.storeList,
+      storeIds: props.storeList,
       user: props.user
     }});
   };
