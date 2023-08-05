@@ -49,6 +49,8 @@
     @media screen and (max-width: 768px){
     .mainDiv{
     flex-direction: column;
+    background-color: #032644;
+    height:175vh;
     }
     
     
@@ -65,30 +67,30 @@
     top: 10.5vh;
     }
     .Upload{
-    flex: 1;
-    background-color: #FFFF;
-    width: 92vw;
-    height: 44vh;
-    border: 1.3vw solid #FFFF;
-    margin: 1.5vw;
-    position: absolute;
-    top: 90vh;
-    left: 0vw;
-    border-radius: 28px;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+        flex: 1;
+        background-color: #FFFF;
+        width: 92vw;
+        height: 35vh;
+        border: 1.3vw solid #FFFF;
+        margin: 1.5vw;
+        position: absolute;
+        top: 90vh;
+        left: 0vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
     }
     .viewPlaylist{
-    flex: 1;
-    background-color: #FFFF;
-    width: 92vw;
-    height: 35vw;
-    border: 1.3vw solid #22505D;
-    margin: 1.5vw;
-    position: absolute;
-    top: 139vh;
-    left: 0vw;
-    border-radius: 28px;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+        flex: 1;
+        background-color: #FFFF;
+        width: 92vw;
+        height: 35vh;
+        border: 1.3vw solid #22505D;
+        margin: 1.5vw;
+        position: absolute;
+        top: 130vh;
+        left: 0vw;
+        border-radius: 28px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
     }
     }
     
@@ -96,15 +98,17 @@
     @media screen and (max-width: 480px){
     .mainDiv{
     flex-direction: column;
+    background-color: #032644;
+    height:100vh;
     }
     
     
     .AI_GenBox{
     flex: 1;
-    background-color: #D9D3C9;
+    background-color: #0C5497;
     width: 93vw;
     height: 36vh;
-    border: 1.3vw solid #D9D3C9;
+    border: 1.3vw solid #0C5497;
     margin: 1.5vw;
     border-radius: 28px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
@@ -113,10 +117,10 @@
     }
     .Upload{
     flex: 1;
-    background-color: #E1BBB0;
+    background-color: #FFFF;
     width: 92vw;
     height: 23vh;
-    border: 1.3vw solid #E1BBB0;
+    border: 1.3vw solid #FFFF;
     margin: 1.5vw;
     position: absolute;
     top: 45.5vh;
@@ -126,10 +130,10 @@
     }
     .viewPlaylist{
     flex: 1;
-    background-color: #22505D;
+    background-color:#FFFF;
     width: 92vw;
     height: 23vh;
-    border: 1.3vw solid #22505D;
+    border: 1.3vw solid #FFFF;
     margin: 1.5vw;
     position: absolute;
     top: 72vh;
