@@ -139,7 +139,7 @@ let storeList = [];
 if (state) {
 storeName = state.storeName;
 user = state.user;
-storeList = state.storeList;
+storeList = state.storeIds;
 }
 
 
