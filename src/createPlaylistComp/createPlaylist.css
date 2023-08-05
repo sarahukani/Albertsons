@@ -13,124 +13,84 @@ body, html {
 }
 
 .create-playlist-container {
-
   display: grid;
-
   grid-template-columns: 1fr 1fr; 
-
   grid-gap: 16px; 
-
-  height: 100%;
-
-}
+  margin-bottom: 100%;
+} 
 
  
 
 .gallery-section {
-
-  background-color: #f5f5f5;
-
+  margin-bottom: 100%;
+  background-color: #FFFF;
   border-radius: 10px;
-
+  height: 100%;
 }
 
  
-
 .playlist-section {
-
-  background-color: #e0e0e0;
-
+  height: 100%;
+  background-color: #FFFF;
   border-radius: 10px;
-
-
+  margin-bottom: 100%;
 }
 
  
 
 .title {
-
+  margin-top: 8vh;
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   border-radius: 10px;
-
-  background: #f5f5f5;
-
+  background: #0000;
   height: 50px;
-
   font-weight: bold;
-
   padding: 0 16px;
-
+  color: #20509C;
 }
 
  
-
+/* 
 .text-icon {
-
   width: auto;
-
   flex-grow: 1;
-
-  background: #d9d9d9;
-
+  background: #FFFF;
   position: relative;
-
   padding: 16px;
-
   border-radius: 10px;
 
-}
+} */
 
  
 
 .create-section {
-
   display: flex;
-
   align-items: center;
-
   justify-content: flex-end;
-
-  background: #f5f5f5;
-
+  background: #FFFF;
   height: 50px;
-
   font-weight: bold;
-
-  color: black;
-
+  color: white;
   padding-right: 16px;
-
 }
 
  
 
 .Schedulebtn {
 
-  color: #20509c;
-
+  color: #20509C;
   font-family: Inter;
-
   background-color: white;
-
   border: 2px solid #20509c;
-
   border-radius: 10px;
-
   font-size: 16px;
-
   padding: 10px 20px;
-
   margin-right: 15px;
-
   cursor: pointer;
-
   transition: background-color 0.3s ease;
-
+  font-weight: bold;
 }
 
  
@@ -144,32 +104,23 @@ body, html {
  
 
 .Exportbtn {
-
   color: white;
-
   font-family: Inter;
-
-  background-color: #20509c;
-
+  background-color: #032644;
   border-radius: 10px;
-
   font-size: 16px;
-
   padding: 10px 20px;
-
   cursor: pointer;
-
   transition: background-color 0.3s ease;
-
 }
 
  
 
-.Exportbtn:hover {
+/* .Exportbtn:hover {
 
   background-color: #183f7c;
 
-}
+} */
 
  
 
@@ -334,10 +285,10 @@ body, html {
 }
 
 .close-btn {
-  background-color: #20509C;
+  background-color: #F5F5F5;
   justify-content: left;
   text-align: center;
-  color: white;
+  color: #183f7c;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -350,9 +301,9 @@ body, html {
 }
 
 
-.close-btn:hover {
-  background-color: #183f7c;
-}
+/* .close-btn:hover {
+  background-color: #FFFF;
+} */
 
  
 
