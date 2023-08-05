@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
-const Gallery = ({}) => {
+const Gallery = ( props ) => {
 const [images, setImages] = useState([]);
 const [selectedImage, setSelectedImage] = useState(null);
 const [description, setDescription] = useState('');
@@ -22,7 +22,13 @@ const [editLink, setEditLink] = useState('');
 
 
 const location = useLocation();
-const { storeIds } = location.state || {};
+let storeIds = [];
+
+if(location.state){
+    storeIds = location.state.storeIds;
+} else {
+    storeIds = props.storeIds;
+}
 
 
 let title = "Default";
