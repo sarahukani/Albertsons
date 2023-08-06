@@ -84,7 +84,7 @@
         background-color: #FFFF;
         width: 92vw;
         height: 35vh;
-        border: 1.3vw solid #22505D;
+        border: 1.3vw solid #FFFF;
         margin: 1.5vw;
         position: absolute;
         top: 130vh;
@@ -99,7 +99,7 @@
     .mainDiv{
     flex-direction: column;
     background-color: #032644;
-    height:100vh;
+    height:105vh;
     }
     
     
@@ -107,7 +107,7 @@
     flex: 1;
     background-color: #0C5497;
     width: 93vw;
-    height: 36vh;
+    height: 40.5vh;
     border: 1.3vw solid #0C5497;
     margin: 1.5vw;
     border-radius: 28px;
@@ -118,12 +118,12 @@
     .Upload{
     flex: 1;
     background-color: #FFFF;
-    width: 92vw;
+    width: 90vw;
     height: 23vh;
     border: 1.3vw solid #FFFF;
     margin: 1.5vw;
     position: absolute;
-    top: 45.5vh;
+    top: 50vh;
     left: 1vw;
     border-radius: 28px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
@@ -131,12 +131,12 @@
     .viewPlaylist{
     flex: 1;
     background-color:#FFFF;
-    width: 92vw;
+    width: 90vw;
     height: 23vh;
     border: 1.3vw solid #FFFF;
     margin: 1.5vw;
     position: absolute;
-    top: 72vh;
+    top: 77vh;
     left: 1vw;
     border-radius: 28px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
