@@ -1,6 +1,6 @@
 import backendOrigin from "../config/origin";
 
-let albertOrigin = "http://34.68.232.71:2002";
+let albertOrigin = "http://35.202.30.171:2002";
 
  
 
