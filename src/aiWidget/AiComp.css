@@ -405,7 +405,7 @@ top: 1vh;
         text-align: center;
         font-weight: bold;
         font-size: 2vw;
-        color: white;
+        color: #0c5497;
         position: absolute;
         top: 40vh;
         left: 0.5vw;
@@ -529,35 +529,87 @@ top: 1vh;
     }
     
     .ageInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 9vh;
-        left: 26vw;
+        top: 5vh;
+        left: 42.7vw;
     }
 
     .productInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 15.4vh;
-        left: 26vw;
+        top: 8.8vh;
+        left: 42.7vw;
     }
 
     .weatherInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 21.8vh;
-        left: 26vw;
+        top: 12.5vh;
+        left: 42.7vw;
     }
 
     .holidayInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 28.2vh;
-        left: 26vw;
+        top: 16.1vh;
+        left: 42.7vw;
+    }
+
+    .age-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 2vh;
+        left: 44vw;
+    }
+
+    .product-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 6vh;
+        left: 44vw;
+    }
+
+    .weather-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 10vh;
+        left: 44vw;
+    }
+
+    .holiday-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 13vh;
+        left: 44vw;
     }
     
     .detailedDescrip{
@@ -572,7 +624,7 @@ top: 1vh;
     .reccomendations{
         padding: 0.8vw;
         width: 43vw;
-        height: 33.5vw;
+        height: 35vh;
         position: absolute;
         top: 4.5vw;
         left: 47vw;
@@ -593,7 +645,7 @@ top: 1vh;
         text-align: center;
         font-weight: bold;
         font-size: 2vw;
-        color: white;
+        color: #0c5497;
         position: absolute;
         top: 35vw;
         left: 0.5vw;
@@ -626,13 +678,14 @@ top: 1vh;
         width: 26.5vw;
         height: 3vh;
         position: absolute;
+        top: 0.5vh;
         left: 17vw;
     }
     .age{
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
         left: 17vw;
@@ -642,7 +695,7 @@ top: 1vh;
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
         left: 17vw;
@@ -652,7 +705,7 @@ top: 1vh;
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
         left: 17vw;
@@ -662,7 +715,7 @@ top: 1vh;
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
         left: 17vw;
@@ -670,33 +723,33 @@ top: 1vh;
     }
     .locName{
         position:absolute;
-        top: -1.3vw;
-        left: 3.5vw;
-        font-size: 2.4vw;
+        top: 0.5vh;
+        left: 5vw;
+        font-size: 1.7vw;
     }
     .ageName{
         position:absolute;
-        top: 3.5vw;
-        left: 5.5vw;
-        font-size: 2.4vw;
+        top: 3.8vh;
+        left: 3vw;
+        font-size: 1.7vw;
     }
     .productName{
         position: absolute;
-        top: 8.5vw;
-        left: 3.5vw;
+        top: 7.5vh;
+        left: 1.2vw;
         text-align: center;
-        font-size: 2.2vw;
+        font-size: 1.7vw;
     }
     .weatherName{
         position:absolute;
-        top: 15.5vw;
-        left: 3.5vw;
-        font-size: 2.4vw;
+        top: 11.3vh;
+        left: 5vw;
+        font-size: 1.7vw;
     }
     .holidayName{
         position:absolute;
-        top: 20.5vw;
-        left: 3.5vw;
-        font-size: 2.4vw;
+        top: 15vh;
+        left: 5vw;
+        font-size: 1.7vw;
     }
 }
