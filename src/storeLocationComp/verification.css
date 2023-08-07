@@ -71,7 +71,7 @@
     font-size: 1.5vw;
     color: grey;
     margin-top: 3%;
-    margin-left: -65%;
+    /* margin-left: -65%; */
   }
 
   .storeName{
@@ -83,7 +83,7 @@
   }
   .headerLoc{
     margin-top: 20%;
-    margin-left: -120%;
+    /* margin-left: -120%; */
     font-size: 4vw;
   }
 
@@ -99,7 +99,7 @@
     border-radius: 8px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     margin-top: 1%;
-    margin-left: -30%;
+    /* margin-left: -30%; */
     height: 8vw;
     width: 35vw;
     text-align: center;
@@ -122,7 +122,7 @@
       font-size: 1.5vw;
       color: grey;
       margin-top: 3%;
-      margin-left: -85%;
+      /* margin-left: -85%; */
     }
   
     .storeName{
@@ -134,7 +134,7 @@
     }
     .headerLoc{
       margin-top: 1%;
-      margin-left: -120%;
+      /* margin-left: -120%; */
       font-size: 4vw;
     }
   
@@ -174,7 +174,7 @@
     font-size: 3.5vw;
     color: grey;
     margin-top: 3%;
-    margin-left: -10%;
+    /* margin-left: -10%; */
   }
 
   .storeName{
@@ -186,7 +186,7 @@
   }
   .headerLoc{
     margin-top: 1%;
-    margin-left: -70%;
+    /* margin-left: -70%; */
     font-size: 7vw;
   }
 

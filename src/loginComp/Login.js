@@ -68,13 +68,13 @@ const Login = () => {
               type="password"
               >
             </input>
-            <button className='forgetPass'>Forgot Password?</button>
+            {/* <button className='forgetPass'>Forgot Password?</button> */}
             {invalid && 
               <div>
                 <h5>Incorrect username or password</h5>
               </div>}
             <button onClick={validateLogin} className='loginBtn'>Login</button> 
-            <p className="newUser">New user? Contact <b>IT Support</b> to create a new account.</p>
+            <p className="newUser">Need help? Contact <b>IT Support</b> to create a new account.</p>
         </div>
       </div>
     )

@@ -1,9 +1,9 @@
 .header{
-  font-size: 3.5vw;
+  font-size: 2.5vw;
   margin-top:10%;
   /* position:absolute; */
   margin-top: 0%;
-  margin-left: -50%;
+  /* margin-left: -50%; */
 }
 
 .welcome{
@@ -12,7 +12,7 @@ top: 0%;
 left: 34%; */
 font-size: 4vw;
 margin-top:7%;
-margin-left: -48%;
+/* margin-left: -48%; */
 color: #20509C;
 }
 
@@ -20,7 +20,7 @@ color: #20509C;
 font-size: 1.8vw;
 color: grey;
 margin-top:-1%;
-margin-left:-45%
+/* margin-left:-45% */
 /* position: absolute;
 top: 25%;
 left: 34%; */
@@ -31,7 +31,7 @@ left: 34%; */
 top: 35%;
 left: 33%; */
 margin-top: 1%;
-margin-left: -60%;
+margin-left: -21%;
 list-style: none;
 text-align: left;
 }
@@ -118,29 +118,29 @@ background: white;
 
 .left-side,
   .right-side {
-    flex: 1;
-    width: 100%;
+    /* flex: 1; */
+    width: auto;
 }
 
 .header {
   font-size: 4vw; /* Reduce font size for smaller screens */
-  margin-left: -55%; /* Adjust horizontal positioning for smaller screens */
+  /* margin-left: -55%; Adjust horizontal positioning for smaller screens */
 }
 
 .welcome {
   font-size: 5vw; /* Reduce font size for smaller screens */
-  margin-left: -45%; /* Adjust horizontal positioning for smaller screens */
+  /* margin-left: -45%; Adjust horizontal positioning for smaller screens */
   margin-top: 1%;
 }
 
 .subHeader {
   font-size: 2.5vw; /* Reduce font size for smaller screens */
-  margin-left: -43%; /* Adjust horizontal positioning for smaller screens */
+  /* margin-left: -43%; Adjust horizontal positioning for smaller screens */
 }
 
-.storeList {
-  margin-left: -55vw; /* Adjust horizontal positioning for smaller screens */
-}
+/* .storeList {
+  /* margin-left: -55vw; Adjust horizontal positioning for smaller screens */
+} */
 
 .checkmark {
   position: absolute;
@@ -152,7 +152,6 @@ background: white;
   border-radius: 50%;
   border: 2px solid #464646;
   }
-}
 
 @media screen and (max-width: 480px) {
 .split-container {
@@ -166,12 +165,12 @@ background: white;
 .left-side,
   .right-side {
     flex: 1;
-    width: 100%;
+    width: auto;
 }
 
 .header {
   font-size: 4vw; /* Reduce font size for smaller screens */
-  margin-left: -53%; /* Adjust horizontal positioning for smaller screens */
+  margin-left: -53%; 
 }
 
 .welcome {
@@ -185,9 +184,6 @@ background: white;
   margin-left: -30%; /* Adjust horizontal positioning for smaller screens */
 }
 
-.storeList {
-  margin-left: -50%; /* Adjust horizontal positioning for smaller screens */
-}
 
 .checkmark {
   position: absolute;

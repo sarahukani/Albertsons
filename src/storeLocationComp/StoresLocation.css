@@ -27,21 +27,21 @@
 .locSelect{
     font-size: 5vw;
     margin-top: 10%;
-    margin-left: -28%;
+    /* margin-left: -28%; */
 }
 
 .subheader{
   font-size: 2vw;
   color: grey;
-  margin-left: -10%;
+  /* margin-left: -10%; */
   margin-top:1%;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
-  margin-left:-9%;
+  /* margin-bottom: 24px; */
+  /* margin-left:-9%; */
   margin-top: 3%;
 }
 
@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
-  margin-right: 150px;
+  /* margin-right: 150px; */
 }
 
 .search-input {
@@ -141,8 +141,8 @@
   
 .s-list{
   text-align: left;
-  margin-top:1%;
-  margin-left: -38%;
+  margin-top: 2vw;
+  /* margin-left: -38%; */
   list-style: none;
 }
 
@@ -165,7 +165,7 @@ input[type=checkbox] {
   font-size: 1.3vw;
   color:grey;
   margin-top:10%;
-  margin-left: 30%;
+  /* margin-left: 30%; */
 }
 
 @media screen and (max-width: 768px) {
@@ -205,14 +205,14 @@ input[type=checkbox] {
   .locSelect{
     font-size: 4vw;
     /* margin-top: 3%; */
-    margin-left: -35%;
+    /* margin-left: -35%; */
     margin-top: 1%;
 }
 
   .subheader{
     font-size: 2vw;
     color: grey;
-    margin-left: -21%;
+    /* margin-left: -21%; */
     margin-top:0%;
   }
 
@@ -220,14 +220,14 @@ input[type=checkbox] {
     display: flex;
     align-items: center;
     margin-bottom: 24px;
-    margin-left:3%;
+    margin-left:15vw;
     margin-top: 3%;
   }
 
 .s-list{
   text-align: left;
   margin-top:1%;
-  margin-left: -10%;
+  /* margin-left: -10%; */
   list-style: none;
 }
 
@@ -283,13 +283,13 @@ input[type=checkbox] {
   .locSelect{
     font-size: 5vw;
     margin-top: 3%;
-    margin-left: -30%;
+    /* margin-left: -30%; */
 }
 
   .subheader{
     font-size: 2.7vw;
     color: grey;
-    margin-left: -13%;
+    /* margin-left: -13%; */
     margin-top:1%;
   }
 
@@ -297,15 +297,16 @@ input[type=checkbox] {
     display: flex;
     align-items: center;
     margin-bottom: 24px;
-    margin-left:6%;
+    /* margin-left:6%; */
     margin-top: 3%;
   }
 
   .s-list{
     text-align: left;
     margin-top:1%;
-    margin-left: -20%;
+    /* margin-left: -20%; */
     list-style: none;
+    font-size: 5%;
   }
 
   .listEle{
@@ -320,9 +321,9 @@ input[type=checkbox] {
 
 .invalidMess{
   white-space: nowrap;
-  font-size: 1.3vw;
+  font-size: 3vw;
   color:grey;
   margin-top:10%;
-  margin-left: 30%;
+  margin-left: 40vw;
 }
 }
