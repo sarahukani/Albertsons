@@ -59,7 +59,7 @@
   display: block;
   height: 100%;
   width: 0;
-  background-color: #0C5497;
+  background-color: #bae4ef;
   position: absolute;
   top: 20;
   left: 0;
@@ -125,7 +125,7 @@
 @media screen and (max-width: 768px) {
   .upload-widget {
     /* Adjust the styles for responsiveness */
-    height: 30vw;
+    height: 26vh;
     width: 91.5vw;
   }
   
@@ -160,8 +160,8 @@
 @media screen and (max-width: 480px) {
   .upload-widget {
     /* Adjust the styles for responsiveness */
-    height: 30vw;
-    width: 91.5vw;
+    height: 17vh;
+    width: 89vw;
   }
   
   .success-message {

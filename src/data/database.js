@@ -1,6 +1,6 @@
 import backendOrigin from "../config/origin";
 
-let albertOrigin = "http://34.68.232.71:2002";
+let albertOrigin = "http://35.202.30.171:2002";
 
  
 
@@ -277,10 +277,13 @@ export default class Database {
     // **************************************************************************
     // ALBERT QUERIES ***********************************************************
     // **************************************************************************
-    static async getProductRecommendations(storeID, category) {
+    static async getProductRecommendations(storeID, category, age, weather, holiday) {
         const queryParams = new URLSearchParams();
         queryParams.append("storeid", storeID);
         queryParams.append("category", category);
+        queryParams.append("demographic", age);
+        queryParams.append("weather", weather);
+        queryParams.append("holiday", holiday);
 
         const url = `${albertOrigin}/getrec/script-call/?${queryParams.toString()}`;
         console.log(url);
