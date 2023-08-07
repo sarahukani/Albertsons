@@ -180,7 +180,7 @@ function CreatePlaylist() {
             )}
           </div>
  
-          <span onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
+          <span className="titleName" onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
             {title !== 'Enter a title' && title}
           </span>
  
