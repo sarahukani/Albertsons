@@ -140,8 +140,10 @@ function CreatePlaylist() {
       </div>
       <div className="create-playlist-container">
         <div className="gallery-section">
-          <Gallery
-            storeIds={state.storeList}
+        <Gallery
+            storeName={state.storeName}
+            user={state.user}
+            storeList={state.storeList}
             onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])}
           />
         </div>
