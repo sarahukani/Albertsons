@@ -277,10 +277,13 @@ export default class Database {
     // **************************************************************************
     // ALBERT QUERIES ***********************************************************
     // **************************************************************************
-    static async getProductRecommendations(storeID, category) {
+    static async getProductRecommendations(storeID, category, age, weather, holiday) {
         const queryParams = new URLSearchParams();
         queryParams.append("storeid", storeID);
         queryParams.append("category", category);
+        queryParams.append("demographic", age);
+        queryParams.append("weather", weather);
+        queryParams.append("holiday", holiday);
 
         const url = `${albertOrigin}/getrec/script-call/?${queryParams.toString()}`;
         console.log(url);
