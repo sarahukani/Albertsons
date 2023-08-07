@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import { SketchPicker } from 'react-color';
 import jsPDF from 'jspdf'; 
 import './createPlaylist.css';
-import Gallery from '../uploadWidget/Gallery';
+import Gallery2 from '../uploadWidget/Gallery2';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import Database from '../data/database';
 import Schedule from './Schedule';
@@ -147,7 +147,7 @@ function CreatePlaylist() {
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
-        <Gallery storeList={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
+        <Gallery2 storeList={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
       </div>
  
       <div className="playlist-section">
