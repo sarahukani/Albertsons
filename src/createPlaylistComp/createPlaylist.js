@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { SketchPicker } from 'react-color';
-import jsPDF from 'jspdf'; // Import jsPDF library
+import jsPDF from 'jspdf'; 
 import './createPlaylist.css';
 import Gallery from '../uploadWidget/Gallery';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
@@ -9,7 +9,26 @@ import Database from '../data/database';
 import Schedule from './Schedule';
 import { useLocation } from 'react-router-dom';
 import Icon from '../mainComp/Icon.js';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
 
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function CreatePlaylist() {
   const [title, setTitle] = useState('Enter a title');
@@ -21,9 +40,10 @@ function CreatePlaylist() {
   const textOverlayRef = useRef();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [isScheduled, setIsScheduled] = useState(false);
   const { state } = useLocation();
 
-  console.log("This is our storelist prop that was passed in: ", state.storeList);
+  console.log('This is our storelist prop that was passed in: ', state.storeList);
 
   let storeName = '';
   let user = 'Default';
@@ -45,7 +65,6 @@ function CreatePlaylist() {
   const handleExportAndUpload = async () => {
     try {
       const content = textOverlayRef.current;
-
       // Capture the content as an image using html2canvas
       const canvas = await html2canvas(content, { scale: 2 });
       const imageData = canvas.toDataURL('image/jpeg', 1.0);
@@ -58,12 +77,12 @@ function CreatePlaylist() {
 
       // Get the text overlay elements and add them to the PDF
       const textOverlays = content.querySelectorAll('.text-overlay');
-      const defaultFontSize = 12; // Set a default font size for the text
+      const defaultFontSize = 12;
 
       textOverlays.forEach((overlay) => {
         const text = overlay.innerText;
-        const x = parseInt(overlay.style.left); // Parse the x coordinate as an integer
-        const y = parseInt(overlay.style.top); // Parse the y coordinate as an integer
+        const x = parseInt(overlay.style.left);
+        const y = parseInt(overlay.style.top);
         pdf.text(text, x, y, { fontSize: defaultFontSize });
       });
 
@@ -103,12 +122,18 @@ function CreatePlaylist() {
   };
 
   const handleSavePlaylist = async () => {
+    if (!isScheduled) {
+      // Show the modal if the playlist is not scheduled
+      setOpenModal(true);
+      return;
+    }
+
     let playlist = {};
     try {
       const imageUrls = selectedGalleryItems.map((item) => item.imageURL);
-      console.log(title, imageUrls);
+      console.log(title, imageUrls, startDate, endDate);
       playlist = await Database.createPlaylist(title, imageUrls, startDate, endDate);
-      console.log("The playlist: ", playlist);
+      console.log('The playlist: ', playlist);
       console.log('Playlist created successfully!');
     } catch (error) {
       console.error('Error while saving playlist:', error);
@@ -121,11 +146,13 @@ function CreatePlaylist() {
     } catch (error) {
       console.error('Error while linking playlist to store: ', error);
     }
-
-
   };
 
 
+
+  // Modal-related state and handlers
+  const [openModal, setOpenModal] = useState(false);
+  const handleCloseModal = () => setOpenModal(false);
 
   return (
     <div className="whole-page">
