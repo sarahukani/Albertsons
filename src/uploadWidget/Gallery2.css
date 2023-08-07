@@ -6,14 +6,14 @@
     align-items: flex-start; */
     height: auto;
     display: inline-block;
-    max-width: 100%;
     margin: 0;
     padding-top: 12vh;
-    padding-right: 10rem;
+    padding-right: 20rem;
     font-size: 24px;
     font-family:'Franklin Gothic Medium';
     background-color: #032644;
     color: white;
+    width:55vw;
     
     }
     
@@ -70,7 +70,7 @@
     
     .image-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     row-gap: 50px;
     margin-top: 50px; /* Adjust margin for centering the grid */
