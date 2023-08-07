@@ -147,7 +147,7 @@ function CreatePlaylist() {
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
-        <Gallery storeIds={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
+        <Gallery storeList={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
       </div>
  
       <div className="playlist-section">
