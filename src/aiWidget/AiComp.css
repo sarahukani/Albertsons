@@ -1,4 +1,4 @@
-.detailedDescrip{
+ .detailedDescrip{
     padding: 0.8vw;
     width: 26vw;
     height: 30vh;
@@ -483,34 +483,34 @@ top: 1vh;
     }
     .locName{
         position:absolute;
-        top: 0vh;
-        left: 3.5vw;
-        font-size: 1.9vw;
+        top: 1vh;
+        left: 2vw;
+        font-size: 2vw;
     }
     .ageName{
-        position:absolute;
-        top: 6vh;
-        left: 2.2vw;
-        font-size: 1.9vw;
+        position: absolute;
+        top: 7vh;
+        left: 1.2vw;
+        font-size: 2vw;
     }
     .productName{
         position: absolute;
-        top: 12.5vh;
-        left: 2w;
+        top: 13.5vh;
+        left: 0.1vw;
         text-align: center;
-        font-size: 1.9vw;
+        font-size: 1.8vw;
     }
     .weatherName{
-        position:absolute;
-        top: 19vh;
-        left: 3.5vw;
-        font-size: 1.9vw;
+        position: absolute;
+        top: 20vh;
+        left: 2.5vw;
+        font-size: 2vw;
     }
     .holidayName{
-        position:absolute;
-        top: 25vh;
-        left: 3.6vw;
-        font-size: 1.9vw;
+        position: absolute;
+        top: 26vh;
+        left: 2.6vw;
+        font-size: 2vw;
     }
     .recList{
         font-size: 1.9vw;
@@ -523,7 +523,7 @@ top: 1vh;
 }
     
     
-@media screen and (max-width: 480px){
+    @media screen and (max-width: 480px){
     .mainDiv{
         flex-direction: column;
     }
@@ -747,9 +747,11 @@ top: 1vh;
         font-size: 1.7vw;
     }
     .holidayName{
-        position:absolute;
-        top: 15vh;
-        left: 5vw;
-        font-size: 1.7vw;
+    position:absolute;
+    top: 20.5vw;
+    left: 3.5vw;
+    font-size: 2.4vw;
+    }
+    
     }
 }
