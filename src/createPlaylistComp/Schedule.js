@@ -34,9 +34,6 @@ const Schedule = ({ onSave, playlistTitle, storeList }) => {
     endDateTime.setMinutes(endTime.getMinutes());
     setUploadSuccess(true);
     setShowModal(true);
-
-    console.log(startDateTime)
-    console.log(endDateTime)
     onSave(startDateTime, endDateTime);
     
   };

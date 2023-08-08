@@ -12,7 +12,6 @@ import StoresLocation from './storeLocationComp/StoresLocation'
 import Verification from './storeLocationComp/verification';
 import Banner from './bannerSelectionComp/Banner'
 import Gallery from './uploadWidget/Gallery'
-import ViewSchedule from './viewScheduleComp/ViewSchedule'
 import CreatePlaylist from './createPlaylistComp/createPlaylist';
 import Profile from './mainComp/Profile'
 // import {Routes, Route} from "react-router-dom";
@@ -30,7 +29,6 @@ function App() {
         <Route path="/schedule" element={<Schedule />} /> 
         <Route path="/banner" element={ <Banner /> }/>
         <Route path="/gallery" element={ <Gallery /> }/>
-        <Route path="/viewschedule" element={ <ViewSchedule /> }/>
         <Route path="/createplaylist" element={ <CreatePlaylist /> }/>
         <Route path="/profile" element={ <Profile /> }/>
       </Routes>

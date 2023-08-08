@@ -42,43 +42,6 @@ export default function ViewPlaylist(props) {
 
   const [playlists, setPlaylists] = useState([]); // State to hold fetched playlists
 
- 
-
-//   const storeList = state.storeList;
-
-//   for(let i=0;i<storeList.length;i++){
-
-//     console.log(storeList[i].id);
-
-// }
-
- 
-
-  // useEffect(() => {
-
-  //   // Fetch playlist data from the database and update state
-
-  //   const fetchPlaylistData = async () => {
-
-  //     try {
-
-  //       const fetchedPlaylists = await Database.getCurrentLocationPlaylists(state.storeList[0].id);
-
-  //       setPlaylists(fetchedPlaylists);
-
-  //     } catch (error) {
-
-  //       console.error('Error fetching playlist data:', error);
-
-  //     }
-
-  //   };
-
-  //   fetchPlaylistData();
-
-  // }, []);
-
- 
 
   useEffect(() => {
 
@@ -132,9 +95,9 @@ export default function ViewPlaylist(props) {
 
   const [popupContent, setPopupContent] = useState(false);
 
+
   const [networkErrorPopup, setNetworkErrorPopup] = useState(false);
 
- 
 
   const navigate = useNavigate();
 
@@ -190,7 +153,7 @@ export default function ViewPlaylist(props) {
 
  
 
-  const handleDownload = async (index) => {
+const handleDownload = async (index) => {
 
     try {
 
@@ -200,20 +163,6 @@ export default function ViewPlaylist(props) {
       for(let j=0; j<playlists[index].images.length; j++){
         images.push(playlists[index].images[j]);
       }
-        
-      
-      
-        // await Promise.all((playlists[index].images).map(async (link) => {
-
-        // const response = await axios.get(link, { responseType: 'arraybuffer' });
-
-        // const imageBlob = new Blob([response.data]);
-
-        // return URL.createObjectURL(imageBlob);
-
-      // }));
-
- 
 
       const pdfDoc = new jsPDF();
 
@@ -252,14 +201,6 @@ export default function ViewPlaylist(props) {
   }
 
 };
-
- 
-
-  const handlePopupClose = () => {
-
-    setNetworkErrorPopup(false);
-
-  };
 
  
 
@@ -308,16 +249,6 @@ export default function ViewPlaylist(props) {
             <span onClick={handleDownloadClick} className="dropdown-text">Download Playlist</span>
 
         </div>
-
-        {/* <div className="divider"></div>
-
-        <div className="dropdown-option">
-
-            <ScheduleSendIcon  sx={{height:'1.25vw', width:'1.25vw', marginRight:'.4vw'}}/>
-
-            <span onClick={onSchedule} className="dropdown-text">Schedule Playlist</span>
-
-        </div>  */}
 
       </div>
 
@@ -403,29 +334,23 @@ export default function ViewPlaylist(props) {
 
               )}
 
-                    {/* Network Error Popup */}
-
+              {/* Network Error Popup */}
               {networkErrorPopup && (
-
-                <div className="popup">
-
-                  <div className="popup-content">
-
+                <div className="error-popup">
+                  <div className="error-popup-content">
                     <div>Network Error: Unable to download the playlist.</div>
-
-                    <button className="close-btn" onClick={handlePopupClose}>Close</button>
-
+                    <button className="error-close-btn" onClick={handlePopupClose}>X</button>
                   </div>
-
                 </div>
-
               )}
 
             <div className='image-carousel-wrapper'>
 
               <ImageCarousel images={playlists[index].images} />
 
+
               </div>
+
 
             </div>
 

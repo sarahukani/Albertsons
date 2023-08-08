@@ -16,7 +16,9 @@
     left: 1.7%;
     transform: translate(-10%, -10%);
     font-weight:bold;
-    color:gray;
+    color:white;
+    font-size: 35px;
+    left: 70px;
   }
 
   .etc-icon{
@@ -25,12 +27,13 @@
     height:2vw;
     right: 1.8vw;
     top:1vh;
+  
   }
   
   .image-container {
     position: relative;
     height: 25vh;
-
+    background-color: #FFFF;
   }
   
   .image-container .MuiCardMedia-root {
@@ -40,14 +43,16 @@
     width: 15vw; /* Set the width to 100% to fill the container */
     height: 28vh; /* Set the height to 100% to fill the container */
     opacity: 0;
+    color: white;
     transition: opacity 0.3s ease-in-out;
+    
   }
 
   .more-options-dropdown{
     position: absolute;
     top: 3vh;
     right: 0.7vw;
-    height: 6.8vh;
+    height: 3vh;
     width:7.5vw;
     background-color: white;
     padding: .5vw;
@@ -81,19 +86,20 @@
   }
   
   .MuiCard-root {
-    background-color:#D9D9D9;
+    background-color:white;
   }
   
   .MuiCardMedia-root {
     background-size: cover;
     background-position: center;
+    background-color:white;
   }
   
   .card-container {
     /* display: flex;
     flex-direction: column;
     align-items: center; */
-
+    color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -137,10 +143,11 @@
   }
   .card-title {
     position:flex;
-    background-color: rgb(230, 226, 226);
-    color: black;
+    background-color: #0C5497;
+    color: white;
     border: none;
-    border-top: 1px solid #EAEAEA;
+    border-top: 0px solid #EAEAEA;
+    border-radius: 2px;
     /* padding: 5px; */
     /* margin-top: 10px; */
     width: 100%;
@@ -155,6 +162,47 @@
     width:15vw;
     top:2vh;
     left:6vw;
+  }
+
+  .error-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:10000;
+
+  
+  }
+  
+  .error-popup-content {
+    width: 30vw;
+    height: 5vh;
+    background-color: #F5F5F5;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    z-index:10000;
+  }
+
+  .error-close-btn {
+    background-color: #20509C;
+    justify-content: left;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 2vw;
+    height: 4vh;
+    position: absolute;
+    top: 47vh;
+    left: 62vw;
   }
   
   @media screen and (max-width: 768px){

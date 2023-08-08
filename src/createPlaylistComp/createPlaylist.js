@@ -17,23 +17,24 @@ import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 
 
+
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
 function CreatePlaylist() {
-  const [title, setTitle] = useState('Enter a title');
+  const [title, setTitle] = useState("Enter a title");
   const [selectedGalleryItems, setSelectedGalleryItems] = useState([]);
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [textColor, setTextColor] = useState('#ffffff');
+  const [textColor, setTextColor] = useState("#ffffff");
   const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
   const [popupContent, setPopupContent] = useState(false);
   const textOverlayRef = useRef();
@@ -42,7 +43,16 @@ function CreatePlaylist() {
   const [isScheduled, setIsScheduled] = useState(false);
   const { state } = useLocation();
 
-  console.log('This is our storelist prop that was passed in: ', state.storeList);
+
+  console.log(
+    "This is our storelist prop that was passed in: ",
+    state.storeList
+  );
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);  
+
+//   console.log('This is our storelist prop that was passed in: ', state.storeList);
+
 
   const handleClosePopup = () => {
     setPopupContent(false);
@@ -57,16 +67,17 @@ function CreatePlaylist() {
       const content = textOverlayRef.current;
       // Capture the content as an image using html2canvas
       const canvas = await html2canvas(content, { scale: 2 });
-      const imageData = canvas.toDataURL('image/jpeg', 1.0);
+
+      const imageData = canvas.toDataURL("image/jpeg", 1.0);
 
       // Create a new jsPDF instance
-      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdf = new jsPDF("p", "mm", "a4");
 
       // Add the image to the PDF
-      pdf.addImage(imageData, 'JPEG', 10, 10, 190, 100);
+      pdf.addImage(imageData, "JPEG", 10, 10, 190, 100);
 
       // Get the text overlay elements and add them to the PDF
-      const textOverlays = content.querySelectorAll('.text-overlay');
+      const textOverlays = content.querySelectorAll(".text-overlay");
       const defaultFontSize = 12;
 
       textOverlays.forEach((overlay) => {
@@ -77,23 +88,28 @@ function CreatePlaylist() {
       });
 
       // Save the PDF
-      const pdfData = pdf.output('blob');
-      const file = new File([pdfData], 'playlist.pdf', { type: 'application/pdf' });
+      const pdfData = pdf.output("blob");
+      const file = new File([pdfData], "playlist.pdf", {
+        type: "application/pdf",
+      });
       const fileList = [file];
       await Database.uploadProductImages(fileList);
 
-      console.log('PDF uploaded successfully!');
+      console.log("PDF uploaded successfully!");
+
     } catch (error) {
-      console.error('Error exporting and uploading PDF:', error);
+      console.error("Error exporting and uploading PDF:", error);
     }
   };
-  const [showSuccessModal, setShowSuccessModal] = useState(false);  
+
+//   const [showSuccessModal, setShowSuccessModal] = useState(false);  
+  
   const handleExport = () => {
     handleExportAndUpload();
   };
 
   const handleEnterTitle = () => {
-    const textInput = window.prompt('Enter your title:', title);
+    const textInput = window.prompt("Enter your title:", title);
     if (textInput !== null) {
       setTitle(textInput);
     }
@@ -122,11 +138,16 @@ function CreatePlaylist() {
     try {
       const imageUrls = selectedGalleryItems.map((item) => item.imageURL);
       console.log(title, imageUrls, startDate, endDate);
-      playlist = await Database.createPlaylist(title, imageUrls, startDate, endDate);
-      console.log('The playlist: ', playlist);
-      console.log('Playlist created successfully!');
+      playlist = await Database.createPlaylist(
+        title,
+        imageUrls,
+        startDate,
+        endDate
+      );
+      console.log("The playlist: ", playlist);
+      console.log("Playlist created successfully!");
     } catch (error) {
-      console.error('Error while saving playlist:', error);
+      console.error("Error while saving playlist:", error);
     }
 
     try {
@@ -134,11 +155,12 @@ function CreatePlaylist() {
       const playlistID = playlist.id;
       let store = await Database.pushStorePlaylist(storeID, playlistID);
     } catch (error) {
-      console.error('Error while linking playlist to store: ', error);
+      console.error("Error while linking playlist to store: ", error);
     }
   };
 
-  const enterTitleText = title === 'Enter a title' ? title : null;
+  const enterTitleText = title === "Enter a title" ? title : null;
+
 
   // Modal-related state and handlers
   const [openModal, setOpenModal] = useState(false);
@@ -147,6 +169,52 @@ function CreatePlaylist() {
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
+
+        <Gallery2
+          storeList={state.storeList}
+          onSelectImage={(image) =>
+            setSelectedGalleryItems([
+              ...selectedGalleryItems,
+              { ...image, text: "" },
+            ])
+          }
+        />
+      </div>
+
+      <div className="playlist-section">
+
+        <div className="create-section" style={{ background: "white" }}>
+
+          <div className="title">
+            <span
+              onClick={handleEnterTitle}
+              style={{ cursor: "pointer", justifyContent: "center"}}
+            >
+              {title}
+            </span>
+
+            <span
+              onClick={handleEnterTitle}
+              style={{ cursor: "pointer", color: "black"  }}
+            >
+              {title !== "Enter a title"}
+            </span>
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <span
+              className="titleName"
+              onClick={handleEnterTitle}
+              style={{ cursor: "pointer", color: "black"}}
+            >
+              {title !== "Enter a title" && enterTitleText}
+            </span>
+            {/* <img
+              src="https://3.bp.blogspot.com/-twz3yfFATFY/T3SRLKVd-yI/AAAAAAAAAKo/xFSYgRIcwrc/s1600/COLOUR-WHEEL.jpg"
+              alt="Color Wheel"
+              style={{ width: "30px", height: "30px", marginRight: "10px" }}
+              onClick={() => setShowColorPicker(!showColorPicker)} */}
+            {/* {showColorPicker && (
         <Gallery2 storeList={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
       </div>
 
@@ -169,17 +237,19 @@ function CreatePlaylist() {
             {showColorPicker && (
               <div
                 style={{
-                  position: 'absolute',
-                  top: '100%',
+                  position: "absolute",
+                  top: "100%",
                   left: 0,
-                  zIndex: '1',
+                  zIndex: "1",
                 }}
               >
                 <SketchPicker color={textColor} onChange={handleColorChange} />
               </div>
-            )}
+            )} */}
           </div>
 
+          {/* <TextFieldsIcon
+            style={{ color: "white" }}
           <span className="titleName" onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
             {title !== 'Enter a title' && title}
           </span>
@@ -187,20 +257,23 @@ function CreatePlaylist() {
           <TextFieldsIcon
             style={{ color: 'white' }}
             onClick={() => {
-              const textInput = window.prompt('Enter your text:', '');
+              const textInput = window.prompt("Enter your text:", "");
               if (textInput !== null) {
-                setSelectedGalleryItems([...selectedGalleryItems, { text: textInput }]);
+                setSelectedGalleryItems([
+                  ...selectedGalleryItems,
+                  { text: textInput },
+                ]);
               }
             }}
-          />
+          /> */}
 
           <button className="Schedulebtn" onClick={() => setPopupContent(true)}>
             Schedule
           </button>
-
+          {/* 
           <button className="Exportbtn" onClick={handleExport}>
             Export
-          </button>
+          </button> */}
 
           {selectedGalleryItems.length > 0 && (
             <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
@@ -209,10 +282,24 @@ function CreatePlaylist() {
           )}
         </div>
 
-        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+{/* //         <div
+          ref={textOverlayRef}
+          onMouseDown={handleTextDragStart}
+          onMouseMove={handleTextDrag}
+        >
+        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}> */}
+
           {selectedGalleryItems.map((item) => (
-            <div className="selected-gallery-image" key={item.id} style={{ position: 'relative', marginBottom: '16px' }}>
-              <img src={item.imageURL} alt={item.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+            <div
+              className="selected-gallery-image"
+              key={item.id}
+              style={{ position: "relative", marginBottom: "16px" }}
+            >
+              <img
+                src={item.imageURL}
+                alt={item.name}
+                style={{ maxWidth: "100%", borderRadius: "10px" }}
+              />
               {item.text && (
                 <div
                   className="text-overlay"
@@ -220,11 +307,11 @@ function CreatePlaylist() {
                     color: textColor,
                     top: textPosition.y,
                     left: textPosition.x,
-                    position: 'absolute',
-                    width: '100%',
-                    transform: 'translate(-20%, -30%)',
-                    top: '50%',
-                    left: '50%',
+                    position: "absolute",
+                    width: "100%",
+                    transform: "translate(-20%, -30%)",
+                    top: "50%",
+                    left: "50%",
                   }}
                 >
                   {item.text}
@@ -233,7 +320,8 @@ function CreatePlaylist() {
             </div>
           ))}
         </div>
-      </div>
+      {/* </div> */}
+
 
       {popupContent && (
         <div className="popup">
@@ -270,6 +358,8 @@ function CreatePlaylist() {
           <Box sx={style}>
             <Typography id="modal-title" variant="h6" component="h2">
               {/* <Alert severity="info">This is an info alert — check it out!</Alert> */}
+
+
               <Alert severity="error">This is an error alert — check it out!</Alert>
 
 
@@ -282,30 +372,52 @@ function CreatePlaylist() {
           </Box>
         </Fade>
       </Modal>
-      {/* Modal for "Playlist successfully saved!" */}
       <Modal
-        aria-labelledby="success-modal-title"
-        aria-describedby="success-modal-description"
-        open={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={showSuccessModal}>
-          <Box sx={style}>
-            <Typography id="success-modal-title" variant="h6" component="h2">
-              <Alert severity="success">This is a success alert — check it out!</Alert>
-              Playlist successfully saved!
-            </Typography>
-            <Typography id="success-modal-description" sx={{ mt: 2 }}>
-            </Typography>
-            <Button onClick={() => setShowSuccessModal(false)}>Close</Button>
-          </Box>
-        </Fade>
-      </Modal>
+
+aria-labelledby="success-modal-title"
+
+aria-describedby="success-modal-description"
+
+open={showSuccessModal}
+
+onClose={() => setShowSuccessModal(false)}
+
+closeAfterTransition
+
+BackdropComponent={Backdrop}
+
+BackdropProps={{
+
+  timeout: 500,
+
+}}
+
+>
+
+<Fade in={showSuccessModal}>
+
+  <Box sx={style}>
+
+    <Typography id="success-modal-title" variant="h6" component="h2">
+
+      <Alert severity="success">This is a success alert — check it out!</Alert>
+
+      Playlist successfully saved!
+
+    </Typography>
+
+    <Typography id="success-modal-description" sx={{ mt: 2 }}>
+
+    </Typography>
+
+    <Button onClick={() => setShowSuccessModal(false)}>Close</Button>
+
+  </Box>
+
+</Fade>
+
+</Modal>
+//    
     </div>
   );
 }

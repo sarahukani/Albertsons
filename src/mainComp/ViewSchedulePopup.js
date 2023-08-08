@@ -1,133 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './ViewSchedulePopup.css';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import EditIcon from '@mui/icons-material/Edit';
-
-const data = [
-    {
-      id: 0,
-      title: "Mother's Day",
-      location: ['777 Butcher Ave, Los Angeles, CA','777 Butcher Ave, Los Angeles, CA','777 Butcher Ave, Los Angeles, CA','777 Butcher Ave, Los Angeles, CA'],
-      startingDate: '3/14/24',
-      startTime: '6:00',
-      startMeridiem: 'am',
-      endDate: '2/15/24',
-      endTime: '11:59',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 1,
-      title: 'Halloween',
-      location: '423 Roycroft Ave, Los Angeles, CA',
-      startingDate: '5/7/23',
-      startTime: '11:00',
-      startMeridiem: "pm",
-      endDate: '6/15/24',
-      endTime: '11:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 2,
-      title: "Father's Day",
-      location: '123 Lotus Ave, Los Angeles, CA',
-      startingDate: '3/15/24',
-      startTime: '5:00',
-      startMeridiem: 'am',
-      endDate: '4/15/24',
-      endTime: '5:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 3,
-      title: 'Halloween',
-      location: '423 Roycroft Ave, Los Angeles, CA',
-      startingDate: '5/7/23',
-      startTime: '11:00',
-      startMeridiem: "pm",
-      endDate: '6/15/24',
-      endTime: '11:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 4,
-      title: "Father's Day",
-      location: '123 Lotus Ave, Los Angeles, CA',
-      startingDate: '3/15/24',
-      startTime: '5:00',
-      startMeridiem: 'am',
-      endDate: '4/15/24',
-      endTime: '5:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 5,
-      title: 'Halloween',
-      location: '423 Roycroft Ave, Los Angeles, CA',
-      startingDate: '5/7/23',
-      startTime: '11:00',
-      startMeridiem: "pm",
-      endDate: '6/15/24',
-      endTime: '11:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 6,
-      title: "Father's Day",
-      location: '123 Lotus Ave, Los Angeles, CA',
-      startingDate: '3/15/24',
-      startTime: '5:00',
-      startMeridiem: 'am',
-      endDate: '4/15/24',
-      endTime: '5:00',
-      endMeridiem: 'pm'
-    }
-    ,
-    {
-      id: 7,
-      title: 'Halloween',
-      location: '423 Roycroft Ave, Los Angeles, CA',
-      startingDate: '5/7/23',
-      startTime: '11:00',
-      startMeridiem: "pm",
-      endDate: '6/15/24',
-      endTime: '11:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 8,
-      title: "Father's Day",
-      location: '123 Lotus Ave, Los Angeles, CA',
-      startingDate: '3/15/24',
-      startTime: '5:00',
-      startMeridiem: 'am',
-      endDate: '4/15/24',
-      endTime: '5:00',
-      endMeridiem: 'pm'
-    }
-    ,
-    {
-      id: 9,
-      title: 'Halloween',
-      location: '423 Roycroft Ave, Los Angeles, CA',
-      startingDate: '5/7/23',
-      startTime: '11:00',
-      startMeridiem: "pm",
-      endDate: '6/15/24',
-      endTime: '11:00',
-      endMeridiem: 'pm'
-    },
-    {
-      id: 10,
-      title: "Father's Day",
-      location: '123 Lotus Ave, Los Angeles, CA',
-      startingDate: '3/15/24',
-      startTime: '5:00',
-      startMeridiem: 'am',
-      endDate: '4/15/24',
-      endTime: '5:00',
-      endMeridiem: 'pm'
-    }
-  ];
+import EditPopup from "./EditPopup.js"
+import Database from '../data/database.js';
+import { useLocation } from 'react-router-dom'
 
   const convertToDateTime = (dateStr, timeStr, meridiem) => {
     // Split the time string into hours and minutes
@@ -146,37 +23,124 @@ const data = [
     }
     // Create a new Date object with the updated time
     const dateTimeStr = `${dateStr} ${actualHours.toString().padStart(2, '0')}:${minutes}`;
+    console.log(dateTimeStr);
     return new Date(dateTimeStr);
 };
   
   const sortEventsByDate = (events) => {
     return events.sort((a, b) => {
-      const aDateTime = convertToDateTime(a.startingDate, a.startTime, a.startMeridiem);
-      const bDateTime = convertToDateTime(b.startingDate, b.startTime, b.startMeridiem);
+      const aDateTime = convertToDateTime(a.startDate, a.startTime, a.startMeridiem);
+      const bDateTime = convertToDateTime(b.startDate, b.startTime, b.startMeridiem);
       return aDateTime - bDateTime;
     });
   };
 
-  //this will be called in Idris' code
-  const addNewPlaylist = (newEntry) => {
-    data.push(newEntry);
-  };
+const ViewSchedulePopup = ({ storeList, isOpen, onClose, content, user}) => {
+  const { state } = useLocation();
+  const [playlists, setPlaylists] = useState([]); // State to hold fetched playlists
+  const [playlistObj, setPlaylistObj] = useState({})
+  const [updatedStoreList, setUpdatedStoreList] = useState(storeList);
 
-const ViewSchedulePopup = ({ isOpen, onClose, content }) => {
+  useEffect(() => {
+    // Fetch playlist data from the database for each store in storeList
+    const fetchPlaylistData = async () => {
+      try {
+        let fetchedPlaylists = [];
+        let playlistIds = [];
+        let temp = await Database.getStoresByStoreIDs(user.stores);
+        setUpdatedStoreList(temp);
+        for (const store of storeList) {
+          const play = await Database.getCurrentLocationPlaylists(store.id);
+          for(let i=0; i<play.length; i++){
+            if( !(playlistIds.includes(play[i].id))){
+              fetchedPlaylists.push(play[i]);
+              playlistIds.push(play[i].id)
+            }
+          }
+        }
+
+        setPlaylists(fetchedPlaylists);
+      } catch (error) {
+        console.error('Error fetching playlist data:', error);
+      }
+    };
+
+    fetchPlaylistData();
+  }, []);
+
+  const [saveOpen, setSaveOpen] = useState(false);
+  // const [saveClose, setSaveClose] = useState(false);
+
   if (!isOpen) return null;
 
-  const sortedData = sortEventsByDate(data);
 
-  const handleEditClick = (event) => {
+  async function handleEditClick(event) {
     const buttonId=event.target.id;
-    console.log(data[buttonId]);
 
-    //when hitting this, i need to route to create schedule, open up that page, fill in the info associated
-    //with the edit button, and pass along a flag or something that says that we came from the edit page
-    //if the user hits the x button, go back to my code and change nothing (if edit and x out)
-    //if user hits schedule, send that info back to my code and update it
+    try {
+      let playlistInfo = await Database.getPlaylistbyID(buttonId);
+      console.log(playlistInfo);
+      setPlaylistObj(playlistInfo); 
+      setSaveOpen(true);
+    } catch (error) {
+      console.error('Error getting playlist by ID:', error);
+    }
+
   };
  
+  function closeSavePopup(){
+    setSaveOpen(false)
+  }
+
+  function getFormattedDate(bigNum){
+    // const date=new Date(fetchedPlaylists[0].startDate );
+    const date=new Date(bigNum);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // Months are zero-indexed, so add 1
+    const day = date.getDate();
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    return (formattedDate);
+  }
+
+  function getFormattedTime(bigNum){
+    const date=new Date(bigNum);
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
+    const seconds = date.getUTCSeconds();
+    const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return (formattedTime);
+  }
+
+  function getLocations(currentPlayID){
+    let stores=[];
+    // console.log(currentPlayID)
+    for(let i=0; i<updatedStoreList.length;i++){
+      let currPlays=updatedStoreList[i].playlists;
+      // console.log(currPlays);
+
+      if ((currPlays.includes(currentPlayID))){
+        // console.log('hi');
+        let currLocation={
+          address:updatedStoreList[i].location.address,
+          city:updatedStoreList[i].location.city,
+          state:updatedStoreList[i].location.state,
+          zip:updatedStoreList[i].location.zip,
+        }
+        stores.push(currLocation);
+      }
+    }
+    console.log(`The stores for this playlists: ${currentPlayID} `, stores);
+
+    return stores;
+  }
+
+  function delayedFunction() {
+    setTimeout(() => {
+      // Code to be executed after the time delay
+      console.log('Delayed code executed from delayedFunction');
+    }, 3000); // Delay of 3000 milliseconds (3 seconds)
+  }
+
   return (
     <div className="popup-overlay">
       <div className='popup-view-sched'>
@@ -185,35 +149,53 @@ const ViewSchedulePopup = ({ isOpen, onClose, content }) => {
           sx={{height:'2vw', width:'2vw'}}
           onClick={onClose}/>
         <div className="scrollable">
-            {sortedData.map((item) => (
-            <div className="sched-info-box" key={item.id}>
-                <div className="title-view-sched">{item.title}</div>
+            {playlists
+            .sort((a, b) => a.startDate - b.startDate) 
+            .map((item) => (
+            <div className="sched-info-box" key={item.id} sx={{display:'grid'}}>
+                <div className="title-view-sched">{item.name}</div>
                 <div className="headers" style={{ left: '1%', top: '2.2vw' }}>
                 Date & Time
                 </div>
                 <div className="headers-info" style={{ left: '1%' }}>
-                {item.startingDate +' ' +item.startTime+ item.startMeridiem +' - '+ item.endDate+ ' '+ item.endTime + item.endMeridiem}
+                {/* const date=new Date(fetchedPlaylists[0].startDate ); */}
+                {/* {item.startDate +' ' +item.startTime+ item.startMeridiem +' - '+ item.endDate+ ' '+ item.endTime + item.endMeridiem} */}
+                {getFormattedDate(item.startDate)+ " "} 
+                {getFormattedTime(item.startDate)+ " to "}
+                <br/>
+                {getFormattedDate(item.endDate)+ " "}
+                {getFormattedTime(item.endDate)}
                 </div>
                 <div className="headers" style={{ left: '50%', top:'2.2vw' }}>
                 Locations
                 </div>
                 <div className='scrollable-locations'>
-                  {Array.isArray(item.location)
-                      ? item.location.map((location, index) => (
-                          <div key={index} className="location-item">
-                            {location}
-                          </div>
-                        ))
-                      : <div className="location-item">{item.location}</div>
+                    {/* {delayedFunction} */}
+                    {getLocations(item.id).map((store) => 
+                      <div className='location-item'>
+                        {store.address+" "}{store.city}{", "+store.state+" "}{store.zip}
+                      </div>
+                    )
                     }
+                
                 </div>
                 <EditIcon 
                   id={item.id} 
                   sx={{width:'2vw', height:'2vw'}}
                   className="edit-icon" 
-                  onClick={handleEditClick}/>
+                  onClick={handleEditClick}
+                  />
             </div>
             ))}
+
+            {saveOpen && (
+                  <div className="popup">
+                  <div className="popup-content">
+                  <EditPopup playlist={playlistObj} onClose={closeSavePopup}/>
+                    <button className="close-btn" onClick={closeSavePopup}>X</button>
+                  </div>
+                </div>
+              )}
         </div>
       </div>
     </div>

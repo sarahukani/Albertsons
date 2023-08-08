@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Uploader from '../uploadWidget/Uploader.js'
 import { useLocation } from 'react-router-dom';
 import Database from '../data/database';
-
+import { useNavigate } from 'react-router-dom';
 
 const Gallery2 = (props) => {
     console.log("im here")
@@ -15,6 +15,8 @@ const Gallery2 = (props) => {
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const { state } = useLocation();
+    // const fileInputRef = useRef(null);
+    const navigate = useNavigate();
 
     let storeList = {}
     // console.log("Props.storeList", props.storeList);
@@ -97,9 +99,21 @@ const Gallery2 = (props) => {
         storeList = state.storeList;
     }
 
+
+ const navigateToGallery = () => {
+    localStorage.setItem('uploadedImages', JSON.stringify(images));
+    navigate('/gallery', {state: {
+      storeName: props.storeName,
+      storeList: props.storeList,
+      user: props.user
+    }});
+  };
+
     return (
         <div className="gallery-container2">
-            All uploads
+             <button className="create-to-gallery-btn" onClick={navigateToGallery}>
+            Gallery
+             </button>
             <Icon storeName={storeName} storeList={storeList} user={user} />
             <div className="image-grid2">
                 {images.map((image, index) => (
