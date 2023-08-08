@@ -277,21 +277,33 @@ export default class Database {
     // **************************************************************************
     // ALBERT QUERIES ***********************************************************
     // **************************************************************************
-    static async getProductRecommendations(storeID, category, age, weather, holiday) {
+  static async getProductRecommendations(storeID, category, age, weather, holiday) {
         const queryParams = new URLSearchParams();
         queryParams.append("storeid", storeID);
         queryParams.append("category", category);
-        queryParams.append("demographic", age);
-        queryParams.append("weather", weather);
-        queryParams.append("holiday", holiday);
+        queryParams.append("demographic", "");
+        queryParams.append("weather", "");
+        queryParams.append("holiday", "");
 
-        const url = `${albertOrigin}/getrec/script-call/?${queryParams.toString()}`;
-        console.log(url);
-        const response = await fetch(url);
+        const url = `${backendOrigin}/albert/product-recs`; // Endpoint on your Spring Boot backend
+        const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            storeID,
+            category,
+            age,
+            weather,
+            holiday,
+        }),
+        });
+
         const productRecommendations = await response.json();
         console.log(productRecommendations);
-        return productRecommendations;
-   }
+        return productRecommendations
+    }
 
     static async getEditedImage(pID, title, price, description, storeID) {
         const queryParams = new URLSearchParams();
