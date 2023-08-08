@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const Gallery = (props) => {
+    console.log("im here!")
     const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [description, setDescription] = useState('');
@@ -143,7 +144,7 @@ const Gallery = (props) => {
 
 
     return (
-        <div className="gallery-container" >
+        <div className="gallery-container">
             All upload
             <div className="italic-text">
                 <br></br>
@@ -152,60 +153,54 @@ const Gallery = (props) => {
             <Icon storeName={storeName} storeList={storeList} user={user} />
             <div className="image-grid">
                 {images.map((image, index) => (
-                    <div
-                        className={`image-item ${image === selectedImage ? 'selected' : ''}`}
-                        key={index}
-                        onClick={() => handleImageSelect(image)}
-                        style={{ position: 'relative' }}
-                    >
-                        {/* Display the image */}
-                        {image.imageURL ? (
-                            <img src={image.imageURL} alt={image.name} />
-                        ) : (
-                            <div className="image-placeholder">Image Not Available</div>
-                        )}
 
+                    <div className="image-box">
+                        <div
+                            className={`image-item ${image === selectedImage ? 'selected' : ''}`}
+                            key={index}
+                            onClick={() => handleImageSelect(image)}
+                        >
+                            {/* Display the image */}
+                            {image.imageURL ? (
+                                <img src={image.imageURL} alt={image.name} />
+                            ) : (
+                                <div className="image-placeholder">Image Not Available</div>
+                            )}
 
-                        {/* Display the description of the selected image */}
-                        {image === selectedImage && (
-                            <div className="image-description">
-                                <p>{description}</p>
-                            </div>
-                        )}
-
-
-
-
-                        {/* Show input container only for the selected image */}
-                        {image === selectedImage && (
-                            <div className="containerStyle" onClick={handleInputClick}>
-                                <label htmlFor="userInput" style={{ marginBottom: '5px' }}></label>
-                                <input
-                                    type="text"
-                                    id="userInput"
-                                    // value={inputValue}
-                                    onChange={handleInputChange}
-                                    style={{ padding: '5px', marginBottom: '10px' }}
-                                />
-                                <button onClick={handleSubmit}>Submit</button>
-                            </div>
-                        )}
-
-
-                        {/* Display the edit icon for all images */}
-                        {image.imageURL && (
-                            <div className="edit-container">
-                                <div className="edit-button" onClick={handleSelectIcon}>
-                                    <EditIcon />
+                            {/* Display the description of the selected image */}
+                            {image === selectedImage && (
+                                <div className="image-description">
+                                    <p>{description}</p>
                                 </div>
-                            </div>
-                        )}
+                            )}
+
+                            {/* Show input container only for the selected image */}
+                            {image === selectedImage && (
+                                <div className="containerStyle" onClick={handleInputClick}>
+                                    <label htmlFor={`userInput${index}`} ></label>
+                                    <input
+                                        type="text"
+                                        id={`userInput${index}`}
+                                        // value={inputValue}
+                                        onChange={handleInputChange}
+                                    />
+                                    <button onClick={handleSubmit}>Submit</button>
+                                </div>
+                            )}
+
+                            {/* Display the edit icon for all images */}
+                            {image.imageURL && (
+                                <div className="edit-container">
+                                    <div className="edit-button" onClick={handleSelectIcon}>
+                                        <EditIcon />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     );
-};
-
-
+}
 export default Gallery;

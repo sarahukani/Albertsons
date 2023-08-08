@@ -8,6 +8,7 @@ import Database from '../data/database';
 
 
 const Gallery2 = (props) => {
+    console.log("im here")
     const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [description, setDescription] = useState('');
@@ -97,13 +98,14 @@ const Gallery2 = (props) => {
     }
 
     return (
-        <div className="gallery-container">
+        <div className="gallery-container2">
             All uploads
             <Icon storeName={storeName} storeList={storeList} user={user} />
-            <div className="image-grid">
+            <div className="image-grid2">
                 {images.map((image, index) => (
+                <div className="image-box2">
                     <div
-                        className={`image-item ${image === selectedImage ? 'selected' : ''}`}
+                        className={`image-item2 ${image === selectedImage ? 'selected' : ''}`}
                         key={index}
                         onClick={() => handleImageSelect(image)}
                         style={{ position: 'relative' }}
@@ -117,11 +119,12 @@ const Gallery2 = (props) => {
 
                         {/* Display the description of the selected image */}
                         {image === selectedImage && (
-                            <div className="image-description">
+                            <div className="image-description2">
                                 <p>{description}</p>
                             </div>
                         )}
                     </div>
+                </div>
                 ))}
             </div>
         </div>
