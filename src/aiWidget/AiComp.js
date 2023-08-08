@@ -122,7 +122,7 @@ const closeHoliday = () =>{
 
 return(
     <div className="scroll-div">
-        <p className="firstText">Start by <b><i>inputting the following fields:</i></b></p>
+        <p className="firstText"> <b>Input the following fields:</b></p>
         <p className="secondText">Here are some <b>relevant images:</b></p>
         <div className="detailedDescrip">
                 <h3 className="locName">Location:</h3>

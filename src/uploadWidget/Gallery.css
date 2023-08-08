@@ -90,7 +90,8 @@
   
   
   .image-item.selected {
-  background-color: rgba(259, 67,  95, 0.7);
+  background-color: rgba(61, 163, 227, 0.9);
+  border-radius: 3%;
   }
   
   
