@@ -266,7 +266,6 @@ function CreatePlaylist() {
               }
             }}
           /> */}
-          />
 
           <button className="Schedulebtn" onClick={() => setPopupContent(true)}>
             Schedule
@@ -276,10 +275,6 @@ function CreatePlaylist() {
             Export
           </button> */}
 
-          <button className="Exportbtn" onClick={handleExport}>
-            Export
-          </button>
-
           {selectedGalleryItems.length > 0 && (
             <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
               Save
@@ -287,12 +282,12 @@ function CreatePlaylist() {
           )}
         </div>
 
-//         <div
-//           ref={textOverlayRef}
-//           onMouseDown={handleTextDragStart}
-//           onMouseMove={handleTextDrag}
-//         >
-//         <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+{/* //         <div
+          ref={textOverlayRef}
+          onMouseDown={handleTextDragStart}
+          onMouseMove={handleTextDrag}
+        >
+        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}> */}
 
           {selectedGalleryItems.map((item) => (
             <div
@@ -325,7 +320,8 @@ function CreatePlaylist() {
             </div>
           ))}
         </div>
-      </div>
+      {/* </div> */}
+
 
       {popupContent && (
         <div className="popup">
@@ -361,10 +357,6 @@ function CreatePlaylist() {
             <Typography id="modal-title" variant="h6" component="h2">
               {/* <Alert severity="info">This is an info alert — check it out!</Alert> */}
 
-
-//               <Alert severity="error">
-//                 This is an error alert — check it out!
-//               </Alert>
 
               <Alert severity="error">This is an error alert — check it out!</Alert>
 
@@ -423,30 +415,7 @@ BackdropProps={{
 </Fade>
 
 </Modal>
-//       {/* Modal for "Playlist successfully saved!" */}
-//       <Modal
-//         aria-labelledby="success-modal-title"
-//         aria-describedby="success-modal-description"
-//         open={showSuccessModal}
-//         onClose={() => setShowSuccessModal(false)}
-//         closeAfterTransition
-//         BackdropComponent={Backdrop}
-//         BackdropProps={{
-//           timeout: 500,
-//         }}
-//       >
-//         <Fade in={showSuccessModal}>
-//           <Box sx={style}>
-//             <Typography id="success-modal-title" variant="h6" component="h2">
-//               <Alert severity="success">This is a success alert — check it out!</Alert>
-//               Playlist successfully saved!
-//             </Typography>
-//             <Typography id="success-modal-description" sx={{ mt: 2 }}>
-//             </Typography>
-//             <Button onClick={() => setShowSuccessModal(false)}>Close</Button>
-//           </Box>
-//         </Fade>
-//       </Modal>
+//    
     </div>
   );
 }
