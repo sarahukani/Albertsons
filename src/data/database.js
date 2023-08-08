@@ -58,7 +58,7 @@ export default class Database {
     static async getStoresByStoreIDs(storeIDs) {
         let storeList = [];
         for (let i = 0; i < storeIDs.length; i++) {
-            storeList.push(Database.getStoreByID(storeIDs[i]));
+            storeList.push(await Database.getStoreByID(storeIDs[i]));
         }
         return storeList;
     }
@@ -95,7 +95,7 @@ export default class Database {
         const response = await fetch(`${backendOrigin}/stores/add-playlist/${storeID}/${playlistID}`, {
             method:"PUT",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type":  "application/json",
             }
         });
 
@@ -214,6 +214,35 @@ export default class Database {
         const response = await fetch(`${backendOrigin}/playlists/create`, requestOptions);
         const playlistData = await response.json();
         return playlistData;
+    }
+
+
+    static async editPlaylist(plID, newName, newStartDate, newEndDate){
+        const requestBody = {
+            "name" : newName,
+            "startDate": newStartDate,
+            "endDate" : newEndDate
+        };
+
+        console.log(JSON.stringify(requestBody));
+        console.log(plID);
+ 
+        try {
+            const response = await fetch(`${backendOrigin}/playlists/edit/${plID}`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const editedPlaylistData = await response.json();
+            return editedPlaylistData;
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 
     static async deletePlaylists(plID) {

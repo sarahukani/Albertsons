@@ -336,7 +336,7 @@ export default function Icon(props){ //props param to pass in store name from ma
 
                     </div>
 
-                    <ViewSchedulePopup isOpen={isPopupOpen} onClose={handleClosePopup} content={popupContent} />
+                    <ViewSchedulePopup storeList={props.storeList} isOpen={isPopupOpen} onClose={handleClosePopup} content={popupContent} user={props.user}/>
 
                 </div>
 
