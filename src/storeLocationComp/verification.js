@@ -42,7 +42,7 @@ const Verification = () => {
             <p className="storeName"><b>Store Name:</b> {state.storeName}</p>
             <ul className="locationList">
               {state.chosenLoc.map((store, index) =>
-                  <li>{store.location.address}, {store.location.city}, {store.location.state} {store.location.zip}   (SID: {store.id})</li>
+                  <li>{store.location.address}, {store.location.city}, {store.location.state} {store.location.zip} </li>
               )}
             </ul>
         </div>

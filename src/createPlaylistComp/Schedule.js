@@ -34,6 +34,8 @@ const Schedule = ({ onSave }) => {
     endDateTime.setMinutes(endTime.getMinutes());
     setUploadSuccess(true);
     setShowModal(true);
+    console.log(startDateTime)
+    console.log(endDateTime)
     // onSave(startDateTime, endDateTime);
     
   };
