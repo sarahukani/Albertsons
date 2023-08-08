@@ -12,10 +12,11 @@
     
     
 .recImg{
-    width: 21vw;
-    height: 28vh;
-    margin-left: 1.5vw;
+    width: 20vw;
+    height: 35vh;
+    margin-left: 2vw;
     margin-top: 6vh;
+    object-fit: contain; /* Add this line */
 }
     
     

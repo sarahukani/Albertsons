@@ -10,7 +10,7 @@ import "./Schedule.css"
 
  
 
-const Schedule = ({ onSave }) => {
+const Schedule = ({ onSave, playlistTitle, storeList }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
@@ -37,7 +37,7 @@ const Schedule = ({ onSave }) => {
 
     console.log(startDateTime)
     console.log(endDateTime)
-    // onSave(startDateTime, endDateTime);
+    onSave(startDateTime, endDateTime);
     
   };
 
@@ -70,18 +70,14 @@ const Schedule = ({ onSave }) => {
   return (
     <div className="schedule-container">
       <div className="section1">
-        <div className="section1-heading">Choose Your Playlist:</div>
+        <div className="section1-heading">Your Playlist:</div>
         <select className="playlistSelection">
-          <option>Playlist 1</option>
-          <option>Playlist 2</option>
-          <option>Playlist 3</option>
-          <option>Playlist 4</option>
-          <option>Playlist 5</option>
+          <option>{playlistTitle}</option>
         </select>
         <div className="locationChoice">Choose Locations:</div>
         <div className="storeList-container">
           <ul className="storeListPopup">
-            {sl.map((store, index) =>
+            {storeList.map((store, index) =>
             <li className="storeNameList">
               <label>
                 <input 
