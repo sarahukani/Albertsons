@@ -1,3 +1,5 @@
+
+ 
  .detailedDescrip{
     padding: 0.8vw;
     width: 26vw;
@@ -8,6 +10,7 @@
     position: absolute;
     top: 4.5vh;
     left: -0.3vw;
+    font-family: 'Lucida Grande';
 }
     
     
@@ -30,6 +33,7 @@
     top: 4.5vh;
     left: 28.5vw;
     overflow-y: scroll;
+    font-family: 'Lucida Grande';
 }
     
     
@@ -47,6 +51,7 @@
     position: absolute;
     top: 40vh;
     left: -0.3vw;
+    font-family: 'Lucida Grande';
 }
     
     
@@ -61,6 +66,7 @@
     left: 1vw;
     font-size: 1.2vw;
     color: white;
+    font-family: 'Lucida Grande';
 }
     
     
@@ -70,15 +76,17 @@
     left: 29vw;
     font-size: 1.2vw;
     color: white;
+    font-family: 'Lucida Grande';
 }
     
     
 .thirdText{
     position: absolute;
     top: 46vh;
-    left: 2vw;
-    font-size: 1.2vw;
-    color: #FFFFFF
+    left: 3vw;
+    font-size: 1vw;
+    color: #FFFFFF;
+    font-family: 'Lucida Grande';
 }
     
     
@@ -284,6 +292,7 @@ top: 1vh;
     top: 51vh;
     left: 0.5vw;
     color:white;
+    font-family: 'Lucida Grande';
 }
     
 

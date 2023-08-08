@@ -74,7 +74,7 @@ export default function Banner(){
         <div className="left-side">
         </div>
         <div className="right-side">
-            {(!state) ? <h1 className="welcome">Welcome!</h1> : <h1 className="welcome">Welcome {state.user.firstName}!</h1>}
+            {(!state) ? <h1 className="welcome">Welcome!</h1> : <h1 className="welcome">Welcome, {state.user.firstName}!</h1>}
             <h1 className="header">Banner Selection</h1>
             <p className="subHeader">Select ONE banner from the list below.</p>
             <ul className="storeList">

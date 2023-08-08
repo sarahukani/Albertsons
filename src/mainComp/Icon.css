@@ -15,16 +15,21 @@
 }
 
 .icon-main{
-    height:4.5vw;
+    height:5vw;
     width:4.5vw;
     position: absolute;
     top: 1.15vw;
     right: 2.3vw;
+ 
+
+
 }
 
 .logo{
     height: auto;
-    max-width: 8vw;
+    max-width: 25vw;
+    margin-left: 2vw;
+
 }
 
 .logo-container{
@@ -55,6 +60,7 @@
 }
 
 
+
 @media screen and (max-width: 900px){
     .divider {
         border-top: 1px solid black;
@@ -78,11 +84,15 @@
         position: absolute;
         top: 1.2vw;
         right: 2vw;
+
     }
+
+
     
     .logo{
         height: auto;
         max-width:10vw;
+        
     }
 
     .option-text {
@@ -94,6 +104,7 @@
         left: 1%;
         top: 3.5vw;
         transform: translateY(-50%);
+        color: transparent;
     }
     
 }

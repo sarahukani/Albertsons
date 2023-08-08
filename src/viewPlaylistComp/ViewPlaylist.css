@@ -16,7 +16,9 @@
     left: 1.7%;
     transform: translate(-10%, -10%);
     font-weight:bold;
-    color:gray;
+    color:white;
+    font-size: 35px;
+    left: 70px;
   }
 
   .etc-icon{
@@ -25,12 +27,13 @@
     height:2vw;
     right: 1.8vw;
     top:1vh;
+  
   }
   
   .image-container {
     position: relative;
     height: 25vh;
-
+    background-color: #FFFF;
   }
   
   .image-container .MuiCardMedia-root {
@@ -40,7 +43,9 @@
     width: 15vw; /* Set the width to 100% to fill the container */
     height: 28vh; /* Set the height to 100% to fill the container */
     opacity: 0;
+    color: white;
     transition: opacity 0.3s ease-in-out;
+    
   }
 
   .more-options-dropdown{
@@ -81,19 +86,20 @@
   }
   
   .MuiCard-root {
-    background-color:#D9D9D9;
+    background-color:white;
   }
   
   .MuiCardMedia-root {
     background-size: cover;
     background-position: center;
+    background-color:white;
   }
   
   .card-container {
     /* display: flex;
     flex-direction: column;
     align-items: center; */
-
+    color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -137,10 +143,11 @@
   }
   .card-title {
     position:flex;
-    background-color: rgb(230, 226, 226);
-    color: black;
+    background-color: #0C5497;
+    color: white;
     border: none;
-    border-top: 1px solid #EAEAEA;
+    border-top: 0px solid #EAEAEA;
+    border-radius: 2px;
     /* padding: 5px; */
     /* margin-top: 10px; */
     width: 100%;

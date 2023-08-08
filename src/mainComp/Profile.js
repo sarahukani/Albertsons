@@ -112,7 +112,7 @@ export default function Profile(){
 
                 </div>
 
-                <div className='user-email'>{user.email}</div>
+                <div className='user-email'>EMAIL: {user.email}</div>
 
                 <div className='your-stores'>My currently selected stores:</div>
 

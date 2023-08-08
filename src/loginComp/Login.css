@@ -26,12 +26,14 @@
     font-size: 4vw;
     text-align: right;
     margin-top: 10%;
+    /* font-family: 'Lucida Grande'; */
   }
   
   .subLogin {
     color: grey;
     margin-top: -1%;
     font-size: 2vw;
+    font-family: 'Lucida Grande';
   }
   
   h5 {
@@ -44,6 +46,7 @@
   .newUser{
     font-size: 1.1vw;
     color: #20509c;
+    font-family: 'Lucida Grande';
   }
   
   .email{
@@ -55,7 +58,7 @@
     max-width: 30vw;
     text-align: center;
     background-color: #eaeaea;
-    margin-top: -1%;
+    margin-top: 2%;
   }
 
   .pass {
@@ -76,14 +79,16 @@
     border-radius: 15px;
     outline: none;
     width: 100%;
-    max-width: 35vw;
-    height: 8%;
+    max-width: 32vw;
+    height: 6vh;
     text-align: center;
     background-color: #20409c;
     font-size: 1.5vw;
     color: white;
     font-weight: bold;
-    margin-top: 2%;
+    margin-top: 5%;
+    font-family: 'Lucida Grande';
+  
   }
 
   .loginBtn:hover {
@@ -158,6 +163,13 @@
         height: 6vw;
         font-size: 2.5vw;
     }
+    .newUser{
+      font-size: 1.1vw;
+      color: #20509c;
+      font-size: 8px;
+      margin-right: 11%;
+    }
+    
   }
 
   @media screen and (max-width: 480px) {
@@ -204,13 +216,20 @@
     }
 
     .loginBtn{
-        text-align: center;
-        margin-top: 3%;
-        margin-left: -10%;
-        width: 100%;
-        max-width: 60vw;
-        height: 7vw;
-        font-size: 2.5vw;
+      padding: 1vw;
+      border: 0vw solid #20409c;
+      border-radius: 15px;
+      outline: none;
+      width: 100%;
+      max-width: 52vw;
+      height: 3vh;
+      text-align: center;
+      background-color: #20409c;
+      font-size: 1.5vw;
+      color: white;
+      font-weight: bold;
+      margin-top: 5%;
+      margin-right: 6vw;
     }
   }
   
