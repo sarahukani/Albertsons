@@ -284,6 +284,7 @@ top: 1vh;
     
     
 .recList{
+    color: white;
     font-size: 1.15vw;
     overflow: break-word;
     width: 22.5vw;
@@ -523,6 +524,7 @@ top: 1vh;
         font-size: 2vw;
     }
     .recList{
+        color: white;
         font-size: 1.9vw;
         overflow: break-word;
         width: 37vw;
@@ -761,6 +763,16 @@ top: 1vh;
     top: 20.5vw;
     left: 3.5vw;
     font-size: 2.4vw;
+    }
+
+    .recList{
+        color: white;
+        font-size: 1.9vw;
+        overflow: break-word;
+        width: 37vw;
+        position: absolute;
+        top: 49vh;
+        left: 0.1vw;
     }
     
     }

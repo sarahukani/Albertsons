@@ -1,20 +1,22 @@
-import React, { useState, useRef } from "react";
-import html2canvas from "html2canvas";
-// import { SketchPicker } from "react-color";
-import jsPDF from "jspdf";
-import "./createPlaylist.css";
-import Gallery2 from "../uploadWidget/Gallery2";
-import TextFieldsIcon from "@mui/icons-material/TextFields";
-import Database from "../data/database";
-import Schedule from "./Schedule";
-import { useLocation } from "react-router-dom";
-import Modal from "@mui/material/Modal";
-import Backdrop from "@mui/material/Backdrop";
-import Fade from "@mui/material/Fade";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Alert from "@mui/material/Alert";
+import React, { useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
+import { SketchPicker } from 'react-color';
+import jsPDF from 'jspdf';
+import './createPlaylist.css';
+import Gallery2 from '../uploadWidget/Gallery2';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import Database from '../data/database';
+import Schedule from './Schedule';
+import { useLocation } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+
+
 
 const style = {
   position: "absolute",
@@ -41,12 +43,16 @@ function CreatePlaylist() {
   const [isScheduled, setIsScheduled] = useState(false);
   const { state } = useLocation();
 
+
   console.log(
     "This is our storelist prop that was passed in: ",
     state.storeList
   );
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);  
+
+//   console.log('This is our storelist prop that was passed in: ', state.storeList);
+
 
   const handleClosePopup = () => {
     setPopupContent(false);
@@ -61,6 +67,7 @@ function CreatePlaylist() {
       const content = textOverlayRef.current;
       // Capture the content as an image using html2canvas
       const canvas = await html2canvas(content, { scale: 2 });
+
       const imageData = canvas.toDataURL("image/jpeg", 1.0);
 
       // Create a new jsPDF instance
@@ -89,11 +96,14 @@ function CreatePlaylist() {
       await Database.uploadProductImages(fileList);
 
       console.log("PDF uploaded successfully!");
+
     } catch (error) {
       console.error("Error exporting and uploading PDF:", error);
     }
   };
 
+//   const [showSuccessModal, setShowSuccessModal] = useState(false);  
+  
   const handleExport = () => {
     handleExportAndUpload();
   };
@@ -151,6 +161,7 @@ function CreatePlaylist() {
 
   const enterTitleText = title === "Enter a title" ? title : null;
 
+
   // Modal-related state and handlers
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
@@ -158,6 +169,7 @@ function CreatePlaylist() {
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
+
         <Gallery2
           storeList={state.storeList}
           onSelectImage={(image) =>
@@ -203,6 +215,26 @@ function CreatePlaylist() {
               style={{ width: "30px", height: "30px", marginRight: "10px" }}
               onClick={() => setShowColorPicker(!showColorPicker)} */}
             {/* {showColorPicker && (
+        <Gallery2 storeList={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
+      </div>
+
+      <div className="playlist-section">
+        <div className="title">
+          <span onClick={handleEnterTitle} style={{ cursor: 'pointer' }}>
+            {enterTitleText}
+          </span>
+        </div>
+
+        <div className="create-section" style={{ background: 'black' }}>
+          <div style={{ position: 'relative' }}>
+            <img
+              src="https://3.bp.blogspot.com/-twz3yfFATFY/T3SRLKVd-yI/AAAAAAAAAKo/xFSYgRIcwrc/s1600/COLOUR-WHEEL.jpg"
+              alt="Color Wheel"
+              style={{ width: '30px', height: '30px', marginRight: '10px' }}
+              onClick={() => setShowColorPicker(!showColorPicker)}
+            />
+
+            {showColorPicker && (
               <div
                 style={{
                   position: "absolute",
@@ -218,6 +250,12 @@ function CreatePlaylist() {
 
           {/* <TextFieldsIcon
             style={{ color: "white" }}
+          <span className="titleName" onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
+            {title !== 'Enter a title' && title}
+          </span>
+
+          <TextFieldsIcon
+            style={{ color: 'white' }}
             onClick={() => {
               const textInput = window.prompt("Enter your text:", "");
               if (textInput !== null) {
@@ -228,6 +266,7 @@ function CreatePlaylist() {
               }
             }}
           /> */}
+          />
 
           <button className="Schedulebtn" onClick={() => setPopupContent(true)}>
             Schedule
@@ -237,6 +276,10 @@ function CreatePlaylist() {
             Export
           </button> */}
 
+          <button className="Exportbtn" onClick={handleExport}>
+            Export
+          </button>
+
           {selectedGalleryItems.length > 0 && (
             <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
               Save
@@ -244,11 +287,13 @@ function CreatePlaylist() {
           )}
         </div>
 
-        <div
-          ref={textOverlayRef}
-          onMouseDown={handleTextDragStart}
-          onMouseMove={handleTextDrag}
-        >
+//         <div
+//           ref={textOverlayRef}
+//           onMouseDown={handleTextDragStart}
+//           onMouseMove={handleTextDrag}
+//         >
+//         <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+
           {selectedGalleryItems.map((item) => (
             <div
               className="selected-gallery-image"
@@ -315,9 +360,15 @@ function CreatePlaylist() {
           <Box sx={style}>
             <Typography id="modal-title" variant="h6" component="h2">
               {/* <Alert severity="info">This is an info alert — check it out!</Alert> */}
-              <Alert severity="error">
-                This is an error alert — check it out!
-              </Alert>
+
+
+//               <Alert severity="error">
+//                 This is an error alert — check it out!
+//               </Alert>
+
+              <Alert severity="error">This is an error alert — check it out!</Alert>
+
+
               Your playlist is not saved!
             </Typography>
             <Typography id="modal-description" sx={{ mt: 2 }}>
@@ -372,6 +423,30 @@ BackdropProps={{
 </Fade>
 
 </Modal>
+//       {/* Modal for "Playlist successfully saved!" */}
+//       <Modal
+//         aria-labelledby="success-modal-title"
+//         aria-describedby="success-modal-description"
+//         open={showSuccessModal}
+//         onClose={() => setShowSuccessModal(false)}
+//         closeAfterTransition
+//         BackdropComponent={Backdrop}
+//         BackdropProps={{
+//           timeout: 500,
+//         }}
+//       >
+//         <Fade in={showSuccessModal}>
+//           <Box sx={style}>
+//             <Typography id="success-modal-title" variant="h6" component="h2">
+//               <Alert severity="success">This is a success alert — check it out!</Alert>
+//               Playlist successfully saved!
+//             </Typography>
+//             <Typography id="success-modal-description" sx={{ mt: 2 }}>
+//             </Typography>
+//             <Button onClick={() => setShowSuccessModal(false)}>Close</Button>
+//           </Box>
+//         </Fade>
+//       </Modal>
     </div>
   );
 }
