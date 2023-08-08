@@ -1,0 +1,615 @@
+.schedule-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+  }
+  
+  .edit-playlist-name{
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    border: 1px solid #b8b8b8;
+    width: 16vw;
+    height: 5vh;
+    text-align: center;
+    margin-top: -1vh;
+    margin-left: 1vw;
+  }
+
+  .section1 {
+    flex-basis: 30%; 
+    margin-right: 1vw;
+  }
+  
+  .section1-heading {
+    font-size: 1.7vw;
+    font-weight: bold;
+    /* position: absolute;
+    top: 24vh;
+    left: 20.5vw; */
+    margin-top: 4.5vh;
+    text-align: center;
+  }
+  
+  .playlistSelection{
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    border: 1px solid #b8b8b8;
+    width: 16vw;
+    height: 5vh;
+    margin-top: 3vh;
+    margin-left: 1vw;
+  }
+  
+  .locationChoice{
+    margin-top: 11vh;
+    font-size: 1.7vw;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .storeListPopup{
+    /* position: absolute;
+    top: 52vh;
+    left: 19vw; */
+    margin-top: 3vh;
+    list-style: none;
+  }
+  
+  .checktext{
+    margin-left: 0.8vw;
+  }
+  
+  .section2 {
+    flex-basis: 30%; 
+  }
+  
+  
+  .section2-heading {
+    font-size: 1.7vw;
+    font-weight: bold;
+    /* position: absolute;
+    top: 23.5vh;
+    left: 42vw; */
+    margin-top: 0.8vh;
+    margin-left: -3.4vw;
+    text-align: center;
+  }
+
+  .save-button{
+    position:absolute;
+    top: 75vh;
+    right: 20vw;
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+    height: 6vh;
+    width: 28vw;
+  }
+
+  .cancel-button{
+    position:absolute;
+    top: 75vh;
+    left: 20vw;
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+    height: 6vh;
+    width: 28vw;
+  }
+
+  .playlist-title{
+    font-size: 1.5vw;
+    position:absolute;
+    left:35vw;
+    /* font-size:5vh; */
+    /* top: */
+  }
+
+  .start-headers{
+    position:absolute;
+    left:28vw;
+    top:27vh;
+  }
+
+  .end-headers{
+    position:absolute;
+    right:28vw;
+    top:27vh;
+  }
+
+  @media (max-width: 768px) {
+    .schedule-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: black;
+      flex-wrap: wrap; 
+      justify-content: space-between; 
+    }
+    
+    
+    .section1 {
+      flex-basis: 30%; 
+      margin-right: 1vw;
+    }
+    
+    .section1-heading {
+      font-size: 1.7vw;
+      font-weight: bold;
+      /* position: absolute;
+      top: 24vh;
+      left: 20.5vw; */
+      margin-top: 4.5vh;
+      text-align: center;
+    }
+    
+    .playlistSelection{
+      border-radius: 10px;
+      background-color: #DFDFDF;
+      border: 1px solid #b8b8b8;
+      width: 16vw;
+      height: 5vh;
+      margin-top: 3vh;
+      margin-left: 1vw;
+    }
+    
+    .locationChoice{
+      margin-top: 11vh;
+      font-size: 1.7vw;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .storeListPopup{
+      /* position: absolute;
+      top: 52vh;
+      left: 19vw; */
+      margin-top: 3vh;
+      list-style: none;
+    }
+    
+    .checktext{
+      margin-left: 0.8vw;
+    }
+    
+    .section2 {
+      flex-basis: 30%; 
+    }
+    
+    
+    .section2-heading {
+      font-size: 1.7vw;
+      font-weight: bold;
+      /* position: absolute;
+      top: 23.5vh;
+      left: 42vw; */
+      margin-top: 0.8vh;
+      margin-left: -3.4vw;
+      text-align: center;
+    }
+  
+    .save-button{
+      position:absolute;
+      top: 75vh;
+      right: 20vw;
+      background-color: #20509c;
+      color: white;
+      padding: 5px 20px;
+      font-size: 1.5vw;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #20509C;
+      height: 6vh;
+      width: 28vw;
+    }
+  
+    .cancel-button{
+      position:absolute;
+      top: 75vh;
+      left: 20vw;
+      background-color: #20509c;
+      color: white;
+      padding: 5px 20px;
+      font-size: 1.5vw;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #20509C;
+      height: 6vh;
+      width: 28vw;
+    }
+  
+    .playlist-title{
+      position:absolute;
+      left:30vw;
+
+      /* font-size:5vh; */
+      /* top: */
+    }
+    .schedule-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+  }
+  
+  
+  .section1 {
+    flex-basis: 30%; 
+    margin-right: 1vw;
+  }
+  
+  .section1-heading {
+    font-size: 1.7vw;
+    font-weight: bold;
+    /* position: absolute;
+    top: 24vh;
+    left: 20.5vw; */
+    margin-top: 4.5vh;
+    text-align: center;
+  }
+  
+  .playlistSelection{
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    border: 1px solid #b8b8b8;
+    width: 16vw;
+    height: 5vh;
+    margin-top: 3vh;
+    margin-left: 1vw;
+  }
+  
+  .locationChoice{
+    margin-top: 11vh;
+    font-size: 1.7vw;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .storeListPopup{
+    /* position: absolute;
+    top: 52vh;
+    left: 19vw; */
+    margin-top: 3vh;
+    list-style: none;
+  }
+  
+  .checktext{
+    margin-left: 0.8vw;
+  }
+  
+  .section2 {
+    flex-basis: 30%; 
+  }
+  
+  
+  .section2-heading {
+    font-size: 1.7vw;
+    font-weight: bold;
+    /* position: absolute;
+    top: 23.5vh;
+    left: 42vw; */
+    margin-top: 0.8vh;
+    margin-left: -3.4vw;
+    text-align: center;
+  }
+
+  .save-button{
+    position:absolute;
+    top: 75vh;
+    right: 20vw;
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+    height: 6vh;
+    width: 28vw;
+  }
+
+  .cancel-button{
+    position:absolute;
+    top: 75vh;
+    left: 20vw;
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+    height: 6vh;
+    width: 28vw;
+  }
+
+  .playlist-title{
+    position:absolute;
+    left:37vw;
+    /* font-size:5vh; */
+    /* top: */
+  }
+
+  .start-headers{
+    position:absolute;
+    left:28vw;
+    top:43vh;
+  }
+
+  .end-headers{
+    position:absolute;
+    right:25vw;
+    top:43vh;
+  }
+
+  /* .edit-playlist-name{
+    position:absolute;
+  } */
+  }
+
+  @media (max-width: 480px) {
+    .schedule-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: black;
+      flex-wrap: wrap; 
+      justify-content: space-between; 
+    }
+    
+    
+    .section1 {
+      flex-basis: 30%; 
+      margin-right: 1vw;
+    }
+    
+    .section1-heading {
+      font-size: 1.7vw;
+      font-weight: bold;
+      /* position: absolute;
+      top: 24vh;
+      left: 20.5vw; */
+      margin-top: 4.5vh;
+      text-align: center;
+    }
+    
+    .playlistSelection{
+      border-radius: 10px;
+      background-color: #DFDFDF;
+      border: 1px solid #b8b8b8;
+      width: 16vw;
+      height: 5vh;
+      margin-top: 3vh;
+      margin-left: 1vw;
+    }
+    
+    .locationChoice{
+      margin-top: 11vh;
+      font-size: 1.7vw;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .storeListPopup{
+      /* position: absolute;
+      top: 52vh;
+      left: 19vw; */
+      margin-top: 3vh;
+      list-style: none;
+    }
+    
+    .checktext{
+      margin-left: 0.8vw;
+    }
+    
+    .section2 {
+      flex-basis: 30%; 
+      top:50vh;
+    }
+    
+    
+    .section2-heading {
+      font-size: 1.7vw;
+      font-weight: bold;
+      /* position: absolute;
+      top: 23.5vh;
+      left: 42vw; */
+      margin-top: 0.8vh;
+      margin-left: -3.4vw;
+      text-align: center;
+    }
+  
+    .save-button{
+      position:absolute;
+      top: 75vh;
+      right: 20vw;
+      background-color: #20509c;
+      color: white;
+      padding: 5px 20px;
+      font-size: 1.5vw;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #20509C;
+      height: 6vh;
+      width: 28vw;
+    }
+  
+    .cancel-button{
+      position:absolute;
+      top: 75vh;
+      left: 20vw;
+      background-color: #20509c;
+      color: white;
+      padding: 5px 20px;
+      font-size: 1.5vw;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #20509C;
+      height: 6vh;
+      width: 28vw;
+    }
+  
+    .playlist-title{
+      position:absolute;
+      left:30vw;
+
+      /* font-size:5vh; */
+      /* top: */
+    }
+    .schedule-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+  }
+  
+  
+  .section1 {
+    flex-basis: 30%; 
+    margin-right: 1vw;
+  }
+  
+  .section1-heading {
+    font-size: 1.7vw;
+    font-weight: bold;
+    /* position: absolute;
+    top: 24vh;
+    left: 20.5vw; */
+    margin-top: 4.5vh;
+    text-align: center;
+  }
+  
+  .playlistSelection{
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    border: 1px solid #b8b8b8;
+    width: 16vw;
+    height: 5vh;
+    margin-top: 3vh;
+    margin-left: 1vw;
+  }
+  
+  .locationChoice{
+    margin-top: 11vh;
+    font-size: 1.7vw;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .storeListPopup{
+    /* position: absolute;
+    top: 52vh;
+    left: 19vw; */
+    margin-top: 3vh;
+    list-style: none;
+  }
+  
+  .checktext{
+    margin-left: 0.8vw;
+  }
+  
+  .section2 {
+    flex-basis: 30%; 
+    top: 35vh;
+  }
+  
+  
+  .section2-heading {
+    font-size: 1.7vw;
+    font-weight: bold;
+    /* position: absolute;
+    top: 23.5vh;
+    left: 42vw; */
+    margin-top: 0.8vh;
+    margin-left: -3.4vw;
+    text-align: center;
+  }
+
+  .save-button{
+    position:absolute;
+    top: 75vh;
+    right: 20vw;
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+    height: 6vh;
+    width: 28vw;
+  }
+
+  .cancel-button{
+    position:absolute;
+    top: 75vh;
+    left: 20vw;
+    background-color: #20509c;
+    color: white;
+    padding: 5px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #20509C;
+    height: 6vh;
+    width: 28vw;
+  }
+
+  .playlist-title{
+    position:absolute;
+    left:37vw;
+    /* font-size:5vh; */
+    /* top: */
+  }
+
+  .start-headers{
+    position:absolute;
+    left:28vw;
+    top:45vh;
+  }
+
+  .end-headers{
+    position:absolute;
+    right:28vw;
+    top:27vh;
+  }
+
+  /* .edit-playlist-name{
+    position:absolute;
+  } */
+  }

@@ -21,24 +21,6 @@ export default function ViewPlaylist(props) {
   const { state } = useLocation();
   const [playlists, setPlaylists] = useState([]); // State to hold fetched playlists
 
-//   const storeList = state.storeList;
-//   for(let i=0;i<storeList.length;i++){
-//     console.log(storeList[i].id);
-// }
-
-  // useEffect(() => {
-  //   // Fetch playlist data from the database and update state
-  //   const fetchPlaylistData = async () => {
-  //     try {
-  //       const fetchedPlaylists = await Database.getCurrentLocationPlaylists(state.storeList[0].id);
-  //       setPlaylists(fetchedPlaylists);
-  //     } catch (error) {
-  //       console.error('Error fetching playlist data:', error);
-  //     }
-  //   };
-  //   fetchPlaylistData(); 
-  // }, []);
-
   useEffect(() => {
     // Fetch playlist data from the database for each store in storeList
     const fetchPlaylistData = async () => {
@@ -65,6 +47,7 @@ export default function ViewPlaylist(props) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [popupContent, setPopupContent] = useState(false);
+  const [networkErrorPopup, setNetworkErrorPopup] = useState(false);
   
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -94,18 +77,18 @@ export default function ViewPlaylist(props) {
   };
 
   const handleDownload = async (index) => {
-    // console.log(playlists);
+    try {
+      const images = await Promise.all((playlists[index].images).map(async (link) => {
+        const response = await axios.get(link, { responseType: 'arraybuffer' });
+        const imageBlob = new Blob([response.data], { type: 'image/jpeg' });
+        return URL.createObjectURL(imageBlob);
+      }));
 
-    const images = await Promise.all((playlists[index].images).map(async (link) => {
-      const response = await axios.get(link, { responseType: 'arraybuffer' });
-      const imageBlob = new Blob([response.data], { type: 'image/jpeg' });
-      return URL.createObjectURL(imageBlob);
-    }));
-    const pdfDoc = new jsPDF();
-    images.forEach((image, index) => {
-      if (index !== 0) {
-        pdfDoc.addPage();
-      }
+      const pdfDoc = new jsPDF();
+      images.forEach((image, index) => {
+        if (index !== 0) {
+          pdfDoc.addPage();
+        }
       // Adjust the scale factor to improve image quality
       const scaleFactor = 1; // Experiment with different values (e.g., 1, 1.5, 2)
       const imageWidth = 70;
@@ -115,6 +98,14 @@ export default function ViewPlaylist(props) {
     });
 
     pdfDoc.save('playlist.pdf'); //title+playlist
+  } catch (error) {
+    console.error('Network error:', error);
+    setNetworkErrorPopup(true); // Display the network error popup
+  }
+};
+
+  const handlePopupClose = () => {
+    setNetworkErrorPopup(false);
   };
 
   const handleCloseSchedulePopup = () => {
@@ -140,11 +131,11 @@ export default function ViewPlaylist(props) {
             />
             <span onClick={handleDownloadClick} className="dropdown-text">Download Playlist</span>
         </div>
-        <div className="divider"></div>
+        {/* <div className="divider"></div>
         <div className="dropdown-option">
             <ScheduleSendIcon  sx={{height:'1.25vw', width:'1.25vw', marginRight:'.4vw'}}/>
             <span onClick={onSchedule} className="dropdown-text">Schedule Playlist</span>
-        </div> 
+        </div>  */}
       </div>
     );
   };
@@ -187,9 +178,18 @@ export default function ViewPlaylist(props) {
                   </div>
                 </div>
               )}
+              {/* Network Error Popup */}
+              {networkErrorPopup && (
+                <div className="error-popup">
+                  <div className="error-popup-content">
+                    <div>Network Error: Unable to download the playlist.</div>
+                    <button className="error-close-btn" onClick={handlePopupClose}>X</button>
+                  </div>
+                </div>
+              )}
             <div className='image-carousel-wrapper'>
               <ImageCarousel images={playlists[index].images} />
-              </div>
+            </div>
             </div>
             <CardContent sx={{paddingBottom:'0px', padding:'0px', paddingTop:'40px'}} >
               <Typography 

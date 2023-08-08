@@ -18,20 +18,22 @@ export default function Banner(){
         user = state.user
     }
 
-    useEffect(() => {
-        Database.getStoresByStoreIDs(storeIds)
-            .then((data) => {
-                Promise.all(data)
-                    .then((resolvedStores)=> {
-                        setStores(resolvedStores);
-                    })
-                    .catch((error)=> {
-                        console.log("Error fetching store");
-                    })
-            })
-            .catch((error) => {
-                console.log("Error fetching store data", error)
-            })
+    useEffect(async () => {
+        let resolvedStores = await Database.getStoresByStoreIDs(storeIds);
+        setStores(resolvedStores);
+        console.log(resolvedStores);
+            // .then((data) => {
+            //     Promise.all(data)
+            //         .then((resolvedStores)=> {
+            //             setStores(resolvedStores);
+            //         })
+            //         .catch((error)=> {
+            //             console.log("Error fetching store");
+            //         })
+            // })
+            // .catch((error) => {
+            //     console.log("Error fetching store data", error)
+            // })
     }, [])
 
     const storeList = []

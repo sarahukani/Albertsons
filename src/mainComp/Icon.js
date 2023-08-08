@@ -240,6 +240,7 @@ export default function Icon(props) {
 
           <div className="divider"></div>
 
+
           <div className="option" onClick={handleLogoutButtonClick}>
             <img
               className="small-icon"
@@ -250,11 +251,7 @@ export default function Icon(props) {
             <span className="option-text">Logout</span>
           </div>
 
-          <ViewSchedulePopup
-            isOpen={isPopupOpen}
-            onClose={handleClosePopup}
-            content={popupContent}
-          />
+            <ViewSchedulePopup storeList={props.storeList} isOpen={isPopupOpen} onClose={handleClosePopup} content={popupContent} user={props.user}/>
         </div>
       )}
     </div>
