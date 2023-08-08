@@ -218,6 +218,11 @@ const handleDownload = async (index) => {
 
   };
 
+   const handlePopupClose = () => {
+
+    setNetworkErrorPopup(false);
+
+  };
  
 
   const MoreOptionsPopup = ({ arrayIndex, onClose, onDownload, onSchedule }) => {
