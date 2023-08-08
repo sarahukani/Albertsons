@@ -1,6 +1,6 @@
 import backendOrigin from "../config/origin";
 
-let albertOrigin = "http://34.68.232.71:2002";
+let albertOrigin = "http://35.202.30.171:2002";
 
  
 
@@ -306,18 +306,33 @@ export default class Database {
     // **************************************************************************
     // ALBERT QUERIES ***********************************************************
     // **************************************************************************
-    static async getProductRecommendations(storeID, category) {
+  static async getProductRecommendations(storeID, category, age, weather, holiday) {
         const queryParams = new URLSearchParams();
         queryParams.append("storeid", storeID);
         queryParams.append("category", category);
+        queryParams.append("demographic", "");
+        queryParams.append("weather", "");
+        queryParams.append("holiday", "");
 
-        const url = `${albertOrigin}/getrec/script-call/?${queryParams.toString()}`;
-        console.log(url);
-        const response = await fetch(url);
+        const url = `${backendOrigin}/albert/product-recs`; // Endpoint on your Spring Boot backend
+        const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            storeID,
+            category,
+            age,
+            weather,
+            holiday,
+        }),
+        });
+
         const productRecommendations = await response.json();
         console.log(productRecommendations);
-        return productRecommendations;
-   }
+        return productRecommendations
+    }
 
     static async getEditedImage(pID, title, price, description, storeID) {
         const queryParams = new URLSearchParams();

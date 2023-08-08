@@ -1,4 +1,6 @@
-.detailedDescrip{
+
+ 
+ .detailedDescrip{
     padding: 0.8vw;
     width: 26vw;
     height: 30vh;
@@ -8,15 +10,18 @@
     position: absolute;
     top: 4.5vh;
     left: -0.3vw;
+    font-family: 'Lucida Grande';
 }
-
+    
+    
 .recImg{
     width: 21vw;
     height: 28vh;
     margin-left: 1.5vw;
-    margin-top: 6vh;   
+    margin-top: 6vh;
 }
-
+    
+    
 .reccomendations{
     padding: 0.8vw;
     width: 24.5vw;
@@ -28,8 +33,10 @@
     top: 4.5vh;
     left: 28.5vw;
     overflow-y: scroll;
+    font-family: 'Lucida Grande';
 }
-
+    
+    
 .generateBtn{
     padding: 0.8vw;
     width: 27.5vw;
@@ -44,43 +51,54 @@
     position: absolute;
     top: 40vh;
     left: -0.3vw;
+    font-family: 'Lucida Grande';
 }
-
+    
+    
 .generateBtn:hover{
-    background-color: #3568ba;
+    background-color: #bae4ef;
 }
-
+    
+    
 .firstText{
     position: absolute;
     top: -2.5vh;
     left: 1vw;
     font-size: 1.2vw;
+    color: white;
+    font-family: 'Lucida Grande';
 }
-
+    
+    
 .secondText{
     position: absolute;
     top: -2.5vh;
     left: 29vw;
     font-size: 1.2vw;
+    color: white;
+    font-family: 'Lucida Grande';
 }
-
+    
+    
 .thirdText{
     position: absolute;
     top: 46vh;
-    left: 2vw;
-    font-size: 1.2vw;
-    color: #FFFFFF
-
+    left: 3vw;
+    font-size: 1vw;
+    color: #FFFFFF;
+    font-family: 'Lucida Grande';
 }
-
+    
+    
 .ageInfoIcon{
-    height: 2.1vh;
+    height: 1vw;
     width: 1vw;
     position: absolute;
     top: 9vh;
     left: 26.1vw;
 }
-
+    
+    
 .age-info-container{
     display: inline-block; /* or display: inline; */
     width: auto;
@@ -93,15 +111,17 @@
     top: 10vh;
     left: 27.1vw;
 }
-
+    
+    
 .productInfoIcon{
-    height: 2vh;
+    height: 1vw;
     width: 1vw;
     position: absolute;
     top: 15.4vh;
     left: 26.1vw;
 }
-
+    
+    
 .product-info-container{
     display: inline-block; /* or display: inline; */
     width: auto;
@@ -114,15 +134,17 @@
     top: 16.3vh;
     left: 27.1vw;
 }
-
+    
+    
 .weatherInfoIcon{
-    height: 2.1vh;
+    height: 1vw;
     width: 1vw;
     position: absolute;
     top: 21.8vh;
     left: 26.1vw;
 }
-
+    
+    
 .weather-info-container{
     display: inline-block; /* or display: inline; */
     width: auto;
@@ -135,15 +157,17 @@
     top: 22.5vh;
     left: 27.1vw;
 }
-
+    
+    
 .holidayInfoIcon{
-    height: 2.1vh;
+    height: 1vw;
     width: 1vw;
     position: absolute;
     top: 28.2vh;
     left: 26.1vw;
 }
-
+    
+    
 .holiday-info-container{
     display: inline-block; /* or display: inline; */
     width: auto;
@@ -156,7 +180,8 @@
     top: 29.5vh;
     left: 27.1vw;
 }
-
+    
+    
 .location{
     padding: 0.5vw;
     border-radius: 12px;
@@ -165,9 +190,10 @@
     height: 5.3vh;
     position: absolute;
     left: 9.5vw;
-    top: 1vh;
-}
-
+top: 1vh;
+    }
+    
+    
 .age{
     padding: 0.5vw;
     border-radius: 12px;
@@ -175,10 +201,11 @@
     width: 14.7vw;
     height: 2.5vh;
     position: absolute;
-    left: 9.5vw; 
+    left: 9.5vw;
     top: 7.6vh;
 }
-
+    
+    
 .productCategory{
     padding: 0.5vw;
     border-radius: 12px;
@@ -186,10 +213,11 @@
     width: 14.7vw;
     height: 2.5vh;
     position: absolute;
-    left: 9.5vw; 
+    left: 9.5vw;
     top: 14vh;
 }
-
+    
+    
 .weather{
     padding: 0.5vw;
     border-radius: 12px;
@@ -197,10 +225,11 @@
     width: 14.7vw;
     height: 2.5vh;
     position: absolute;
-    left: 9.5vw; 
+    left: 9.5vw;
     top: 20.5vh;
 }
-
+    
+    
 .holiday{
     padding: 0.5vw;
     border-radius: 12px;
@@ -208,89 +237,97 @@
     width: 14.7vw;
     height: 2.5vh;
     position: absolute;
-    left: 9.5vw; 
+    left: 9.5vw;
     top: 27vh;
 }
-
+    
+    
 .locName{
     position:absolute;
-    top: -1.2vh;
-    left: 1.5vw;
-    font-size: 1.5vw;
+    top: 1vh;
+    left: 2vw;
+    font-size: 1vw;
 }
-
+    
+    
 .ageName{
-    position: absolute;   
-    top: 5.9vh;
+    position: absolute;
+    top: 7vh;
     left: 1.2vw;
-    font-size: 1.1vw;
+    font-size: 1vw;
 }
-
+    
+    
 .productName{
     position: absolute;
-    top: 10.5vh;
-    left: 2vw;
+    top: 13.5vh;
+    left: 0.1vw;
     text-align: center;
-    font-size: 1.2vw;
+    font-size: 1vw;
 }
-
+    
+    
 .weatherName{
-    position: absolute; 
-    top: 18vh;
-    left: 1.5vw;
-    font-size: 1.5vw;
+    position: absolute;
+    top: 20vh;
+    left: 2vw;
+    font-size: 1vw;
 }
-
+    
+    
 .holidayName{
     position: absolute;
-    top: 24vh; 
-    left: 2vw; 
-    font-size: 1.5vw;
+    top: 27vh;
+    left: 2.3vw;
+    font-size: 1vw;
 }
-
+    
+    
 .recList{
+    color: white;
     font-size: 1.15vw;
     overflow: break-word;
     width: 22.5vw;
     position: absolute;
     top: 51vh;
     left: 0.5vw;
-    
+    color:white;
+    font-family: 'Lucida Grande';
 }
-
+    
 
 @media screen and (max-width: 768px){
     .mainDiv{
         flex-direction: column;
     }
-
+    
     .ageInfoIcon{
-        height: 1.5vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
         top: 9.1vh;
         left: 42.7vw;
     }
 
     .productInfoIcon{
-        height: 1.5vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
         top: 15.2vh;
         left: 42.7vw;
     }
 
     .weatherInfoIcon{
-        height: 1.5vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
         top: 21.8vh;
         left: 42.7vw;
     }
 
     .holidayInfoIcon{
-        height: 1.5vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
         top: 28.2vh;
         left: 42.7vw;
@@ -356,7 +393,6 @@
         top: 5.3vh;
         left: 0.5vw;
     }
-    
     .reccomendations{
         padding: 0.8vw;
         width: 43vw;
@@ -364,16 +400,15 @@
         position: absolute;
         top: 5.3vh;
         left: 47vw;
-        overflow-y: scroll;
-    }
-    
-    .recImg{
+        overflow-y: scroll;}
+        .recImg{
         width: 35vw;
         height: 27vh;
         margin-left: 3.5vw;
-        margin-top: 6vh;   
+        margin-top: 6vh;
     }
-
+    
+    
     .generateBtn{
         padding: 0.8vw;
         width: 45vw;
@@ -381,16 +416,14 @@
         text-align: center;
         font-weight: bold;
         font-size: 2vw;
-        color: white;
+        color: #0c5497;
         position: absolute;
         top: 40vh;
         left: 0.5vw;
     }
-    
     .generateBtn:hover{
         background-color: #3568ba;
     }
-    
     .firstText{
         color: #FFFFFF;
         position: absolute;
@@ -398,31 +431,27 @@
         left: 2vw;
         font-size: 2vw;
     }
-    
     .secondText{
         position: absolute;
         top: -1.3vh;
         left: 48vw;
         font-size: 2vw;
     }
-    
     .thirdText{
         position: absolute;
         top: 45vh;
         left: 1vw;
         font-size: 2vw;
     }
-    
     .location{
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 26.5vw;
         height: 5vh;
         position: absolute;
         left: 17vw;
     }
-    
     .age{
         padding: 0.5vw;
         border-radius: 12px;
@@ -430,10 +459,9 @@
         width: 23.5vw;
         height: 3.5vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 7.3vh;
     }
-    
     .productCategory{
         padding: 0.5vw;
         border-radius: 12px;
@@ -441,10 +469,9 @@
         width: 23.5vw;
         height: 3.5vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 13.5vh;
     }
-    
     .weather{
         padding: 0.5vw;
         border-radius: 12px;
@@ -452,10 +479,9 @@
         width: 23.5vw;
         height: 3.5vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 19.9vh;
     }
-    
     .holiday{
         padding: 0.5vw;
         border-radius: 12px;
@@ -463,93 +489,141 @@
         width: 23.5vw;
         height: 3.5vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 26.3vh;
     }
-    
     .locName{
         position:absolute;
-        top: -2.2vh;
-        left: 3.5vw;
-        font-size: 2.4vw;
-    }
-    
-    .ageName{
-        position:absolute;
-        top: 5.1vh;
-        left: 2.2vw;
+        top: 1vh;
+        left: 2vw;
         font-size: 2vw;
     }
-    
+    .ageName{
+        position: absolute;
+        top: 7vh;
+        left: 1.2vw;
+        font-size: 2vw;
+    }
     .productName{
         position: absolute;
-        top: 10vh;
-        left: 3.5vw;
+        top: 13.5vh;
+        left: 0.1vw;
         text-align: center;
+        font-size: 1.8vw;
+    }
+    .weatherName{
+        position: absolute;
+        top: 20vh;
+        left: 2.5vw;
         font-size: 2vw;
     }
-    
-    .weatherName{
-        position:absolute;
-        top: 17vh;
-        left: 3.5vw;
-        font-size: 2.4vw;
-    }
-    
     .holidayName{
-        position:absolute;
-        top: 23.5vh;
-        left: 3.5vw;
-        font-size: 2.4vw;
+        position: absolute;
+        top: 26vh;
+        left: 2.6vw;
+        font-size: 2vw;
     }
     .recList{
+        color: white;
         font-size: 1.9vw;
         overflow: break-word;
         width: 37vw;
         position: absolute;
         top: 49vh;
         left: 0.1vw;
-        
     }
 }
-
-@media screen and (max-width: 480px){
+    
+    
+    @media screen and (max-width: 480px){
     .mainDiv{
         flex-direction: column;
     }
-
+    
     .ageInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 9vh;
-        left: 26vw;
+        top: 5vh;
+        left: 42.7vw;
     }
 
     .productInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 15.4vh;
-        left: 26vw;
+        top: 8.8vh;
+        left: 42.7vw;
     }
 
     .weatherInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 21.8vh;
-        left: 26vw;
+        top: 12.5vh;
+        left: 42.7vw;
     }
 
     .holidayInfoIcon{
-        height: 2.6vh;
-        width: 1.2vw;
+        height: 1.3vw;
+        width: 1.3vw;
         position: absolute;
-        top: 28.2vh;
-        left: 26vw;
+        top: 16.1vh;
+        left: 42.7vw;
     }
 
+    .age-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 2vh;
+        left: 44vw;
+    }
+
+    .product-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 6vh;
+        left: 44vw;
+    }
+
+    .weather-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 10vh;
+        left: 44vw;
+    }
+
+    .holiday-info-container{
+        display: inline-block; /* or display: inline; */
+        width: auto;
+        height: auto;
+        background-color: white;
+        border: 2px solid grey;
+        padding: 0.4vw;
+        border-radius: 4px;
+        position: absolute;
+        top: 13vh;
+        left: 44vw;
+    }
+    
     .detailedDescrip{
         padding: 0.8vw;
         width: 43vw;
@@ -559,24 +633,23 @@
         left: 0.5vw;
         background-color: #EAEAEA;
     }
-    
     .reccomendations{
         padding: 0.8vw;
         width: 43vw;
-        height: 33.5vw;
+        height: 35vh;
         position: absolute;
         top: 4.5vw;
         left: 47vw;
         overflow-y: scroll;
     }
-    
     .recImg{
         width: 35vw;
         height: 15vh;
         margin-left: 4.5vw;
-        margin-top: 0vh;   
+        margin-top: 0vh;
     }
-
+    
+    
     .generateBtn{
         padding: 0.8vw;
         width: 45vw;
@@ -584,37 +657,32 @@
         text-align: center;
         font-weight: bold;
         font-size: 2vw;
-        color: white;
+        color: #0c5497;
         position: absolute;
         top: 35vw;
         left: 0.5vw;
     }
-    
     .generateBtn:hover{
         background-color: #3568ba;
     }
-    
     .firstText{
         position: absolute;
         top: -1.3vw;
         left: 2vw;
         font-size: 2vw;
     }
-    
     .secondText{
         position: absolute;
         top: -1.3vw;
         left: 48vw;
         font-size: 2vw;
     }
-    
     .thirdText{
         position: absolute;
         top: 40vw;
         left: 1vw;
         font-size: 2vw;
     }
-    
     .location{
         padding: 0.5vw;
         border-radius: 12px;
@@ -622,86 +690,89 @@
         width: 26.5vw;
         height: 3vh;
         position: absolute;
+        top: 0.5vh;
         left: 17vw;
     }
-    
     .age{
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 22vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 6vw;
     }
-    
     .productCategory{
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 11.5vw;
     }
-    
     .weather{
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 17vw;
     }
-    
     .holiday{
         padding: 0.5vw;
         border-radius: 12px;
         border: 0.2vw solid white;
-        width: 25vw;
+        width: 23.5vw;
         height: 2vh;
         position: absolute;
-        left: 17vw; 
+        left: 17vw;
         top: 22.6vw;
     }
-    
     .locName{
         position:absolute;
-        top: -1.3vw;
-        left: 3.5vw;
-        font-size: 2.4vw;
+        top: 0.5vh;
+        left: 5vw;
+        font-size: 1.7vw;
     }
-    
     .ageName{
         position:absolute;
-        top: 3.5vw;
-        left: 5.5vw;
-        font-size: 2.4vw;
+        top: 3.8vh;
+        left: 3vw;
+        font-size: 1.7vw;
     }
-    
     .productName{
         position: absolute;
-        top: 8.5vw;
-        left: 3.5vw;
+        top: 7.5vh;
+        left: 1.2vw;
         text-align: center;
-        font-size: 2.2vw;
+        font-size: 1.7vw;
     }
-    
     .weatherName{
         position:absolute;
-        top: 15.5vw;
-        left: 3.5vw;
-        font-size: 2.4vw;
+        top: 11.3vh;
+        left: 5vw;
+        font-size: 1.7vw;
+    }
+    .holidayName{
+    position:absolute;
+    top: 20.5vw;
+    left: 3.5vw;
+    font-size: 2.4vw;
+    }
+
+    .recList{
+        color: white;
+        font-size: 1.9vw;
+        overflow: break-word;
+        width: 37vw;
+        position: absolute;
+        top: 49vh;
+        left: 0.1vw;
     }
     
-    .holidayName{
-        position:absolute;
-        top: 20.5vw;
-        left: 3.5vw;
-        font-size: 2.4vw;
     }
-}

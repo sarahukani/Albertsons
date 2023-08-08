@@ -1,27 +1,58 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { SketchPicker } from 'react-color';
-import jsPDF from 'jspdf'; // Import jsPDF library
+import jsPDF from 'jspdf';
 import './createPlaylist.css';
-import Gallery from '../uploadWidget/Gallery';
+import Gallery2 from '../uploadWidget/Gallery2';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import Database from '../data/database';
 import Schedule from './Schedule';
 import { useLocation } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+
+
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 function CreatePlaylist() {
-  const [title, setTitle] = useState('Enter a title');
+  const [title, setTitle] = useState("Enter a title");
   const [selectedGalleryItems, setSelectedGalleryItems] = useState([]);
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [textColor, setTextColor] = useState('#ffffff');
+  const [textColor, setTextColor] = useState("#ffffff");
   const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
   const [popupContent, setPopupContent] = useState(false);
   const textOverlayRef = useRef();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [isScheduled, setIsScheduled] = useState(false);
   const { state } = useLocation();
 
-  console.log("This is our storelist prop that was passed in: ", state.storeList);
+
+  console.log(
+    "This is our storelist prop that was passed in: ",
+    state.storeList
+  );
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);  
+
+//   console.log('This is our storelist prop that was passed in: ', state.storeList);
+
 
   const handleClosePopup = () => {
     setPopupContent(false);
@@ -34,46 +65,51 @@ function CreatePlaylist() {
   const handleExportAndUpload = async () => {
     try {
       const content = textOverlayRef.current;
-
       // Capture the content as an image using html2canvas
       const canvas = await html2canvas(content, { scale: 2 });
-      const imageData = canvas.toDataURL('image/jpeg', 1.0);
+
+      const imageData = canvas.toDataURL("image/jpeg", 1.0);
 
       // Create a new jsPDF instance
-      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdf = new jsPDF("p", "mm", "a4");
 
       // Add the image to the PDF
-      pdf.addImage(imageData, 'JPEG', 10, 10, 190, 100);
+      pdf.addImage(imageData, "JPEG", 10, 10, 190, 100);
 
       // Get the text overlay elements and add them to the PDF
-      const textOverlays = content.querySelectorAll('.text-overlay');
-      const defaultFontSize = 12; // Set a default font size for the text
+      const textOverlays = content.querySelectorAll(".text-overlay");
+      const defaultFontSize = 12;
 
       textOverlays.forEach((overlay) => {
         const text = overlay.innerText;
-        const x = parseInt(overlay.style.left); // Parse the x coordinate as an integer
-        const y = parseInt(overlay.style.top); // Parse the y coordinate as an integer
+        const x = parseInt(overlay.style.left);
+        const y = parseInt(overlay.style.top);
         pdf.text(text, x, y, { fontSize: defaultFontSize });
       });
 
       // Save the PDF
-      const pdfData = pdf.output('blob');
-      const file = new File([pdfData], 'playlist.pdf', { type: 'application/pdf' });
+      const pdfData = pdf.output("blob");
+      const file = new File([pdfData], "playlist.pdf", {
+        type: "application/pdf",
+      });
       const fileList = [file];
       await Database.uploadProductImages(fileList);
 
-      console.log('PDF uploaded successfully!');
+      console.log("PDF uploaded successfully!");
+
     } catch (error) {
-      console.error('Error exporting and uploading PDF:', error);
+      console.error("Error exporting and uploading PDF:", error);
     }
   };
 
+//   const [showSuccessModal, setShowSuccessModal] = useState(false);  
+  
   const handleExport = () => {
     handleExportAndUpload();
   };
 
   const handleEnterTitle = () => {
-    const textInput = window.prompt('Enter your title:', title);
+    const textInput = window.prompt("Enter your title:", title);
     if (textInput !== null) {
       setTitle(textInput);
     }
@@ -92,15 +128,26 @@ function CreatePlaylist() {
   };
 
   const handleSavePlaylist = async () => {
+    if (!isScheduled) {
+      // Show the modal if the playlist is not scheduled
+      setOpenModal(true);
+      return;
+    }
+    setShowSuccessModal(true);
     let playlist = {};
     try {
       const imageUrls = selectedGalleryItems.map((item) => item.imageURL);
-      console.log(title, imageUrls);
-      playlist = await Database.createPlaylist(title, imageUrls, startDate, endDate);
+      console.log(title, imageUrls, startDate, endDate);
+      playlist = await Database.createPlaylist(
+        title,
+        imageUrls,
+        startDate,
+        endDate
+      );
       console.log("The playlist: ", playlist);
-      console.log('Playlist created successfully!');
+      console.log("Playlist created successfully!");
     } catch (error) {
-      console.error('Error while saving playlist:', error);
+      console.error("Error while saving playlist:", error);
     }
 
     try {
@@ -108,18 +155,67 @@ function CreatePlaylist() {
       const playlistID = playlist.id;
       let store = await Database.pushStorePlaylist(storeID, playlistID);
     } catch (error) {
-      console.error('Error while linking playlist to store: ', error);
+      console.error("Error while linking playlist to store: ", error);
     }
-
-
   };
 
-  const enterTitleText = title === 'Enter a title' ? title : null;
+  const enterTitleText = title === "Enter a title" ? title : null;
+
+
+  // Modal-related state and handlers
+  const [openModal, setOpenModal] = useState(false);
+  const handleCloseModal = () => setOpenModal(false);
 
   return (
     <div className="create-playlist-container">
       <div className="gallery-section">
-        <Gallery storeIds={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
+
+        <Gallery2
+          storeList={state.storeList}
+          onSelectImage={(image) =>
+            setSelectedGalleryItems([
+              ...selectedGalleryItems,
+              { ...image, text: "" },
+            ])
+          }
+        />
+      </div>
+
+      <div className="playlist-section">
+
+        <div className="create-section" style={{ background: "white" }}>
+
+          <div className="title">
+            <span
+              onClick={handleEnterTitle}
+              style={{ cursor: "pointer", justifyContent: "center"}}
+            >
+              {title}
+            </span>
+
+            <span
+              onClick={handleEnterTitle}
+              style={{ cursor: "pointer", color: "black"  }}
+            >
+              {title !== "Enter a title"}
+            </span>
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <span
+              className="titleName"
+              onClick={handleEnterTitle}
+              style={{ cursor: "pointer", color: "black"}}
+            >
+              {title !== "Enter a title" && enterTitleText}
+            </span>
+            {/* <img
+              src="https://3.bp.blogspot.com/-twz3yfFATFY/T3SRLKVd-yI/AAAAAAAAAKo/xFSYgRIcwrc/s1600/COLOUR-WHEEL.jpg"
+              alt="Color Wheel"
+              style={{ width: "30px", height: "30px", marginRight: "10px" }}
+              onClick={() => setShowColorPicker(!showColorPicker)} */}
+            {/* {showColorPicker && (
+        <Gallery2 storeList={state.storeList} onSelectImage={(image) => setSelectedGalleryItems([...selectedGalleryItems, { ...image, text: '' }])} />
       </div>
 
       <div className="playlist-section">
@@ -141,38 +237,43 @@ function CreatePlaylist() {
             {showColorPicker && (
               <div
                 style={{
-                  position: 'absolute',
-                  top: '100%',
+                  position: "absolute",
+                  top: "100%",
                   left: 0,
-                  zIndex: '1',
+                  zIndex: "1",
                 }}
               >
                 <SketchPicker color={textColor} onChange={handleColorChange} />
               </div>
-            )}
+            )} */}
           </div>
 
-          <span onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
+          {/* <TextFieldsIcon
+            style={{ color: "white" }}
+          <span className="titleName" onClick={handleEnterTitle} style={{ cursor: 'pointer', color: 'white' }}>
             {title !== 'Enter a title' && title}
           </span>
 
           <TextFieldsIcon
             style={{ color: 'white' }}
             onClick={() => {
-              const textInput = window.prompt('Enter your text:', '');
+              const textInput = window.prompt("Enter your text:", "");
               if (textInput !== null) {
-                setSelectedGalleryItems([...selectedGalleryItems, { text: textInput }]);
+                setSelectedGalleryItems([
+                  ...selectedGalleryItems,
+                  { text: textInput },
+                ]);
               }
             }}
-          />
+          /> */}
 
           <button className="Schedulebtn" onClick={() => setPopupContent(true)}>
             Schedule
           </button>
-
+          {/* 
           <button className="Exportbtn" onClick={handleExport}>
             Export
-          </button>
+          </button> */}
 
           {selectedGalleryItems.length > 0 && (
             <button className="SavePlaylistbtn" onClick={handleSavePlaylist}>
@@ -181,10 +282,24 @@ function CreatePlaylist() {
           )}
         </div>
 
-        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}>
+{/* //         <div
+          ref={textOverlayRef}
+          onMouseDown={handleTextDragStart}
+          onMouseMove={handleTextDrag}
+        >
+        <div className="text-icon" ref={textOverlayRef} onMouseDown={handleTextDragStart} onMouseMove={handleTextDrag}> */}
+
           {selectedGalleryItems.map((item) => (
-            <div className="selected-gallery-image" key={item.id} style={{ position: 'relative', marginBottom: '16px' }}>
-              <img src={item.imageURL} alt={item.name} style={{ maxWidth: '100%', borderRadius: '10px' }} />
+            <div
+              className="selected-gallery-image"
+              key={item.id}
+              style={{ position: "relative", marginBottom: "16px" }}
+            >
+              <img
+                src={item.imageURL}
+                alt={item.name}
+                style={{ maxWidth: "100%", borderRadius: "10px" }}
+              />
               {item.text && (
                 <div
                   className="text-overlay"
@@ -192,11 +307,11 @@ function CreatePlaylist() {
                     color: textColor,
                     top: textPosition.y,
                     left: textPosition.x,
-                    position: 'absolute',
-                    width: '100%',
-                    transform: 'translate(-20%, -30%)',
-                    top: '50%',
-                    left: '50%',
+                    position: "absolute",
+                    width: "100%",
+                    transform: "translate(-20%, -30%)",
+                    top: "50%",
+                    left: "50%",
                   }}
                 >
                   {item.text}
@@ -205,38 +320,102 @@ function CreatePlaylist() {
             </div>
           ))}
         </div>
-      </div>
+      {/* </div> */}
 
-      { <button className="Schedulebtn" onClick={handlePopupOpen}>Schedule</button>  }
 
-                    {popupContent && (
+      {popupContent && (
+        <div className="popup">
+          <div className="popup-content">
+            <Schedule
+              onSave={(start, end) => {
+                setStartDate(start);
+                setEndDate(end);
+                setPopupContent(false);
+                setIsScheduled(true); // Mark scheduling status as true
+              }}
+            />
+            <button className="close-btn" onClick={handleClosePopup}>
+              X
+            </button>
+          </div>
+        </div>
+      )}
 
-                        <div className="popup">
+      <Modal
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+        open={openModal}
+        onClose={handleCloseModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openModal}>
+          <Box sx={style}>
+            <Typography id="modal-title" variant="h6" component="h2">
+              {/* <Alert severity="info">This is an info alert — check it out!</Alert> */}
 
-                        <div className="popup-content">
 
-                        <Schedule
+              <Alert severity="error">This is an error alert — check it out!</Alert>
 
-                              onSave={(start, end) => {
 
-                                setStartDate(start);
+              Your playlist is not saved!
+            </Typography>
+            <Typography id="modal-description" sx={{ mt: 2 }}>
+              To save your playlist, please schedule it.
+            </Typography>
+            <Button onClick={handleCloseModal}>Close</Button>
+          </Box>
+        </Fade>
+      </Modal>
+      <Modal
 
-                                setEndDate(end);
+aria-labelledby="success-modal-title"
 
-                                setPopupContent(false);
+aria-describedby="success-modal-description"
 
-                              }}
+open={showSuccessModal}
 
-                              />
+onClose={() => setShowSuccessModal(false)}
 
-                          <button className="close-btn" onClick={handleClosePopup}>X</button>
+closeAfterTransition
 
-                        </div>
+BackdropComponent={Backdrop}
 
-                      </div>
+BackdropProps={{
 
-                    )}
+  timeout: 500,
 
+}}
+
+>
+
+<Fade in={showSuccessModal}>
+
+  <Box sx={style}>
+
+    <Typography id="success-modal-title" variant="h6" component="h2">
+
+      <Alert severity="success">This is a success alert — check it out!</Alert>
+
+      Playlist successfully saved!
+
+    </Typography>
+
+    <Typography id="success-modal-description" sx={{ mt: 2 }}>
+
+    </Typography>
+
+    <Button onClick={() => setShowSuccessModal(false)}>Close</Button>
+
+  </Box>
+
+</Fade>
+
+</Modal>
+//    
     </div>
   );
 }

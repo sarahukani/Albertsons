@@ -4,9 +4,11 @@
   right: 29%;
   border-radius:20px;
   width: 42%;
-  height: 42%;
+  height: 10%;
 }
-
+.carousel.carousel-slider .slider-wrapper .slider .slide img {
+  height: 100%;
+}
 .create-playlist-button {
   /* padding: 10px; */
   background-color: #0C5497;
@@ -19,10 +21,11 @@
   top: 81.5%;
   text-align: center;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
   cursor: pointer;
   position: absolute;
+  font-family: 'Lucida Grande';
 }
 
 .view-playlist-button {
@@ -38,10 +41,11 @@
   right: 0%;
   text-align: center;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
   cursor: pointer;
   position: absolute;
+  font-family: 'Lucida Grande';
   }
   
   .view-playlist-button:hover {

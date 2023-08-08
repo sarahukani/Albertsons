@@ -35,6 +35,7 @@ const Schedule = ({ onSave }) => {
     setUploadSuccess(true);
     setShowModal(true);
     onSave(startDateTime, endDateTime);
+
     
   };
 
@@ -166,35 +167,28 @@ const Schedule = ({ onSave }) => {
       </div>
 
       {showModal && (
-        <div className={`modal ${uploadSuccess ? 'success' : 'failure'}`}>
-          {uploadSuccess ? (
-            <>
-              <div className="modal-content">
-                <span className="modal-icon">&#x2714;</span>
-                <h3>Schedule Successful</h3>
-              </div>
-
-              <button className="modal-close" onClick={closeModal}>
-                Close
-              </button>
-            </>
-
-          ) : (
-
-            <>
-
-              <div className="modal-content">
-                <span className="modal-icon">&#x2716;</span>
-                <h3>Schedule Failed</h3>
-              </div>
-
-              <button className="modal-close" onClick={closeModal}>
-                Close
-              </button>
-            </>
-          )}
+  <div className={`modal ${uploadSuccess ? 'success' : 'failure'}`}>
+    {uploadSuccess ? (
+      <>
+        <div className="modal-content">
+          <span className="modal-icon">&#x2714;</span>
+          <h3>Schedule Successful</h3>
+          <button className="modal-close" onClick={closeModal}>X</button>
         </div>
-      )}
+      </>
+    ) : (
+      <>
+        <div className="modal-content">
+          <span className="modal-icon">&#x2716;</span>
+          <h3>Schedule Failed</h3>
+        </div>
+        <button className="modal-close" onClick={closeModal}>
+          Close
+        </button>
+      </>
+    )}
+  </div>
+)}
     </div>
   );
 };
