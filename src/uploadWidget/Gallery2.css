@@ -1,0 +1,108 @@
+.gallery-container2 {
+    /* display: flex;
+    justify-content: flex;
+    align-items: flex-start; */
+    display: inline-block;
+    width: 100%;
+    padding-top: 12vh;
+    font-size: 2vw;
+    font-family: 'Franklin Gothic Medium';
+    background-color: #032644;
+    color: white;
+
+}
+
+.italic-text2 {
+    font-style: italic;
+}
+
+
+
+.edit-button2 {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0C5497;
+    display: none;
+}
+
+
+.delete-button2 {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0C5497;
+    font-size: 24px;
+}
+
+
+/* Add the following CSS rule to show the edit icon when hovering over the image-item */
+.image-item2:hover .edit-button {
+    display: flex;
+}
+
+
+.icon {
+    height: 8%;
+    width: 4%;
+}
+
+.image-grid2 {
+    display: grid;
+    padding-top: 2vh;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 20rem));
+    justify-content: center;
+    background-color: #032644;
+}
+
+
+
+.image-item2 {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+}
+
+.image-box2 {
+    width: 300px;
+    height: 300px;
+    margin: 1rem;
+}
+
+
+img {
+    width: 300px;
+    height: 300px;
+    border-radius: 8%;
+    object-fit: fill;
+    display: block;
+}
+
+
+.image-item2.selected {
+    background-color: rgba(259, 67, 95, 0.7);
+}
+
+
+
+
+.containerStyle2 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
