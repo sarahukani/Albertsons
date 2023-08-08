@@ -333,6 +333,8 @@ function CreatePlaylist() {
                 setPopupContent(false);
                 setIsScheduled(true); // Mark scheduling status as true
               }}
+              playlistTitle={title}
+              storeList={state.storeList}
             />
             <button className="close-btn" onClick={handleClosePopup}>
               X
