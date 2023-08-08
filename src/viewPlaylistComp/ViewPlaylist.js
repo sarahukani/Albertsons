@@ -156,7 +156,7 @@ export default function ViewPlaylist(props) {
       <div className="view-playlist-header">All Playlists</div>
       <div className="campaign-list">
         {playlists.map((campaign, index) =>
-        <Card key={index} className="card" sx={{ height: "37vh", width: "calc(30% - 20px)", backgroundColor:'lightgray', 
+        <Card key={index} className="card" sx={{ height: "37vh", width: "calc(30% - 20px)", backgroundColor:'white', 
                   borderRadius:'10px', boxShadow: '5px 10px 15px darkgray', marginBottom: "20px"}}>
             <div className="image-container">
             <MoreHorizIcon 
