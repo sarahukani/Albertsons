@@ -336,23 +336,26 @@ export default class Database {
 
     static async getEditedImage(pID, title, price, description, storeID) {
         const queryParams = new URLSearchParams();
-        queryParams.append("pid", pID);
-        queryParams.append("prompt", description);
+        queryParams.append("pID", pID);
+        queryParams.append("description", description);
         queryParams.append("title", title);
         queryParams.append("price", price);
-        queryParams.append("storeid", storeID);
-
-        if(pID.length === 9) {
-            queryParams.append("isalb", "1")
-        } else {
-            queryParams.append("isalb", "")
+        queryParams.append("storeID", storeID);
+  
+        const url = `${backendOrigin}/albert/get-edited-image?${queryParams.toString()}`;
+  
+        try {
+          const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+          });
+          console.log("This is response: ", response);
+          const imageURL = await response.json();
+          console.log(imageURL);
+          return imageURL;
+        } catch (error) {
+          console.error("Error fetching edited image:", error);
         }
-
-        const url = `${albertOrigin}/getrec/edit-image/?${queryParams.toString()}`;
-        console.log(url);
-        const resp = await fetch(url);
-        const newEditedImage = await resp.json();
-        console.log(newEditedImage);
-        return newEditedImage;
-    }
+      }
 }
