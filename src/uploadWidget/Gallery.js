@@ -145,7 +145,9 @@ const Gallery = (props) => {
 
     return (
         <div className="gallery-container">
-            All upload
+            <div className="gallery-color">
+            Gallery
+            </div>
             <div className="italic-text">
                 <br></br>
                 To generate customized AI images, click on the selected image and type in your requirements.
