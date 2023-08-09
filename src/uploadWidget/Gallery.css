@@ -12,11 +12,14 @@
   
   }
   
-  .italic-text {
-  font-style: italic;
+  .gallery-color {
+    color: white;
   }
   
-  
+  .italic-text {
+  color:white;
+  font-style: italic;
+  }
   
   .edit-button {
   position: absolute;
