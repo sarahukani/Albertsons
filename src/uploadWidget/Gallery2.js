@@ -41,7 +41,7 @@ const Gallery2 = (props) => {
                             products.push(currProducts[j]);
                         }
                     }
-                }x
+                }
                 console.log('Fetched products:', products);
 
                 // Extract the image_url from each product and create a new array
