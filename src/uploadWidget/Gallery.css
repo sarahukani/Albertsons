@@ -5,11 +5,17 @@
   display: inline-block;
   width: 100%;
   margin-top: 12vh;
-  font-size: 2vw;
-  font-family:'Franklin Gothic Medium';
+  font-size: 1.5vw;
+  margin-left: 2vh;
+  font-family: 'Lucida Grande';
+  font-weight: bolder;
   background-color: #032644;
   color: white;
   
+  }
+
+  .icon-dropdown2{
+    color: black;
   }
   
   .gallery-color {
@@ -19,6 +25,7 @@
   .italic-text {
   color:white;
   font-style: italic;
+  font-size: 1vw;
   }
   
   .edit-button {

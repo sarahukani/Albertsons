@@ -310,9 +310,9 @@ export default class Database {
         const queryParams = new URLSearchParams();
         queryParams.append("storeid", storeID);
         queryParams.append("category", category);
-        queryParams.append("demographic", "");
-        queryParams.append("weather", "");
-        queryParams.append("holiday", "");
+        queryParams.append("demographic", age);
+        queryParams.append("weather", weather);
+        queryParams.append("holiday", holiday);
 
         const url = `${backendOrigin}/albert/product-recs`; // Endpoint on your Spring Boot backend
         const response = await fetch(url, {

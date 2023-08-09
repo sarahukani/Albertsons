@@ -89,13 +89,14 @@ img {
     display: block;
 }
 
+.gallery2-icon {
+    color: black;
+}
 
 .image-item2.selected {
     background-color: rgba(61, 163, 227, 0.9);
   border-radius: 3%;
 }
-
-
 
 
 .containerStyle2 {

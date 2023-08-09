@@ -31,7 +31,17 @@ const Gallery2 = (props) => {
         async function fetchData() {
             try {
                 console.log("This is storeList", storeList);
-                let products = await Database.getCurrentLocationProducts(storeList[0].id);
+                let products = [];
+                let tempProducts = new Set(); 
+                for (let i = 0; i < storeList.length; i++) {
+                    let currProducts = await Database.getCurrentLocationProducts(storeList[i].id);
+                    for (let j = 0; j < currProducts.length; j++) {
+                        if (!tempProducts.has(currProducts[j].id)) {
+                            tempProducts.add(currProducts[j].id);
+                            products.push(currProducts[j]);
+                        }
+                    }
+                }x
                 console.log('Fetched products:', products);
 
                 // Extract the image_url from each product and create a new array
@@ -114,7 +124,9 @@ const Gallery2 = (props) => {
              <button className="create-to-gallery-btn" onClick={navigateToGallery}>
             Gallery
              </button>
-            <Icon storeName={storeName} storeList={storeList} user={user} />
+             <div className="gallery2-icon"> 
+             <Icon storeName={storeName} storeList={storeList} user={user} />
+             </div>
             <div className="image-grid2">
                 {images.map((image, index) => (
                 <div className="image-box2">

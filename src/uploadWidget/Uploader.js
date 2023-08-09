@@ -41,7 +41,11 @@ export default function Uploader( props ) {
           let productName = "Uploaded";
           let price = "0.00";
           await Database.createProduct(pIDs[i], productName, price, urls[i]);
-          await Database.pushStoreProductsList(props.storeList[0].id, pIDs[i]);
+
+          for (var j = 0; j < props.storeList.length; j++) {
+            await Database.pushStoreProductsList(props.storeList[j].id, pIDs[i]);
+          }
+
           setSuccessMessage('Images uploaded successfully!');
           console.log('Images uploaded successfully!')
           setTimeout(() => {
