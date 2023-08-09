@@ -113,13 +113,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 12vw;
+  height: 25vh;
   width: 30.8vw;
   cursor: pointer;
   position: absolute;
   top: 0%;
   left: 0%;
-  border: 2px dashed #0C5497;
+  border: 2px #0C5497;
   border-radius: 20px;
 }
 

@@ -40,7 +40,7 @@ const Verification = () => {
           <p className='verify'>  Make sure your locations are correct before submitting.</p>
           <div className="infoBox">
             <p className="storeName"><b>Store Name:</b> {state.storeName}</p>
-            <ul className="locationList">
+            <ul className="locationList"><br></br>
               {state.chosenLoc.map((store, index) =>
                   <li>{store.location.address}, {store.location.city}, {store.location.state} {store.location.zip} (LocationID: {store.id})</li>
               )}

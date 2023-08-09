@@ -91,6 +91,7 @@
     margin-top: 3%;
     text-align: left;
     font-size: 1.3vw;
+    margin-left: 2vh;
   }
 
   .infoBox {
@@ -101,7 +102,7 @@
     margin-top: 1%;
     /* margin-left: -30%; */
     height: 8vw;
-    width: 35vw;
+    width: 37vw;
     text-align: center;
     display: flex;
     align-items: center;

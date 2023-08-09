@@ -19,6 +19,7 @@
     color:white;
     font-size: 35px;
     left: 70px;
+    font-family:  'Lucida Grande';
   }
 
   .etc-icon{
@@ -104,6 +105,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
+    color: black;
 
   }
   
