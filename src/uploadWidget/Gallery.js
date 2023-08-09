@@ -31,26 +31,7 @@ const Gallery = (props) => {
   let title = "Default";
   let price = "5.99";
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        console.log(storeList);
-
-    
-
-        let products = [];
-        let tempProducts = new Set(); 
-        for (let i = 0; i < storeList.length; i++) {
-            let currProducts = await Database.getCurrentLocationProducts(storeList[i].id);
-            for (let j = 0; j < currProducts.length; j++) {
-                if (!tempProducts.has(currProducts[j].id)) {
-                    tempProducts.add(currProducts[j].id);
-                    products.push(currProducts[j]);
-                }
-            }
-        }
-
-         // let tempProducts = new Set();
+  // let tempProducts = new Set();
         // for (let i = 0; i < storeList.length; i++) {
         //   let currProducts = await Database.getCurrentLocationProducts(
         //     storeList[i].id
@@ -64,11 +45,26 @@ const Gallery = (props) => {
 
         // let products = Array.from(tempProducts);
 
-        console.log("Fetched products:", products);
-
         // Extract the image_url from each product and create a new array
         // const productImages = products.map((product) => product.image_url);
+        
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        console.log(storeList);
+        let products = [];
+        let tempProducts = new Set(); 
+        for (let i = 0; i < storeList.length; i++) {
+            let currProducts = await Database.getCurrentLocationProducts(storeList[i].id);
+            for (let j = 0; j < currProducts.length; j++) {
+                if (!tempProducts.has(currProducts[j].id)) {
+                    tempProducts.add(currProducts[j].id);
+                    products.push(currProducts[j]);
+                }
+            }
+        }
+        console.log("Fetched products:", products);
         setImages(products);
       } catch (error) {
         console.error("Error fetching products:", error);
